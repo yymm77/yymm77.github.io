@@ -303,7 +303,8 @@ footer {
 }
 
 @keyframes turn {
-  to { rotate: 360deg; }
+  from { rotate: 0deg; }
+  to   { rotate: 360deg; }
 }
 
 @media (max-width: 640px) {
@@ -321,7 +322,16 @@ footer {
   *, *::before, *::after {
     animation-duration: 0.001s !important;
     animation-delay: 0s !important;
+    /* 無限ループを1回で打ち切る。これが無いと社章が超高速で回り続ける */
+    animation-iteration-count: 1 !important;
     transition-duration: 0.001s !important;
+  }
+  /* 社章は回転そのものを止め、正立で静止させる */
+  .hero-mark {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    rotate: 0deg;
   }
   .work:hover { transform: none; }
 }
@@ -388,9 +398,9 @@ footer {
     <a class="work" style="--accent:#2d5a3d" href="https://yymm77.github.io/mikuni-recipe/">
       <div class="work-name">三國シェフ<br>レシピアーカイブ</div>
       <div class="work-desc">
-        三國清三シェフが公開されているレシピを、
-        検索・分量調整・印刷ができる形にまとめたものです。
-        Paddle Works様より掲載の許諾をいただいています。
+        三國シェフの公開レシピの検索用インデックスです。
+        検索・分量調整・印刷ができる形にまとめました。
+        各レシピの権利は権利者に帰属します。本サイトは非公式の個人運営です。
       </div>
       <div class="work-meta">検索・分量調整・動画つき</div>
       <div class="work-go">開く →</div>
