@@ -7,7 +7,7 @@
 <meta name="description" content="予測技術・政策提言・連載・レシピ。制作したものと、携わっていること。おてんとうさまの下で、生かされて今を存在する。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;800&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Shippori+Mincho:wght@400;500;600;800&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #1a1208;
@@ -335,9 +335,54 @@ footer {
   }
   .work:hover { transform: none; }
 }
+
+.lang-jump { text-align:center; padding:26px 20px 0; }
+.jump-btn { display:inline-block; font-family:'Noto Serif JP',serif;
+  font-size:.8rem; letter-spacing:.06em; text-decoration:none;
+  color:var(--gold); border:1px solid var(--border); border-radius:2px;
+  padding:10px 24px; background:rgba(255,255,255,.5); transition:all .25s; }
+.jump-btn:hover { background:rgba(138,105,20,.09); border-color:var(--gold-light); }
+.lang-divider { border:0; border-top:1px solid var(--border);
+  margin:56px auto 0; max-width:820px; }
+.en-gate { padding:6px 24px 8px; max-width:820px; margin:0 auto;
+  font-family:'Inter',system-ui,sans-serif; text-align:left; }
+.en-gate .jump-btn { display:block; width:max-content;
+  margin:0 auto 40px; font-family:'Inter',sans-serif; }
+.en-gate h2 { font-size:1.5rem; font-weight:500; letter-spacing:.01em;
+  color:var(--indigo); margin:0 0 6px; }
+.en-gate .en-tag { font-size:.76rem; letter-spacing:.16em;
+  color:var(--gold); margin:0 0 20px; text-transform:uppercase; }
+.en-gate p { font-size:.93rem; line-height:1.85; margin:0 0 14px;
+  color:var(--ink-light); }
+.en-gate h3 { font-size:1.02rem; font-weight:500; margin:36px 0 14px;
+  padding-bottom:8px; border-bottom:1px solid var(--border); }
+.en-card { display:block; text-decoration:none; color:inherit;
+  background:rgba(255,255,255,.55); border:1px solid var(--border);
+  border-top:3px solid var(--indigo); border-radius:2px;
+  padding:20px 22px; margin-bottom:14px; transition:all .25s; }
+.en-card:hover { background:rgba(255,255,255,.82);
+  box-shadow:0 8px 24px var(--shadow); }
+.en-card b { display:block; font-size:1rem; font-weight:500;
+  color:var(--indigo); margin-bottom:7px; }
+.en-card span { display:block; font-size:.87rem; line-height:1.7;
+  color:var(--ink-light); }
+.en-card i { display:block; font-style:normal; font-size:.79rem;
+  color:var(--gold); margin-top:10px; }
+.en-list { list-style:none; padding:0; margin:0; }
+.en-list li { border-bottom:1px solid var(--border); padding:13px 2px;
+  font-size:.88rem; line-height:1.7; color:var(--ink-light); }
+.en-list li:first-child { border-top:1px solid var(--border); }
+.en-list b { font-weight:500; color:var(--ink); }
+.en-list a { color:var(--gold); text-decoration:none; }
+.en-gate .en-note { margin-top:30px; font-size:.8rem;
+  line-height:1.8; opacity:.72; }
 </style>
 </head>
 <body>
+
+<div class="lang-jump" id="top">
+  <a href="#en" class="jump-btn">English ↓</a>
+</div>
 
 <header class="hero">
   <img class="hero-mark" src="nissho-mark.png" alt="日昇リサーチ株式会社 社章" width="400" height="400">
@@ -489,6 +534,57 @@ footer {
   </div>
 
 </main>
+
+<hr class="lang-divider">
+
+<section class="en-gate" id="en">
+  <a href="#top" class="jump-btn">↑ 日本語のページへ戻る</a>
+
+  <p class="en-tag">Nissho Research Co., Ltd.</p>
+  <h2>Under the sun</h2>
+
+  <p>I am Yoshiaki Mihara, born 1953, in Tama City, Tokyo. After more than twenty years at Nissan Motor Co., Ltd. — in export operations and foreign exchange administration — I took up the work of Maki Masahitoshi, who in 1958 systematised a Japanese method of prediction from personal names, and have continued to formalise and publish it since.</p>
+
+  <p>This site holds several strands of work that look separate but are not: prediction tools, proposals submitted to government ministries, a record of my life, and the daily work of a small business. Everything here is free to use.</p>
+
+  <h3>If you came for UCA</h3>
+
+  <p>UCA — Universal Creative Attribution — is a design for recording that a work exists, verifying whether it entered an AI training corpus, and settling remuneration in proportion to recorded use. <strong>Without requiring the operator to disclose its corpus.</strong> These three pages carry it, and each has a full English version.</p>
+
+  <a class="en-card" href="https://yymm77.github.io/seimei-kagaku/uca-technical-specification.html">
+    <b>Technical specification</b>
+    <span>Corpus Transparency and Usage Attribution. A five-layer design built on ISO 24138:2024 (ISCC) and RFC 6962 transparency-log constructions. Includes stated limitations and open questions.</span>
+    <i>English first, Japanese below →</i>
+  </a>
+
+  <a class="en-card" href="https://yymm77.github.io/seimei-kagaku/uca-cabinet-proposal.html">
+    <b>Proposal submitted to the Cabinet Office of Japan</b>
+    <span>"From disclosure to measurement." The full text of a proposal submitted in August 2026 to Japan's Intellectual Property Strategy Promotion Secretariat, during the drafting of its Principles Code on generative AI.</span>
+    <i>Japanese first, English below →</i>
+  </a>
+
+  <a class="en-card" href="https://yymm77.github.io/seimei-kagaku/blockchain-ip-demo-v2.html">
+    <b>Working prototype</b>
+    <span>Generate SHA-256 hashes from real files, register them on a simulated chain, and watch settlement execute. Runs entirely in your browser; no file is transmitted to any server.</span>
+    <i>Japanese interface, English guide below →</i>
+  </a>
+
+  <h3>Everything else here</h3>
+
+  <ul class="en-list">
+    <li><b>Prediction tools</b> — Name science, directional divination (<em>hōigaku</em>), the I Ching, and auspicious-day calculation. Pure HTML, CSS and JavaScript; no server. <a href="https://yymm77.github.io/seimei-kagaku/">Enter →</a></li>
+    <li><b>Policy proposals</b> — Copyright, a national strategy for humanoid AI, a civic service bridging disaster resilience and defence, and a proposal to make the National Diet Library a centre for AI development. All submitted to ministries and published as sent. <a href="https://yymm77.github.io/seimei-kagaku/proposals.html">Read →</a></li>
+    <li><b>Serialised writing</b> — A record of my life, and a series on living under the sun in the age of AGI.</li>
+    <li><b>Chef Mikuni recipe archive</b> — Some 1,700 recipes published by chef Kiyomi Mikuni, made searchable and scalable. <a href="https://yymm77.github.io/mikuni-recipe/">Open →</a></li>
+    <li><b>Tokyo Goyu Renmei</b> — Executive director since June 2026. Field study programmes and digital archiving of the association's books.</li>
+    <li><b>TSD Institute</b> — A study room and music practice rooms in Fuchu, inherited from the late Yoshihiro Tsutsuda, my teacher.</li>
+    <li><b>Ami Mihara</b> — My wife, a composer of Japanese popular song and children's songs; member of JASRAC and of the Japan Children's Song Association. <a href="https://miharaami.github.io/">Her site →</a></li>
+    <li><b>Housework Service Tama</b> — Practical help for households in the Tama area: carpentry, plumbing, drain clearing, estate clearance, grave cleaning, tutoring, and support for older people at home. I am a certified care worker.</li>
+  </ul>
+
+  <p class="en-note">The text and systems on this site are published under the UCA principle: <strong>knowledge is released; creators are remunerated.</strong><br>
+  Contact: +81-42-355-5678 — Tama City, Tokyo, Japan.</p>
+</section>
 
 <footer>
   <p class="f-uca">
