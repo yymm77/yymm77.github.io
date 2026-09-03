@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>記録 ｜ おてんとうさまの下で</title>
+<meta name="description" content="日々の出来事について書き留めた論考と所感の記録。">
+<meta property="og:title" content="記録 ｜ おてんとうさまの下で">
+<meta property="og:description" content="日々の出来事について書き留めた論考と所感の記録。">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --washi:#f5f1e8;   /* 地・和紙 */
+    --sumi:#1a1208;    /* 本文・墨 */
+    --kon:#1a3a5c;     /* 見出し・紺 */
+    --kin:#b8960c;     /* 罫・金 */
+    --shu:#8b2e2e;     /* 差し色・朱 */
+    --kogecha:#3e2a1b; /* 強調・焦茶 */
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.9;
+    font-size:16px;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 22px 64px;}
+
+  /* パンくず */
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:22px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  /* 標題 */
+  .title{font-size:28px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 6px;}
+  .lead{color:var(--kogecha);margin:0 0 20px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 26px;}
+
+  /* 分野の絞り込み */
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px;}
+  .filters button{
+    font-family:inherit;font-size:14px;cursor:pointer;
+    background:transparent;color:var(--kon);
+    border:1px solid var(--kin);border-radius:0;
+    padding:5px 13px;line-height:1.7;
+  }
+  .filters button:hover{background:rgba(184,150,12,.12);}
+  .filters button[aria-pressed="true"]{background:var(--kon);color:var(--washi);border-color:var(--kon);}
+  .filters button:focus-visible{outline:2px solid var(--shu);outline-offset:2px;}
+
+  /* 年の見出し */
+  .year{
+    font-size:15px;color:var(--kogecha);letter-spacing:.08em;
+    border-bottom:1px solid var(--kin);padding-bottom:4px;margin:34px 0 4px;
+  }
+  .year:first-of-type{margin-top:0;}
+
+  /* 記事 */
+  article{padding:20px 0;border-bottom:1px solid rgba(184,150,12,.4);}
+  .meta{font-size:13.5px;color:var(--kogecha);margin-bottom:5px;}
+  .meta .sep{color:var(--kin);margin:0 7px;}
+  .type{color:var(--shu);}
+  .h{font-size:20px;font-weight:bold;line-height:1.5;margin:0 0 3px;}
+  .h a{color:var(--kon);text-decoration:none;}
+  .h a:hover{color:var(--shu);text-decoration:underline;}
+  .h a:focus-visible{outline:2px solid var(--shu);outline-offset:2px;}
+  .sub{font-size:15px;color:var(--shu);margin-bottom:7px;}
+  .sum{font-size:15px;margin:0 0 9px;}
+  .tags{font-size:13px;color:var(--kogecha);}
+  .tags span{border:1px solid rgba(184,150,12,.7);padding:1px 7px;margin-right:5px;display:inline-block;}
+  .out{font-size:13.5px;margin-top:8px;}
+  .out a{color:var(--kon);}
+
+  .msg{padding:26px 0;color:var(--kogecha);}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:23px;}
+    .h{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ 記録</div>
+
+  <h1 class="title">記録</h1>
+  <p class="lead">その時々に考えたことを、書き留めておく場所です。論考も所感も、日付とともにここへ残します。</p>
+  <hr class="rule">
+
+  <div class="filters" id="filters" role="group" aria-label="分野で絞り込む"></div>
+
+  <div id="list"><div class="msg">読み込んでいます。</div></div>
+
+</div>
+
+<script>
+(function () {
+  var listEl = document.getElementById('list');
+  var filterEl = document.getElementById('filters');
+  var all = [];          // 全記事
+  var current = 'すべて'; // 選択中の分野
+
+  // 日付を「令和八年九月三日」ではなく素直な表記にする
+  function formatDate(iso) {
+    var p = iso.split('-');
+    return p[0] + '年' + Number(p[1]) + '月' + Number(p[2]) + '日';
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  // 絞り込みボタンを作る（記事に実在する分野のみ並べる）
+  function buildFilters(cats) {
+    var names = ['すべて'].concat(cats);
+    filterEl.innerHTML = '';
+    names.forEach(function (name) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = name;
+      b.setAttribute('aria-pressed', name === current ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        current = name;
+        Array.prototype.forEach.call(filterEl.children, function (x) {
+          x.setAttribute('aria-pressed', x.textContent === current ? 'true' : 'false');
+        });
+        render();
+      });
+      filterEl.appendChild(b);
+    });
+  }
+
+  function render() {
+    var items = all.filter(function (a) {
+      return current === 'すべて' || a.category === current;
+    });
+
+    if (!items.length) {
+      listEl.innerHTML = '<div class="msg">この分野の記事はまだありません。</div>';
+      return;
+    }
+
+    var html = '';
+    var lastYear = '';
+    items.forEach(function (a) {
+      var year = a.date.slice(0, 4);
+      if (year !== lastYear) {
+        html += '<div class="year">' + year + '年</div>';
+        lastYear = year;
+      }
+
+      html += '<article>';
+      html += '<div class="meta">' + formatDate(a.date);
+      if (a.type)     html += '<span class="sep">｜</span><span class="type">' + escapeHtml(a.type) + '</span>';
+      if (a.category) html += '<span class="sep">｜</span>' + escapeHtml(a.category);
+      html += '</div>';
+
+      html += '<h2 class="h"><a href="' + escapeHtml(a.path) + '">' + escapeHtml(a.title) + '</a></h2>';
+      if (a.subtitle) html += '<div class="sub">' + escapeHtml(a.subtitle) + '</div>';
+      if (a.summary)  html += '<p class="sum">' + escapeHtml(a.summary) + '</p>';
+
+      if (a.tags && a.tags.length) {
+        html += '<div class="tags">';
+        a.tags.forEach(function (t) { html += '<span>' + escapeHtml(t) + '</span>'; });
+        html += '</div>';
+      }
+
+      // 楽天ブログにも出している場合は、その配信先を示す
+      if (a.rakuten_url) {
+        html += '<div class="out">楽天ブログ版：<a href="' + escapeHtml(a.rakuten_url) +
+                '" rel="noopener">こちら</a></div>';
+      }
+
+      html += '</article>';
+    });
+
+    listEl.innerHTML = html;
+  }
+
+  fetch('articles.json', { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('articles.json を取得できません（' + r.status + '）');
+      return r.json();
+    })
+    .then(function (data) {
+      all = (data.articles || []).slice().sort(function (x, y) {
+        return y.date.localeCompare(x.date); // 新しい順
+      });
+
+      // 記事が実在する分野だけを、articles.json の並び順で拾う
+      var used = {};
+      all.forEach(function (a) { if (a.category) used[a.category] = true; });
+      var cats = (data.categories || []).filter(function (c) { return used[c]; });
+      Object.keys(used).forEach(function (c) {
+        if (cats.indexOf(c) === -1) cats.push(c);
+      });
+
+      buildFilters(cats);
+      render();
+    })
+    .catch(function (e) {
+      listEl.innerHTML = '<div class="msg">記事の一覧を読み込めませんでした。' +
+        '<br>' + escapeHtml(e.message) +
+        '<br><br>※このページはファイルを直接開くと動きません。GitHub Pages 上で確認してください。</div>';
+    });
+})();
+</script>
+</body>
+</html>
