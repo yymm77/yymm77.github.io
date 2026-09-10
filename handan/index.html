@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>判断の記録 ｜ おてんとうさまの下で</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --washi:#f5f1e8;
+    --sumi:#1a1208;
+    --kon:#1a3a5c;
+    --kin:#b8960c;
+    --shu:#8b2e2e;
+    --kogecha:#3e2a1b;
+    --kage:#6b6255;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.9;
+    font-size:16px;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:28px 22px 64px;}
+
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:22px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  .title{font-size:27px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 6px;}
+  .lead{color:var(--kogecha);margin:0 0 8px;font-size:15px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:20px 0 26px;}
+
+  .hikokai{
+    background:rgba(139,46,46,.07);
+    border-left:6px solid var(--shu);
+    padding:13px 16px;margin:0 0 30px;
+    font-size:14px;line-height:1.8;color:var(--kogecha);
+  }
+  .hikokai b{color:var(--shu);}
+
+  /* 一件 */
+  .ken{border:1px solid var(--kin);padding:0 0 4px;margin:0 0 34px;background:rgba(255,255,255,.35);}
+  .ken-head{background:rgba(184,150,12,.13);padding:14px 18px;border-bottom:1px solid rgba(184,150,12,.5);}
+  .ken-date{font-size:13px;color:var(--kogecha);letter-spacing:.08em;margin-bottom:3px;}
+  .ken-q{font-size:19px;font-weight:bold;color:var(--kon);line-height:1.5;}
+  .ken-body{padding:16px 18px 6px;}
+
+  .midashi{
+    font-size:13px;color:var(--shu);letter-spacing:.1em;
+    border-bottom:1px solid rgba(184,150,12,.5);
+    padding-bottom:3px;margin:20px 0 9px;
+  }
+  .midashi:first-child{margin-top:0;}
+
+  .ketsuron{font-size:17px;font-weight:bold;line-height:1.7;margin:0 0 4px;}
+  .kakushin{font-size:13.5px;color:var(--kogecha);}
+
+  /* 根拠 */
+  .konkyo{border-left:4px solid var(--kin);padding:2px 0 2px 12px;margin:0 0 14px;}
+  .konkyo.hi{border-left-color:var(--kage);}
+  .konkyo-t{font-weight:bold;color:var(--kon);font-size:15px;margin-bottom:2px;}
+  .konkyo-t .w{font-weight:normal;font-size:12.5px;color:var(--kogecha);margin-left:7px;}
+  .konkyo-t .fuda{
+    font-size:11.5px;font-weight:normal;padding:1px 7px;margin-left:7px;
+    border:1px solid currentColor;vertical-align:2px;
+  }
+  .konkyo-t .fuda.ko{color:var(--kin);}
+  .konkyo-t .fuda.hi{color:var(--kage);}
+  .konkyo-c{font-size:14.5px;line-height:1.85;}
+
+  .kiji a{color:var(--kon);font-size:14.5px;}
+  .kiji div{margin-bottom:3px;}
+  .kiji .d{color:var(--kogecha);font-size:13px;margin-right:8px;}
+
+  /* 検証 */
+  .kensho{border:1px dashed var(--kin);padding:12px 15px;margin:6px 0 14px;font-size:14.5px;line-height:1.8;}
+  .kensho .hi{font-weight:bold;color:var(--shu);margin-bottom:5px;}
+  .kensho .kijun{color:var(--kogecha);font-size:14px;margin-top:6px;}
+  .machi{
+    display:inline-block;font-size:12.5px;padding:2px 9px;
+    background:var(--kogecha);color:#fff;margin-left:8px;vertical-align:2px;
+  }
+  .memo{font-size:14px;color:var(--kogecha);line-height:1.85;}
+
+  .msg{padding:24px 0;color:var(--kogecha);}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:22px;}
+    .ken-q{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ 判断の記録</div>
+
+  <h1 class="title">判断の記録</h1>
+  <p class="lead">何をどう考えて、その結論に至ったか。根拠を種類ごとに分けて残しておく場所です。</p>
+  <hr class="rule">
+
+  <div class="hikokai">
+  <b>この頁は一覧に載せていません。</b>　書いたものではなく、書く前に考えたことを置いてあります。当たり外れを後から都合よく解釈しないために、判定の日と基準を、判断した時点で先に決めて書いておきます。
+  </div>
+
+  <div id="list"><div class="msg">読み込んでいます。</div></div>
+
+</div>
+
+<script>
+(function () {
+  var el = document.getElementById('list');
+
+  function fmt(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    return p[0] + '年' + Number(p[1]) + '月' + Number(p[2]) + '日';
+  }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  fetch('handan.json', { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('handan.json を取得できません（' + r.status + '）');
+      return r.json();
+    })
+    .then(function (data) {
+      var items = (data.kondate || []).slice().sort(function (a, b) {
+        return b.date.localeCompare(a.date);
+      });
+      if (!items.length) { el.innerHTML = '<div class="msg">まだ記録がありません。</div>'; return; }
+
+      var html = '';
+      items.forEach(function (k) {
+        html += '<div class="ken">';
+        html += '<div class="ken-head"><div class="ken-date">' + fmt(k.date) + '</div>';
+        html += '<div class="ken-q">' + esc(k.title) + '</div></div>';
+        html += '<div class="ken-body">';
+
+        // 結論
+        html += '<div class="midashi">そのとき出した結論</div>';
+        html += '<div class="ketsuron">' + esc(k.conclusion) + '</div>';
+        if (k.confidence) html += '<div class="kakushin">確からしさの感触：' + esc(k.confidence) + '</div>';
+
+        // 根拠
+        if (k.grounds && k.grounds.length) {
+          html += '<div class="midashi">その根拠（' + k.grounds.length + '件）</div>';
+          k.grounds.forEach(function (g) {
+            var hi = g.published === false;
+            html += '<div class="konkyo' + (hi ? ' hi' : '') + '">';
+            html += '<div class="konkyo-t">' + esc(g.type);
+            if (g.weight) html += '<span class="w">［' + esc(g.weight) + '］</span>';
+            html += '<span class="fuda ' + (hi ? 'hi' : 'ko') + '">' +
+                    (hi ? '記事に書かず' : '記事に書いた') + '</span>';
+            html += '</div>';
+            html += '<div class="konkyo-c">' + esc(g.content) + '</div>';
+            html += '</div>';
+          });
+        }
+
+        if (k.written) {
+          html += '<div class="midashi">公開したもの</div>';
+          html += '<div class="konkyo-c">' + esc(k.written) + '</div>';
+        }
+
+        // 関係する記事
+        if (k.articles && k.articles.length) {
+          html += '<div class="midashi">この判断から書いた記事</div><div class="kiji">';
+          k.articles.forEach(function (a) {
+            html += '<div><span class="d">' + fmt(a.date) + '</span>';
+            html += '<a href="' + esc(a.path) + '">' + esc(a.title) + '</a></div>';
+          });
+          html += '</div>';
+        }
+
+        // 検証
+        var v = k.verification;
+        if (v) {
+          html += '<div class="midashi">判定</div>';
+          html += '<div class="kensho">';
+          if (v.result) {
+            html += '<div class="hi">結果：' + esc(v.result) + '</div>';
+            if (v.note) html += '<div>' + esc(v.note) + '</div>';
+          } else {
+            html += '<div class="hi">判定日：' + fmt(v.check_date) +
+                    '<span class="machi">判定待ち</span></div>';
+          }
+          if (v.criteria) html += '<div class="kijun">基準：' + esc(v.criteria) + '</div>';
+          html += '</div>';
+        }
+
+        if (k.memo) {
+          html += '<div class="midashi">覚え書き</div>';
+          html += '<div class="memo">' + esc(k.memo) + '</div>';
+        }
+
+        html += '</div></div>';
+      });
+      el.innerHTML = html;
+    })
+    .catch(function (e) {
+      el.innerHTML = '<div class="msg">読み込めませんでした。' + esc(e.message) +
+        '<br><br>※このページはファイルを直接開くと動きません。GitHub Pages 上で確認してください。</div>';
+    });
+})();
+</script>
+</body>
+</html>
