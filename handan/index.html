@@ -80,6 +80,11 @@
   .kensho{border:1px dashed var(--kin);padding:12px 15px;margin:6px 0 14px;font-size:14.5px;line-height:1.8;}
   .kensho .hi{font-weight:bold;color:var(--shu);margin-bottom:5px;}
   .kensho .kijun{color:var(--kogecha);font-size:14px;margin-top:6px;}
+  .chukan{
+    border-left:4px solid var(--shu);padding:4px 0 4px 11px;margin:9px 0 4px;
+    font-size:14.5px;line-height:1.8;
+  }
+  .chukan .d{font-size:12.5px;color:var(--shu);letter-spacing:.06em;margin-bottom:2px;}
   .machi{
     display:inline-block;font-size:12.5px;padding:2px 9px;
     background:var(--kogecha);color:#fff;margin-left:8px;vertical-align:2px;
@@ -192,6 +197,11 @@
           } else {
             html += '<div class="hi">判定日：' + fmt(v.check_date) +
                     '<span class="machi">判定待ち</span></div>';
+          }
+          // 最終判定の前に分かったことがあれば、そこへ書き足していく
+          if (v.interim) {
+            html += '<div class="chukan"><div class="d">' + fmt(v.interim.date) + ' 時点で分かったこと</div>' +
+                    esc(v.interim.content) + '</div>';
           }
           if (v.criteria) html += '<div class="kijun">基準：' + esc(v.criteria) + '</div>';
           html += '</div>';
