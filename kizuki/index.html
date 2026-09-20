@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>気づきの記録 ｜ おてんとうさまの下で</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --washi:#f5f1e8;
+    --sumi:#1a1208;
+    --kon:#1a3a5c;
+    --kin:#b8960c;
+    --shu:#8b2e2e;
+    --kogecha:#3e2a1b;
+    --midori:#2d5a3d;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.9;
+    font-size:16px;
+  }
+  .wrap{max-width:780px;margin:0 auto;padding:28px 22px 64px;}
+
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:22px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  .title{font-size:27px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 6px;}
+  .lead{color:var(--kogecha);margin:0 0 8px;font-size:15px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:20px 0 26px;}
+
+  .annai{
+    background:rgba(184,150,12,.13);
+    border-left:6px solid var(--kin);
+    padding:13px 16px;margin:0 0 30px;
+    font-size:14px;line-height:1.8;color:var(--kogecha);
+  }
+  .annai b{color:var(--kon);}
+
+  /* 一件 */
+  .ken{border:1px solid var(--kin);margin:0 0 34px;background:rgba(255,255,255,.35);}
+  .ken-head{
+    background:rgba(184,150,12,.13);padding:14px 18px;
+    border-bottom:1px solid rgba(184,150,12,.5);
+    display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;
+  }
+  .ken-head .l{flex:1 1 auto;min-width:0;}
+  .ken-date{font-size:13px;color:var(--kogecha);letter-spacing:.08em;margin-bottom:3px;}
+  .ken-t{font-size:19px;font-weight:bold;color:var(--kon);line-height:1.5;}
+  .ken-body{padding:16px 18px 18px;}
+
+  .fuda{
+    font-size:12px;padding:2px 9px;border:1px solid currentColor;
+    white-space:nowrap;
+  }
+  .fuda.sumi{color:var(--midori);}
+  .fuda.machi{color:var(--shu);}
+
+  .midashi{
+    font-size:13px;color:var(--shu);letter-spacing:.1em;
+    border-bottom:1px solid rgba(184,150,12,.5);
+    padding-bottom:3px;margin:18px 0 8px;
+  }
+  .midashi:first-child{margin-top:0;}
+  .honbun{font-size:15px;line-height:1.85;}
+
+  .youbou{border-left:4px solid var(--shu);padding:3px 0 3px 12px;font-size:15px;line-height:1.85;}
+
+  .copy{
+    margin-top:20px;padding-top:14px;border-top:1px dotted rgba(184,150,12,.7);
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  }
+  .copy button{
+    font-family:inherit;font-size:14px;cursor:pointer;
+    background:var(--kon);color:var(--washi);
+    border:1px solid var(--kon);padding:7px 18px;
+  }
+  .copy button:hover{background:var(--shu);border-color:var(--shu);}
+  .copy button:focus-visible{outline:2px solid var(--shu);outline-offset:2px;}
+  .copy .sumi{color:var(--midori);font-size:14px;}
+
+  .msg{padding:24px 0;color:var(--kogecha);}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:22px;}
+    .ken-t{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ 気づきの記録</div>
+
+  <h1 class="title">気づきの記録</h1>
+  <p class="lead">対話AIとのやり取りで気づいた、不具合や改善の余地を書き留めておく場所です。</p>
+  <hr class="rule">
+
+  <div class="annai">
+  AIの側から開発元へ情報を送る経路はありません。会話が終われば、その気づきは引き継がれずに消えます。<b>ですから、利用者の側で記録します。</b>　各件の下にある「文面をコピー」を押すと、そのまま送れる形の文章が写し取られます。
+  </div>
+
+  <div id="list"><div class="msg">読み込んでいます。</div></div>
+
+</div>
+
+<script>
+(function () {
+  var el = document.getElementById('list');
+  var items = [];
+
+  function fmt(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    return p[0] + '年' + Number(p[1]) + '月' + Number(p[2]) + '日';
+  }
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  // 開発元へそのまま送れる形の文面を組み立てる
+  function makeText(k) {
+    var t = [];
+    t.push('【' + k.title + '】');
+    t.push('');
+    t.push('気づいた日時：' + fmt(k.date) + (k.time ? ' ' + k.time : ''));
+    if (k.category) t.push('分類：' + k.category);
+    t.push('');
+    t.push('■ 起きたこと');
+    t.push(k.situation);
+    if (k.cause) {
+      t.push('');
+      t.push('■ 原因と思われること');
+      t.push(k.cause);
+    }
+    if (k.impact) {
+      t.push('');
+      t.push('■ 影響');
+      t.push(k.impact);
+    }
+    if (k.request) {
+      t.push('');
+      t.push('■ お願いしたいこと');
+      t.push(k.request);
+    }
+    if (k.workaround) {
+      t.push('');
+      t.push('■ 当面の対処');
+      t.push(k.workaround);
+    }
+    return t.join('\n');
+  }
+
+  function copy(i, btn) {
+    var text = makeText(items[i]);
+    var done = function () {
+      var m = btn.parentNode.querySelector('.sumi');
+      m.textContent = 'コピーしました';
+      setTimeout(function () { m.textContent = ''; }, 2600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+    } else {
+      fallback(text, done);
+    }
+  }
+
+  // クリップボードが使えない場合は、選択できる形で出す
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) { window.prompt('下の文面をコピーしてください', text); }
+    document.body.removeChild(ta);
+  }
+
+  fetch('kizuki.json', { cache: 'no-cache' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('kizuki.json を取得できません（' + r.status + '）');
+      return r.json();
+    })
+    .then(function (data) {
+      items = (data.kizuki || []).slice().sort(function (a, b) {
+        return b.date.localeCompare(a.date);
+      });
+      if (!items.length) { el.innerHTML = '<div class="msg">まだ記録がありません。</div>'; return; }
+
+      var html = '';
+      items.forEach(function (k, i) {
+        var sumi = k.status && k.status.indexOf('対処') === 0;
+        html += '<div class="ken">';
+        html += '<div class="ken-head"><div class="l">';
+        html += '<div class="ken-date">' + fmt(k.date) + (k.time ? '　' + esc(k.time) : '') + '</div>';
+        html += '<div class="ken-t">' + esc(k.title) + '</div></div>';
+        if (k.status) html += '<span class="fuda ' + (sumi ? 'sumi' : 'machi') + '">' + esc(k.status) + '</span>';
+        html += '</div><div class="ken-body">';
+
+        if (k.category) {
+          html += '<div class="midashi">分類</div><div class="honbun">' + esc(k.category) + '</div>';
+        }
+        html += '<div class="midashi">起きたこと</div><div class="honbun">' + esc(k.situation) + '</div>';
+        if (k.cause)   html += '<div class="midashi">原因と思われること</div><div class="honbun">' + esc(k.cause) + '</div>';
+        if (k.impact)  html += '<div class="midashi">影響</div><div class="honbun">' + esc(k.impact) + '</div>';
+        if (k.request) html += '<div class="midashi">お願いしたいこと</div><div class="youbou">' + esc(k.request) + '</div>';
+        if (k.workaround) html += '<div class="midashi">当面の対処</div><div class="honbun">' + esc(k.workaround) + '</div>';
+        if (k.memo)    html += '<div class="midashi">覚え書き</div><div class="honbun">' + esc(k.memo) + '</div>';
+
+        html += '<div class="copy"><button type="button" data-i="' + i + '">文面をコピー</button>';
+        html += '<span class="sumi"></span></div>';
+
+        html += '</div></div>';
+      });
+      el.innerHTML = html;
+
+      Array.prototype.forEach.call(el.querySelectorAll('button[data-i]'), function (b) {
+        b.addEventListener('click', function () { copy(Number(b.getAttribute('data-i')), b); });
+      });
+    })
+    .catch(function (e) {
+      el.innerHTML = '<div class="msg">読み込めませんでした。' + esc(e.message) +
+        '<br><br>※このページはファイルを直接開くと動きません。GitHub Pages 上で確認してください。</div>';
+    });
+})();
+</script>
+</body>
+</html>
