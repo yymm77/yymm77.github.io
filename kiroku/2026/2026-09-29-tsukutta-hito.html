@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作った人を、証明する ｜ おてんとうさまの下で</title>
+<meta name="description" content="GitHubから講演の案内が届いた。題は「自分が世に出すコードを、どう信頼するか」。これは来歴を証明する話であり、コードだけの話ではない。">
+<meta property="og:title" content="作った人を、証明する　――GitHubのウェビナーに向けて">
+<meta property="og:description" content="誰が、いつ、何から作ったのか。それを機械が確かめられる形で残す。私がUCAで考えてきたことと、同じ問題だった。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-09-29">
+<style>
+  :root{
+    --washi:#f5f1e8;
+    --sumi:#1a1208;
+    --kon:#1a3a5c;
+    --kin:#b8960c;
+    --shu:#8b2e2e;
+    --kogecha:#3e2a1b;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.95;
+    font-size:16.5px;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:28px 22px 64px;}
+
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:24px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  .title{font-size:29px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 8px;}
+  .sub{font-size:17px;color:var(--shu);margin:0 0 12px;}
+  .meta{font-size:14px;color:var(--kogecha);margin-bottom:16px;}
+  .meta .sep{color:var(--kin);margin:0 7px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 30px;}
+
+  h2{
+    font-size:20px;font-weight:bold;color:var(--kon);line-height:1.5;
+    border-left:6px solid var(--kin);padding-left:13px;
+    margin:38px 0 16px;
+  }
+  p{margin:0 0 20px;}
+
+  .pull{
+    background:var(--kogecha);color:#fff;font-weight:bold;
+    padding:17px 19px;margin:32px 0;line-height:1.85;
+  }
+
+  .box{
+    border:1px solid var(--kin);padding:16px 18px;margin:26px 0;
+    font-size:15.5px;line-height:1.9;
+  }
+  .box .h{font-weight:bold;color:var(--kon);margin-bottom:8px;}
+  .box .r{padding:5px 0;border-bottom:1px dotted rgba(184,150,12,.6);}
+  .box .r:last-child{border-bottom:0;}
+
+  .note{
+    font-size:14px;color:var(--kogecha);line-height:1.8;
+    border-top:1px solid var(--kin);padding-top:14px;margin-top:36px;
+  }
+
+  .foot{margin-top:34px;font-size:15px;}
+  .foot a{color:var(--kon);}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:23px;}
+    .sub{font-size:15px;}
+    h2{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">記録</a> ／ 本文</div>
+
+  <h1 class="title">作った人を、証明する</h1>
+  <div class="sub">――GitHubのウェビナーに向けて</div>
+  <div class="meta">2026年9月29日<span class="sep">｜</span>論考<span class="sep">｜</span>AI・技術</div>
+  <hr class="rule">
+
+  <p>GitHubから、講演の案内が届きました。</p>
+
+  <p>題を見て、手が止まりました。</p>
+
+  <div class="pull">How to Trust the Code You Ship<br>――自分が世に出すコードを、どうやって信頼するか。</div>
+
+  <h2>一、まず、日取りのこと</h2>
+
+  <p>開催は現地の九月二十九日、午前九時。太平洋夏時間です。</p>
+
+  <p>これを日本の時刻に直すと、<b>九月三十日の午前一時</b>になります。真夜中です。</p>
+
+  <p>私と同じように登録された方、あるいはこれから興味を持たれる方のために、先に書いておきます。<b>無理に起きている必要はないと思います。</b> この種の催しは、後日に録画の案内が届くのが普通だからです。</p>
+
+  <p>録画であれば、止められます。分からないところで一度止めて、戻して、もう一度聞ける。英語を聞き取るうえで、この差は決定的です。</p>
+
+  <h2>二、題が言っていること</h2>
+
+  <p>「Ship」は、船で運ぶという意味から転じて、<b>世に出す</b>という言い方です。出荷する、公開する、というほどの意味になります。</p>
+
+  <p>では、自分が世に出すものを、なぜ信頼できないのか。</p>
+
+  <p>今のソフトウェアは、自分で全部を書いているわけではありません。世界中の誰かが作った部品を、何百と取り込んで出来ています。その部品も、また別の部品を取り込んでいる。<b>自分の作ったものの中身を、作った本人が全部は知らない</b>という状態が、当たり前になっています。</p>
+
+  <p>そして、その部品のどれか一つが、こっそり書き換えられていたらどうなるか。</p>
+
+  <p>これを供給網の問題、英語で supply chain の問題といいます。</p>
+
+  <h2>三、答えは「来歴」です</h2>
+
+  <p>では、どうするか。</p>
+
+  <p>答えは、案外に古風です。<b>誰が、いつ、何から、どういう手順で作ったのかを記録に残す。</b> そして、その記録が改竄されていないことを、機械が確かめられるようにする。</p>
+
+  <p>この分野では、これを provenance（プロヴィナンス）と呼びます。日本語なら<b>来歴</b>です。美術品の世界で、その絵が誰の手を経てここに来たかを示す、あの言葉と同じです。</p>
+
+  <p>そして、来歴を証す書き付けを attestation（アテステーション）、日本語で<b>証明書</b>と呼びます。</p>
+
+  <h2>四、すでに、始まっています</h2>
+
+  <p>これは構想の段階の話ではありません。</p>
+
+  <p>たとえば、Pythonという言語の部品置き場であるPyPIでは、配布されている部品の一つ一つに、こういう表示が付くようになっています。</p>
+
+  <div class="box">
+  <div class="h">部品の頁に表示されていること</div>
+  <div class="r">来歴とは、そのファイルがどこから来たかを示すものである。</div>
+  <div class="r">来歴は証明書という形で共有され、組み立てや公開の詳細を検証できる記録となる。</div>
+  <div class="r">この成果物が、この検査値のまま、表示された公開者から出たことを確認した。</div>
+  <div class="r">GitHub Actions によって署名され、PyPI によって検証された。</div>
+  </div>
+
+  <p>署名した者があり、検証した者がある。そして、いつ検証したかの日付まで残る。</p>
+
+  <p>私は、この表示を見て少し驚きました。<b>これは、印鑑と割印の世界です。</b> やっていることは、昔から役所や商家がやってきたことと変わりません。違うのは、印を押すのも照合するのも機械だということだけです。</p>
+
+  <h2>五、コードだけの話ではない</h2>
+
+  <p>ここまで書いてきて、気づかれた方もおられると思います。</p>
+
+  <p>私はここ数年、UCA（Universal Creative Attribution）という名で、創作物の来歴を記録する仕組みを提言してきました。</p>
+
+  <p>誰が作ったのか。何を参照したのか。どこまでが人の手で、どこからが機械の手か。<b>それを、後から確かめられる形で残しておく。</b></p>
+
+  <p>扱う対象は違います。あちらはプログラム、こちらは文章や音楽です。</p>
+
+  <p>けれど、<b>解こうとしている問題は同じです。</b></p>
+
+  <div class="pull">世に出したものについて、これは誰の手から出たものかを、後から証明できるようにしておくこと。</div>
+
+  <p>そして、この必要が急に高まった理由も、たぶん同じです。生成の速さが、人の目で確かめられる速さを追い越したからです。</p>
+
+  <h2>六、英語が不安な方へ</h2>
+
+  <p>私も、書かれた英語はある程度読めますが、生の講演を耳で追うのは厳しいと感じています。同じ方のために、支度の仕方を書いておきます。</p>
+
+  <p><b>字幕を出す。</b> 配信の画面に「CC」や「Subtitles」という表示があれば、押すと英語の字幕が出ます。耳だけで追うより、格段に楽です。</p>
+
+  <p><b>語を先に入れておく。</b> この分野は、出てくる語が決まっています。次の十ほどを頭に入れておくだけで、話の筋は追えます。</p>
+
+  <div class="box">
+  <div class="h">覚えておくと楽な語</div>
+  <div class="r">supply chain（サプライチェーン）　供給網。他人の部品で出来ていること</div>
+  <div class="r">dependency（ディペンデンシー）　依存関係。頼っている外部の部品</div>
+  <div class="r">provenance（プロヴィナンス）　来歴</div>
+  <div class="r">attestation（アテステーション）　証明書</div>
+  <div class="r">artifact（アーティファクト）　成果物</div>
+  <div class="r">vulnerability（ヴァルネラビリティ）　脆弱性。攻撃されうる弱いところ</div>
+  <div class="r">tampering（タンパリング）　改竄</div>
+  <div class="r">SBOM（エスボム）　部品表。何が入っているかの一覧</div>
+  <div class="r">signing / verify（サイニング／ヴェリファイ）　署名する／検証する</div>
+  <div class="r">ship（シップ）　世に出す</div>
+  </div>
+
+  <p><b>分からない語は、聞き流してよい。</b> 全部を拾おうとすると、かえって筋を見失います。</p>
+
+  <h2>七、一つ、用心を</h2>
+
+  <p>念のために書いておきます。</p>
+
+  <p>私は今回、この催しをGitHubの公式なイベント一覧で確かめようとしましたが、<b>見つけられませんでした。</b> 一覧に載っているのは別の回で、この題のものはありませんでした。</p>
+
+  <p>一覧が全部を載せているとは限りませんので、実在しないとは申しません。ただ、こういう案内を装った偽のメールも世の中には出回っています。</p>
+
+  <p><b>メールの中のリンクを押す前に、GitHubの公式な催し一覧で同じものを探してみてください。</b> そこから登録するほうが安全です。</p>
+
+  <h2>結び</h2>
+
+  <p>深夜一時の英語の講演に、七十三の人間が起きている必要はないと思っています。録画が来たら、字幕を出してゆっくり見るつもりです。</p>
+
+  <p>それでも、この題には惹かれました。</p>
+
+  <p>自分が世に出すものを、どうやって信頼するか。</p>
+
+  <p>これは技術者だけの問いではありません。文章を書く者にも、絵を描く者にも、同じ問いが向けられています。<b>誰が作ったのかが曖昧なまま、ものだけが増えていく時代になりました。</b></p>
+
+  <p>だからこそ、来歴です。</p>
+
+  <p>私がこの場所で、書いたものを日付とともに残し、直した跡も残しているのは、結局そういうことなのだと思います。証明書も署名もありませんが、<b>いつ何を書いたかを消さずに置いておく</b>という一点では、同じことをしているつもりです。</p>
+
+  <div class="note">※本稿は、制作者宛に届いた案内および公開情報に基づいて記しています。催しの実在について、GitHubの公表する催し一覧では確認できませんでした。参加を検討される方は、公式の案内でお確かめください。PyPIの表示に関する記述は、同サイトで公開されている内容の趣旨をまとめたものです。</div>
+
+  <div class="foot"><a href="../">記録の一覧へ戻る</a></div>
+
+</div>
+</body>
+</html>
