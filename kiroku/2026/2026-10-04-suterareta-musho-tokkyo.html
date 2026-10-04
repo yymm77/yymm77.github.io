@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>捨てられた無償特許 ―― トヨタが配った設計図と、受け取らなかった七年｜おてんとうさまの下で</title>
+<meta name="description" content="二〇一九年、トヨタは電動化特許約二万三千七百四十件の実施権を無償で開放した。世界はそれを使わなかった。七年後に何が起きたかを、一次資料の数字で追う。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="捨てられた無償特許 ―― トヨタが配った設計図と、受け取らなかった七年">
+<meta property="og:description" content="設計図は配れる。だが、二十九年かけて直し続けた年数は配れない。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#16181a;        /* 墨 */
+    --sumi-usu:#4d5257;    /* 薄墨 */
+    --shironeri:#f2f1ec;   /* 白練（紙） */
+    --shironeri-fuchi:#e4e2d9;
+    --aitetsu:#22414f;     /* 藍鉄 */
+    --ai:#1f4f6d;          /* 藍 */
+    --kihada:#c9a227;      /* 黄檗（差し色・極小） */
+    --mincho:"Noto Serif JP","Yu Mincho","游明朝","Hiragino Mincho ProN",serif;
+    --gothic:"Noto Sans JP","Yu Gothic","Hiragino Sans",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--shironeri);
+    color:var(--sumi);
+    font-family:var(--mincho);
+    font-weight:400;
+    line-height:2.05;
+    letter-spacing:.02em;
+    font-feature-settings:"palt" 1;
+  }
+
+  .sheet{max-width:41rem;margin:0 auto;padding:0 1.5rem 6rem;}
+
+  /* ── 標題 ── */
+  header.head{padding:5rem 0 2.5rem;}
+  .eyebrow{
+    font-family:var(--gothic);font-size:.72rem;font-weight:500;
+    letter-spacing:.28em;color:var(--ai);line-height:1.6;margin:0 0 1.6rem;
+  }
+  h1{
+    font-family:var(--mincho);font-weight:900;
+    font-size:clamp(1.65rem,5.2vw,2.5rem);
+    line-height:1.55;letter-spacing:.01em;margin:0 0 1.6rem;
+  }
+  h1 .sub{display:block;font-size:.62em;font-weight:600;color:var(--aitetsu);margin-top:.7rem;}
+  .lede{
+    font-size:1.02rem;color:var(--sumi-usu);margin:0 0 2rem;
+    border-left:2px solid var(--aitetsu);padding-left:1.1rem;
+  }
+  .byline{
+    font-family:var(--gothic);font-size:.78rem;color:var(--sumi-usu);
+    letter-spacing:.08em;border-top:1px solid var(--shironeri-fuchi);
+    padding-top:1rem;margin:0;
+  }
+
+  /* ── 本文 ── */
+  main{font-size:1.02rem;}
+  main p{margin:0 0 1.6em;text-align:justify;}
+  main strong{font-weight:900;background:linear-gradient(transparent 62%,rgba(201,162,39,.32) 62%);}
+
+  h2{
+    font-family:var(--mincho);font-weight:900;font-size:1.32rem;
+    line-height:1.6;margin:4rem 0 1.8rem;padding-bottom:.7rem;
+    border-bottom:1px solid var(--aitetsu);
+  }
+  /* 章番号：本文の「一、二、…」という数え方をそのまま構造に持ち込む */
+  h3{
+    font-family:var(--mincho);font-weight:900;font-size:1.08rem;
+    line-height:1.7;margin:3rem 0 1.2rem;
+    display:flex;gap:.85rem;align-items:baseline;
+  }
+  h3 .kan{
+    flex:0 0 auto;width:1.9rem;height:1.9rem;line-height:1.9rem;
+    text-align:center;font-size:.9rem;font-weight:600;
+    color:var(--shironeri);background:var(--aitetsu);border-radius:50%;
+    transform:translateY(.1rem);
+  }
+
+  ul{margin:0 0 1.8em;padding-left:0;list-style:none;}
+  ul li{position:relative;padding-left:1.4rem;margin-bottom:.9em;text-align:justify;}
+  ul li::before{
+    content:"";position:absolute;left:.2rem;top:1em;
+    width:.42rem;height:1px;background:var(--ai);
+  }
+  ol{margin:0 0 1.8em;padding-left:1.4rem;}
+  ol li{margin-bottom:1em;text-align:justify;}
+
+  .aside{
+    font-family:var(--gothic);font-size:.86rem;line-height:1.95;
+    color:var(--sumi-usu);background:rgba(34,65,79,.05);
+    border-radius:3px;padding:1rem 1.2rem;margin:0 0 1.8em;
+  }
+  .pull{
+    margin:2.6rem 0;padding:1.4rem 0;
+    border-top:1px solid var(--shironeri-fuchi);
+    border-bottom:1px solid var(--shironeri-fuchi);
+    font-size:1.12rem;font-weight:600;line-height:1.95;color:var(--aitetsu);
+  }
+  hr.rule{
+    border:0;height:1px;background:var(--shironeri-fuchi);
+    margin:3.5rem 0;
+  }
+
+  /* ── 署名 ── */
+  .sign{
+    margin:4rem 0 0;text-align:right;font-size:1rem;color:var(--aitetsu);
+    line-height:2.2;
+  }
+  .sign span{display:block;font-size:.86rem;letter-spacing:.15em;}
+
+  /* ── 出典 ── */
+  footer.src{
+    margin-top:4.5rem;padding-top:1.8rem;
+    border-top:2px solid var(--aitetsu);
+    font-family:var(--gothic);font-size:.82rem;line-height:1.95;color:var(--sumi-usu);
+  }
+  footer.src h2{
+    font-family:var(--gothic);font-size:.78rem;font-weight:500;letter-spacing:.24em;
+    color:var(--ai);border:0;margin:0 0 1.2rem;padding:0;
+  }
+  footer.src li{padding-left:1.1rem;margin-bottom:.8em;}
+  footer.src li::before{top:.95em;}
+  footer.src a{color:var(--ai);word-break:break-all;}
+  footer.src a:hover{color:var(--sumi);}
+  .colophon{
+    margin-top:2.5rem;font-size:.75rem;letter-spacing:.06em;color:var(--sumi-usu);
+  }
+
+  .uca{
+    margin-top:2.5rem;padding:1.4rem 1.5rem;
+    background:rgba(34,65,79,.05);border-left:4px solid var(--aitetsu);
+  }
+  .uca-title{
+    font-family:var(--mincho);font-weight:900;font-size:1rem;
+    color:var(--aitetsu);margin:0 0 .8rem;line-height:1.7;
+  }
+  .uca-body{margin:0 0 .9rem;font-size:.84rem;}
+  .uca-copy{
+    font-family:var(--mincho);font-weight:900;font-size:.98rem;
+    color:var(--ai);margin:0 0 .9rem;
+  }
+  .uca-link{margin:0;}
+  .uca-link a{font-weight:500;text-decoration:none;border-bottom:1px solid var(--ai);}
+  .tool{
+    margin:2rem 0 0;text-align:center;font-size:.95rem;
+    font-family:var(--mincho);font-weight:600;
+  }
+  .tool a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--kihada);}
+  .tags{
+    margin:2rem 0 0;padding-top:1.2rem;
+    border-top:1px solid var(--shironeri-fuchi);
+    font-size:.8rem;letter-spacing:.06em;color:var(--sumi-usu);
+  }
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--kihada);outline-offset:3px;}
+  @media (max-width:600px){
+    body{line-height:1.95;}
+    header.head{padding:3rem 0 2rem;}
+    main{font-size:1rem;}
+    h3{gap:.6rem;}
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{max-width:none;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="head">
+  <p class="eyebrow">おてんとうさまの下で ／ 技術と国のかたち</p>
+  <h1>捨てられた無償特許
+    <span class="sub">トヨタが配った設計図と、受け取らなかった七年</span>
+  </h1>
+  <p class="lede">設計図は配れる。だが、二十九年かけて直し続けた年数は配れない。無償開放から七年、受け取らなかった側に何が起きたかを数字で追う。</p>
+  <p class="byline">三原嘉明（日昇リサーチ株式会社）</p>
+</header>
+
+<main>
+
+<h2>二万三千七百四十件を、ただで配った日</h2>
+
+<p>二〇一九年四月三日、トヨタ自動車が一枚の発表を出した。ハイブリッド車の開発で積み上げてきたモーター、パワーコントロールユニット、システム制御などの特許、約二万三千七百四十件。その実施権を、二〇三〇年末まで無償で提供するという内容である。二〇一五年から無償提供してきた燃料電池関連の約八千件も含まれている。</p>
+
+<p>虎の子を手放したように見えるが、発表をよく読むと話は少し違う。無償なのは特許の実施権だけで、<strong>相手の車に載せるための技術サポートは有償</strong>である。トヨタのシステムを買った完成車メーカーに対し、システムの概要、制御の要領、搭載する車両に合わせたチューニングの要領を説明する。その費用は協議のうえ契約で決める、と書かれている。</p>
+
+<p>つまりこれは寄付ではない。入口の値段をゼロにして、自分の方式を世界の標準に引き上げるための招待状だった。当時副社長だった寺師茂樹氏は、電動車の普及を支える役割を果たしたい、という趣旨を述べている。支える側は、支えられる側より先を歩いていなければ務まらない。</p>
+
+<hr class="rule">
+
+<h2>招待は無視された</h2>
+
+<p>その二年後、欧州委員会は二〇三五年に新車の二酸化炭素排出を実質ゼロにする案を出し、二〇二三年に正式に決まった。エンジンを積む車は、ハイブリッドも含めて新車では売れなくなる。各社はハイブリッドを飛ばして電気自動車へ一気に進む道を選んだ。</p>
+
+<p>二十年以上かけて熟成された方式を、今から追いかけて歩くより、まだ誰も完成させていない道を走った方が先頭に立てる。計算としては筋が通っている。七年前に配られた設計図は、こうして使われないまま置かれた。</p>
+
+<hr class="rule">
+
+<h2>二〇二五年の暮れに起きたこと</h2>
+
+<p>ところが二〇二五年十二月十六日、欧州委員会は方針の見直しを公表した。二〇三五年の目標を、二〇二一年比で百パーセント削減から<strong>九十パーセント削減</strong>へ緩める。プラグインハイブリッドやレンジエクステンダー、エンジン車も二〇三五年以降に役割を果たす、という文言が入った。</p>
+
+<p class="aside">※ これはまだ提案である。加盟国と欧州議会の承認を経ていない（二〇二六年十月時点）。「決まった」「撤回された」と書くのは、現時点では勇み足になる。</p>
+
+<p>同じ年、アメリカでも前提が動いた。九月三十日に、最大七千五百ドルの税額控除が終わっている。</p>
+
+<hr class="rule">
+
+<h2>数字を冷静に読む</h2>
+
+<p>ジェトロがまとめた二〇二五年の米国新車販売を見る。</p>
+
+<ul>
+  <li>ハイブリッド車　二〇七万六三〇四台（前年比 二九・一パーセント増）</li>
+  <li>電気自動車　一二七万六九八五台（同 一・九パーセント減）</li>
+  <li>電気自動車・プラグインハイブリッド・燃料電池車の合計　一五五万八一五〇台（同 三・六パーセント減）</li>
+</ul>
+
+<p>税額控除が切れた後の十月から十二月だけを見ると、この合計は前年同期比で四十・二パーセント減っている。補助金がなければ買われない、ということがはっきり出た。一方、米国で売れたハイブリッド車の<strong>約七十五パーセントは日系メーカー</strong>のものだった。招待を無視した側の庭で、招待を出した側が売っている。</p>
+
+<p>損失の計上も相次いだ。フォードは電気自動車関連で二〇二七年度までに百九十五億ドルの費用を計上すると発表した。うち約八十五億ドルが、中止した電気自動車の開発にかかる減損である。二〇二五年通期は八十二億ドルの赤字となった。ゼネラルモーターズも電気自動車関連を中心に七十一億ドル規模の費用を計上している。</p>
+
+<p>そのフォードが掲げた次の目標は、二〇三〇年に世界販売の半分をハイブリッド、レンジエクステンダー、電気自動車にすること。現在は約十七パーセントである。主役に据えたのは、七年前に配られた設計図の種類の車だった。</p>
+
+<hr class="rule">
+
+<h2>配った側の七年後</h2>
+
+<p>トヨタの二〇二五年は、レクサスを含む世界販売が一〇五三万六八〇七台。うちハイブリッド車が四四三万三五〇三台で、全体の約四十二パーセントを占めた。電気自動車も四十二パーセント増の一九万九一三七台を売っている。やめてはいない。グループ全体では一一三二万台で、六年連続の世界首位となった。</p>
+
+<p>そして二〇二六年、第六世代のハイブリッドシステムが出た。二月十九日に発表された新型RAV4のプラグインハイブリッドが初搭載で、発売は三月九日。走行用と発電用の二つのモーター、インバーター、トランスアクスル、パワーコントロールユニットを一つのユニットにまとめている。高さは十五パーセント低く、重さは十八パーセント軽く、それでいて出力は十二パーセント高い。システム出力は二四二キロワット、電気だけで走れる距離は従来の約九十五キロメートルから約百五十キロメートルへ伸び、急速充電にも初めて対応した。</p>
+
+<p>五月に横浜で開かれた人とくるまのテクノロジー展では、この中身が展示された。箱を一つにまとめるには、中の部品を全部同時に設計し直さなければならない。一つでも遅れれば蓋が閉まらない。それを一社でやったということが、展示の意味である。</p>
+
+<hr class="rule">
+
+<h2>買えなかったもの</h2>
+
+<p>特許は買える。図面も読める。買えないのは、一九九七年の初代プリウスから二十九年、毎年少しずつ直し続けてきた年数の方だ。</p>
+
+<p>なぜその寸法なのか、なぜその順番で組むのか、なぜその温度で止めるのか。その理由は図面には書かれていない。壊れた部品が返ってくるたびに寸法を一つ直す、という作業の記録の中にしかない。</p>
+
+<div class="pull">設計図は配れる。直した年数は配れない。</div>
+
+<hr class="rule">
+
+<h2>結び —— 雨降って地固まる</h2>
+
+<p>終わりだと言われた五年のあいだに、ハイブリッドは叩かれた分だけ鍛えられた、という見方もできる。規制が揺れる中でトヨタは生産を減らさず、第六世代まで進めた。結果として、この方式を持つ側と持たない側の差は、むしろ開いた。</p>
+
+<p>もっとも、差が開いた理由の半分は、相手側が七年止まったことにある。フォードの百九十五億ドルは、トヨタが稼いだ金ではなく、フォードが失った金である。<strong>日本側の得点というより、相手の失点</strong>と見ておいたほうが、次を見誤らずに済む。</p>
+
+<p>それに、欧米が転んだ横で中国は立っている。電池とサプライチェーンを押さえ、二〇二五年も電気自動車を伸ばした。日本にとっての本当の相手は、設計図を受け取らなかった欧米ではなく、受け取らずに別の土俵を作った側かもしれない。電池材料も磁石の原料も、供給は依然としてそちらに依存している。</p>
+
+<p>日本の技術は凄い、という話に畳んでしまえば、そこで終わってしまう。欧州の見直しにしても、脱炭素をやめるという意味ではない。九十パーセント削減という数字自体が相当に厳しい。ハイブリッドはその条件下で現実的な解だったというだけで、終着点ではない。</p>
+
+<p>それでも、二十九年という時間が効いたことは動かない。流行の言葉が五年で入れ替わっても、毎年直し続けた分だけは手元に残る。設計図を配っても負けないという判断は、その蓄積があって初めて成り立った。</p>
+
+<p>積み上げたものだけが、最後に残る。手を動かし続けた者のところに、それは貯まっていく。</p>
+
+<p class="sign">生かされて今を存在する<span>三原嘉明</span></p>
+
+</main>
+
+<footer class="src">
+  <h2>出典・参考</h2>
+  <ul>
+    <li>トヨタ自動車「ハイブリッド車開発で培ったモーター・PCU・システム制御等 車両電動化技術の特許実施権を無償で提供」二〇一九年四月三日<br>
+      <a href="https://global.toyota/jp/newsroom/corporate/27511695.html">https://global.toyota/jp/newsroom/corporate/27511695.html</a></li>
+    <li>欧州委員会「自動車パッケージ」二〇二五年十二月十六日公表（二〇三五年目標を二〇二一年比九十パーセント削減とする提案）および同件に関する各社報道</li>
+    <li>ジェトロ「2025年米新車販売は高水準を維持 市場構造に変化の兆し」二〇二六年六月四日<br>
+      <a href="https://www.jetro.go.jp/biz/areareports/2026/6d75d491aa82ee56.html">https://www.jetro.go.jp/biz/areareports/2026/6d75d491aa82ee56.html</a></li>
+    <li>フォード・モーター 電気自動車関連費用の計上に関する発表（二〇二五年十二月十五日）および二〇二五年通期決算に関する報道</li>
+    <li>ゼネラルモーターズ 電気自動車関連の費用計上に関するSEC提出書類および報道（二〇二五年十月〜十二月）</li>
+    <li>トヨタ自動車 二〇二五年 年間 販売・生産実績（二〇二六年一月二十九日発表）</li>
+    <li>Car Watch「トヨタ、世界を席巻するハイブリッド／プラグインハイブリッドの最新システム『第6世代THS』展示」人とくるまのテクノロジー展 2026 YOKOHAMA</li>
+    <li>Motor-Fan「新型『トヨタRAV4 PHEV』に初搭載された第6世代ハイブリッドシステム、その全貌に迫る」</li>
+  </ul>
+  <p class="colophon">日昇リサーチ株式会社 ／ おてんとうさまの下で</p>
+
+  <p class="tool"><a href="https://yymm77.github.io/seimei-kagaku/">【無料】牧正人史式　姓名科学　解析システム</a></p>
+
+  <p class="tags">#トヨタ　#ハイブリッド　#特許　#産業政策</p>
+</footer>
+
+</div>
+</body>
+</html>
