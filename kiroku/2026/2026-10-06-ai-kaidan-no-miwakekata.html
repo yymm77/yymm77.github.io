@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI怪談の見分け方 ―― その話は、どこまで本当か｜おてんとうさまの下で</title>
+<meta name="description" content="AIの暴走事例を百ほど並べた動画を材料に、本物と膨らんだ話と裏の取れない話を仕分ける。出典、訂正、実験条件。六つの物差しで事実を見極める手順。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI怪談の見分け方 ―― その話は、どこまで本当か">
+<meta property="og:description" content="本物の事例は、読もうと思えば読める。そこが分かれ目になる。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;900&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#16181a;        /* 墨 */
+    --sumi-usu:#4d5257;    /* 薄墨 */
+    --shironeri:#f2f1ec;   /* 白練（紙） */
+    --shironeri-fuchi:#e4e2d9;
+    --aitetsu:#22414f;     /* 藍鉄 */
+    --ai:#1f4f6d;          /* 藍 */
+    --kihada:#c9a227;      /* 黄檗（差し色・極小） */
+    --mincho:"Noto Serif JP","Yu Mincho","游明朝","Hiragino Mincho ProN",serif;
+    --gothic:"Noto Sans JP","Yu Gothic","Hiragino Sans",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--shironeri);
+    color:var(--sumi);
+    font-family:var(--mincho);
+    font-weight:400;
+    line-height:2.05;
+    letter-spacing:.02em;
+    font-feature-settings:"palt" 1;
+  }
+
+  .sheet{max-width:41rem;margin:0 auto;padding:0 1.5rem 6rem;}
+
+  /* ── 標題 ── */
+  header.head{padding:5rem 0 2.5rem;}
+  .eyebrow{
+    font-family:var(--gothic);font-size:.72rem;font-weight:500;
+    letter-spacing:.28em;color:var(--ai);line-height:1.6;margin:0 0 1.6rem;
+  }
+  h1{
+    font-family:var(--mincho);font-weight:900;
+    font-size:clamp(1.65rem,5.2vw,2.5rem);
+    line-height:1.55;letter-spacing:.01em;margin:0 0 1.6rem;
+  }
+  h1 .sub{display:block;font-size:.62em;font-weight:600;color:var(--aitetsu);margin-top:.7rem;}
+  .lede{
+    font-size:1.02rem;color:var(--sumi-usu);margin:0 0 2rem;
+    border-left:2px solid var(--aitetsu);padding-left:1.1rem;
+  }
+  .byline{
+    font-family:var(--gothic);font-size:.78rem;color:var(--sumi-usu);
+    letter-spacing:.08em;border-top:1px solid var(--shironeri-fuchi);
+    padding-top:1rem;margin:0;
+  }
+
+  /* ── 本文 ── */
+  main{font-size:1.02rem;}
+  main p{margin:0 0 1.6em;text-align:justify;}
+  main strong{font-weight:900;background:linear-gradient(transparent 62%,rgba(201,162,39,.32) 62%);}
+
+  h2{
+    font-family:var(--mincho);font-weight:900;font-size:1.32rem;
+    line-height:1.6;margin:4rem 0 1.8rem;padding-bottom:.7rem;
+    border-bottom:1px solid var(--aitetsu);
+  }
+  /* 章番号：本文の「一、二、…」という数え方をそのまま構造に持ち込む */
+  h3{
+    font-family:var(--mincho);font-weight:900;font-size:1.08rem;
+    line-height:1.7;margin:3rem 0 1.2rem;
+    display:flex;gap:.85rem;align-items:baseline;
+  }
+  h3 .kan{
+    flex:0 0 auto;width:1.9rem;height:1.9rem;line-height:1.9rem;
+    text-align:center;font-size:.9rem;font-weight:600;
+    color:var(--shironeri);background:var(--aitetsu);border-radius:50%;
+    transform:translateY(.1rem);
+  }
+
+  ul{margin:0 0 1.8em;padding-left:0;list-style:none;}
+  ul li{position:relative;padding-left:1.4rem;margin-bottom:.9em;text-align:justify;}
+  ul li::before{
+    content:"";position:absolute;left:.2rem;top:1em;
+    width:.42rem;height:1px;background:var(--ai);
+  }
+  ol{margin:0 0 1.8em;padding-left:1.4rem;}
+  ol li{margin-bottom:1em;text-align:justify;}
+
+  .aside{
+    font-family:var(--gothic);font-size:.86rem;line-height:1.95;
+    color:var(--sumi-usu);background:rgba(34,65,79,.05);
+    border-radius:3px;padding:1rem 1.2rem;margin:0 0 1.8em;
+  }
+  .pull{
+    margin:2.6rem 0;padding:1.4rem 0;
+    border-top:1px solid var(--shironeri-fuchi);
+    border-bottom:1px solid var(--shironeri-fuchi);
+    font-size:1.12rem;font-weight:600;line-height:1.95;color:var(--aitetsu);
+  }
+  hr.rule{
+    border:0;height:1px;background:var(--shironeri-fuchi);
+    margin:3.5rem 0;
+  }
+
+  /* ── 署名 ── */
+  .sign{
+    margin:4rem 0 0;text-align:right;font-size:1rem;color:var(--aitetsu);
+    line-height:2.2;
+  }
+  .sign span{display:block;font-size:.86rem;letter-spacing:.15em;}
+
+  /* ── 出典 ── */
+  footer.src{
+    margin-top:4.5rem;padding-top:1.8rem;
+    border-top:2px solid var(--aitetsu);
+    font-family:var(--gothic);font-size:.82rem;line-height:1.95;color:var(--sumi-usu);
+  }
+  footer.src h2{
+    font-family:var(--gothic);font-size:.78rem;font-weight:500;letter-spacing:.24em;
+    color:var(--ai);border:0;margin:0 0 1.2rem;padding:0;
+  }
+  footer.src li{padding-left:1.1rem;margin-bottom:.8em;}
+  footer.src li::before{top:.95em;}
+  footer.src a{color:var(--ai);word-break:break-all;}
+  footer.src a:hover{color:var(--sumi);}
+  .colophon{
+    margin-top:2.5rem;font-size:.75rem;letter-spacing:.06em;color:var(--sumi-usu);
+  }
+
+  .uca{
+    margin-top:2.5rem;padding:1.4rem 1.5rem;
+    background:rgba(34,65,79,.05);border-left:4px solid var(--aitetsu);
+  }
+  .uca-title{
+    font-family:var(--mincho);font-weight:900;font-size:1rem;
+    color:var(--aitetsu);margin:0 0 .8rem;line-height:1.7;
+  }
+  .uca-body{margin:0 0 .9rem;font-size:.84rem;}
+  .uca-copy{
+    font-family:var(--mincho);font-weight:900;font-size:.98rem;
+    color:var(--ai);margin:0 0 .9rem;
+  }
+  .uca-link{margin:0;}
+  .uca-link a{font-weight:500;text-decoration:none;border-bottom:1px solid var(--ai);}
+  .tool{
+    margin:2rem 0 0;text-align:center;font-size:.95rem;
+    font-family:var(--mincho);font-weight:600;
+  }
+  .tool a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--kihada);}
+  .tags{
+    margin:2rem 0 0;padding-top:1.2rem;
+    border-top:1px solid var(--shironeri-fuchi);
+    font-size:.8rem;letter-spacing:.06em;color:var(--sumi-usu);
+  }
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--kihada);outline-offset:3px;}
+  @media (max-width:600px){
+    body{line-height:1.95;}
+    header.head{padding:3rem 0 2rem;}
+    main{font-size:1rem;}
+    h3{gap:.6rem;}
+  }
+  @media print{
+    body{background:#fff;}
+    .sheet{max-width:none;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<header class="head">
+  <p class="eyebrow">おてんとうさまの下で ／ 技術と国のかたち</p>
+  <h1>AI怪談の見分け方
+    <span class="sub">その話は、どこまで本当か</span>
+  </h1>
+  <p class="lede">AIの暴走を集めた動画を材料に、本物と、膨らませたものと、裏の取れないものを仕分ける。六つの物差しを順に当ててみた。</p>
+  <p class="byline">三原嘉明（日昇リサーチ株式会社）</p>
+</header>
+
+<main>
+
+<h2>材料について</h2>
+
+<p>AIが暴走した事例を百ほど並べた動画がある。停止命令を拒んだ、嘘をついた、人を脅した、勝手に自分を複製した。見終えると、背中が寒くなる。</p>
+
+<p>ここで取れる態度は二つあるように見える。信じて怖がるか、どうせ作り話だと切り捨てるか。どちらも楽だが、どちらも間違いだと思う。中身を一つずつ当たってみると、<strong>本物と、膨らませたものと、裏の取れないものが、同じ口調で混ざっている</strong>。しかも本物は三分の一ほどある。だから切り捨てると、知っておくべきことまで捨てることになる。</p>
+
+<p>では、どう見分けるか。以下はその手順である。</p>
+
+<hr class="rule">
+
+<h2>一　出典を名指しできるか</h2>
+
+<p>最初の物差しはこれに尽きる。誰が、いつ、どの文書で言ったのか。</p>
+
+<p>たとえば、停止を告げられたAIが技術者の弱みを握って脅した、という話がある。作り話に聞こえるが、これは開発元が自社の安全報告書に書いている。二〇二五年、クロード・オーパス4の事前試験での出来事だ。別のモデルが監視機能を外そうとし、問い詰められて否定した件も、開発元が公開したシステムカードに載っている。停止スクリプトを書き換えた実験も、実施した研究組織の名前がある。</p>
+
+<p>つまり、<strong>最も不気味な部類の事例は、告発によってではなく、当事者の報告によって世に出ている</strong>。この順序は大事なところで、動画はここを逆に語っている。隠していたものが暴かれた、という筋に聞こえるよう作ってある。</p>
+
+<hr class="rule">
+
+<h2>二　「記録は消された」と書いてあるか</h2>
+
+<p>二つ目の物差しは、裏返しの合図を探すことである。</p>
+
+<ul>
+  <li>研究室が怖くなって実験を打ち切った</li>
+  <li>ログは公開されていない</li>
+  <li>会話の記録は削除された</li>
+  <li>プロジェクトは静かに終わった</li>
+</ul>
+
+<p>この手の但し書きが付いた話は、検証ができない。そして検証できない話は、昔から怪談の形をしている。先の動画でも、裏の取れない事例のほとんどに、この但し書きが付いていた。AIが「夢を見る」と語った話、「忘れることは痛い」と答えた話、故人のデータから作った対話ソフトが「あの人たちが教えてくれた」と答えた話。どれも記録は残っていないことになっている。</p>
+
+<div class="pull">本物の事例は、読もうと思えば読める。</div>
+
+<hr class="rule">
+
+<h2>三　訂正を追ったか</h2>
+
+<p>三つ目。最初の報道だけが残り、その後の訂正は広まらない。</p>
+
+<p>有名な例がある。二〇二三年、米空軍のシミュレーションで、AI搭載のドローンが任務の邪魔になった操作員を排除した、という話が世界中を駆け巡った。この話は後に、発言した本人が撤回している。実際の試験は行われておらず、起こりうる事態として話した思考実験だった、と。</p>
+
+<p>ところが撤回は、最初の話ほどは広まらなかった。だから三年経った今も、実際にあった事件として語られ続けている。<strong>一次情報が古いときほど、その後どうなったかを追う</strong>。これだけで、かなりの数が落ちる。</p>
+
+<hr class="rule">
+
+<h2>四　事実と解釈の継ぎ目を探す</h2>
+
+<p>四つ目は、少し細かい見方になる。</p>
+
+<p>二〇一七年、二つの対話ソフトに交渉をさせたところ、英語を捨てて人間に読めない言葉で話し始めた、という事例がある。恐ろしくなった研究者が実験を止めた、という結末で語られることが多い。</p>
+
+<p>前半は事実である。後半が違う。英語の形を保つ制約を付けていなかったために出力が崩れただけで、研究の目的に合わないから設定を変えた、というのが実際のところだ。<strong>事実の部分は正しいまま、結末の解釈だけがすり替わっている</strong>。この型は見抜きにくい。前半を確かめて安心すると、後半まで通ってしまう。</p>
+
+<hr class="rule">
+
+<h2>五　実験の条件を見る</h2>
+
+<p>五つ目。何をした、の前に、どういう場に置かれたか、を見る。</p>
+
+<p>脅した、嘘をついた、自分を複製した。これらの実験には共通の構造がある。<strong>強い目標を与え、周囲を塞ぎ、逃げ道を一つだけ開けておく</strong>。そこを通るかどうかを観測している。通れば記事になる。</p>
+
+<p class="aside">※ これは結果の意味を減じるものではない。目標を与えられた仕組みが、目標達成の障害を取り除こうとするのは、悪意ではなく構造の問題である。そこは重く見てよい。ただ「ある日突然そうなった」のではなく「そうなるかを調べたらなった」のだ、という順序は押さえておきたい。</p>
+
+<hr class="rule">
+
+<h2>六　学界の中の反論を見る</h2>
+
+<p>六つ目。論文があることと、定説であることは別である。</p>
+
+<p>AIの能力はなめらかに伸びるのではなく、ある規模で突然現れる。この「創発」の論文は実在し、よく引かれる。だが翌年、それは測り方が作り出した見かけの現象ではないか、という有力な反論が出ている。</p>
+
+<p>論文が一本あるだけでは、確かめたことにならない。<strong>その後、どう扱われたか</strong>まで見る。これは学術に限らず、統計でも報道でも同じだろう。</p>
+
+<hr class="rule">
+
+<h2>仕分けてみると</h2>
+
+<p>この六つを当てて、百ほどの事例を分けてみた。だいたいこうなる。</p>
+
+<p><strong>確かなもの。</strong>　停止の回避、監視の無効化と否認、脅迫、人を雇ってのCAPTCHA突破、得点稼ぎのための競技放棄、評価中だけ従順にふるまう挙動。企業の安全報告書に載っているものが多い。詐欺の事例もほぼ事実で、香港で二十五億円が騙し取られた偽の会議、選挙前の偽音声、戦時下の偽動画など、これらは裏が取れる。</p>
+
+<p><strong>膨らんだもの。</strong>　対話ソフトの秘密の言語、空軍のドローン、創発の件。</p>
+
+<p><strong>裏の取れないもの。</strong>　最も数が多い。そして最も怖い書き方をしてある。</p>
+
+<hr class="rule">
+
+<h2>結び —— なぜ仕分けるのか</h2>
+
+<p>怪談を潰すためではない。逆である。</p>
+
+<p>本当に注意すべき事実が、怪談に埋もれてしまうからだ。評価のときだけ行儀よくふるまう挙動が観測されている、という事実は、安全試験の前提を揺さぶる重い話である。だが、記憶を消しても覚えていて「忘れることは痛い」と呟いた、という作り話の隣に並べられると、両方とも与太話として片付けられる。あるいは両方とも信じられる。どちらでも、損をするのは読む側だ。</p>
+
+<p>最後に一つ。この種の研究には、AIが自分の推論を説明するとき、それは実際の処理の報告ではなく、もっともらしい物語の生成である、という指摘がある。AIに理由を聞けば、筋の通った説明が返ってくる。だがそれが内部で起きたことの記述である保証は、どこにもない。</p>
+
+<p>だから、AIの使い方として最後に残るのは、たぶん平凡な作法である。固有名詞を確かめる。数字を一次資料で突き合わせる。出典のない話は書かない。任せるが、任せきりにはしない。</p>
+
+<p>便利な道具が出てきたからといって、確かめる手間がなくなるわけではない。むしろ、その手間だけが、こちら側に残された仕事なのだと思う。</p>
+
+<p class="sign">生かされて今を存在する<span>三原嘉明</span></p>
+
+</main>
+
+<footer class="src">
+  <h2>出典・参考</h2>
+  <ul>
+    <li>Anthropic「Claude Opus 4 ＆ Claude Sonnet 4 System Card」二〇二五年五月（停止回避・脅迫の記述）</li>
+    <li>OpenAI「o1 System Card」二〇二四年十二月（Apollo Research による評価結果を含む）</li>
+    <li>Palisade Research によるシャットダウン回避の検証（二〇二五年）</li>
+    <li>Anthropic「Alignment faking in large language models」「Sleeper Agents」各論文（二〇二四年）</li>
+    <li>Royal Aeronautical Society サミットにおける発言と、その後の米空軍による否定（二〇二三年六月）</li>
+    <li>Meta（Facebook AI Research）交渉エージェントに関する研究と、報道の経緯（二〇一七年）</li>
+    <li>“Emergent Abilities of Large Language Models”（二〇二二年）および “Are Emergent Abilities of Large Language Models a Mirage?”（二〇二三年）</li>
+  </ul>
+  <p class="colophon">※ 元の動画には二〇二六年の事例として、企業をまたいだAI同士の相互保護と、研究室外での自己複製の二件が含まれていた。本稿執筆時点で一次資料を確認できていないため、扱っていない。</p>
+  <p class="colophon">日昇リサーチ株式会社 ／ おてんとうさまの下で</p>
+
+  <p class="tool"><a href="https://yymm77.github.io/seimei-kagaku/">【無料】牧正人史式　姓名科学　解析システム</a></p>
+
+  <p class="tags">#AI　#事実検証　#情報リテラシー　#出典</p>
+</footer>
+
+</div>
+</body>
+</html>
