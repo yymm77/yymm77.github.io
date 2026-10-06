@@ -11,6 +11,24 @@
   ],
   "articles": [
     {
+      "id": "2026-10-06-ai-kaidan-no-miwakekata",
+      "title": "AI怪談の見分け方",
+      "subtitle": "その話は、どこまで本当か",
+      "date": "2026-10-06",
+      "type": "論考",
+      "category": "AI・技術",
+      "tags": [
+        "AI",
+        "事実検証",
+        "情報リテラシー",
+        "出典",
+        "安全性"
+      ],
+      "summary": "AIの暴走事例を百ほど並べた動画を材料に、本物と膨らんだ話と裏の取れない話を仕分ける。出典の名指し、訂正の追跡、実験条件の確認など六つの物差しを立て、最後に仕分ける理由を書いた。",
+      "path": "2026/2026-10-06-ai-kaidan-no-miwakekata.html",
+      "rakuten_url": ""
+    },
+    {
       "id": "2026-10-04-suterareta-musho-tokkyo",
       "title": "捨てられた無償特許",
       "subtitle": "トヨタが配った設計図と、受け取らなかった七年",
