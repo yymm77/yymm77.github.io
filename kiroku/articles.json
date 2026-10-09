@@ -11,6 +11,25 @@
   ],
   "articles": [
     {
+      "id": "2026-10-09-juppercent-wa-doko-kara",
+      "title": "「十パーセント」はどこから来るのか",
+      "subtitle": "パソコン博士TAIKIさん「AIの歴史」を読む",
+      "date": "2026-10-09",
+      "type": "論考",
+      "category": "AI・技術",
+      "tags": [
+        "AI",
+        "AIの安全性",
+        "Anthropic",
+        "Claude",
+        "OpenAI",
+        "パソコン博士TAIKI"
+      ],
+      "summary": "AIが十年以内に人類を滅ぼす確率は十パーセント。その数字の出どころを、OpenAIの集合写真から欠けていく人々の歴史でたどり、なぜそういう可能性が生じるのかを六つの要因に分けて説いた。記事を書いたClaude自身の答えも載せた。事実の確認を二箇所付した。",
+      "path": "2026/2026-10-09-juppercent-wa-doko-kara.html",
+      "rakuten_url": ""
+    },
+    {
       "id": "2026-10-09-toranomon-takeda-suda",
       "title": "抗議文が届いたということ",
       "subtitle": "虎ノ門ニュース　武田邦彦・須田慎一郎",
