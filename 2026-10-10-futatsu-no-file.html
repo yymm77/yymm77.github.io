@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二つのファイルで、記事が一本増える｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">おてんとうさまの下で — 制作の記録</div>
+<h1>二つのファイルで、記事が一本増える</h1>
+<div class="sub">GitHubに記録の置き場をつくる — 「公の日記」のつくり方・続</div>
+<div class="meta">2026年10月10日　｜　随想　｜　AI・技術</div>
+</header>
+<div class="intro"><p>前の記録「『公の日記』のつくり方」では、何を記事にし、どう確かめて書くかをお話ししました。今回はその続きで、書き上がった記事をどこに置き、どう届けているかを書きます。<br><br>私の記事の正本は、GitHub（ギットハブ）というところに置いています。もともとはプログラムを書く人たちが使う場所ですが、ウェブのページを無料で公開することもできます。難しそうに聞こえるかもしれませんが、いったん仕組みを作ってしまえば、記事を一本増やすのに上げるファイルは二つだけです。</p></div>
+<h2>第一部　なぜ、正本を別に置くのか</h2>
+<p>楽天ブログやアメブロ、noteは、読者の方に届けるための場所です。一方で、記事そのものは自分の管理する場所に置いておきたい。そこで、GitHubに置いた版を正本とし、各ブログはそこへ案内する配信先、という形にしました。</p>
+<p>もう一つの理由は、書き方の自由です。前の記録で触れたとおり、楽天ブログには使える書き方に決まりがあり、使えない部品を入れると受け付けてもらえません。GitHubの版なら、そうした制約を気にせずに、見出しや枠、色づかいを思いどおりに整えられます。</p>
+<h2>第二部　置き場の作り</h2>
+<p>私のサイトの全体は、次のような作りになっています。</p>
+<p>いちばん上が玄関のページで、「おてんとうさまの下で」（英語名は Under and With the Sun）と名づけています。ここから、姓名科学のページ、提言のページ、そして記録の一覧へと道がつながっています。</p>
+<p>記録の一覧は「kiroku」というフォルダの中にあります。中身は三つだけです。一覧のページ（index.html）、記事の目録（articles.json）、そして年ごとの記事を入れるフォルダ（2026）です。</p>
+<h3>目録が一覧を描く</h3>
+<p>この仕組みの要は、目録のファイルです。中には、記事一本ごとに、題、副題、日付、種類、分類、タグ、要約、置き場所、楽天ブログでのアドレスが書かれています。</p>
+<p>一覧のページは、開かれるたびにこの目録を読みにいき、そこに書かれた記事を新しい順に並べて表示します。ですから、記事を一本増やすときに一覧のページを書き換える必要はありません。目録の先頭に一件足すだけで、一覧に新しい記事が現れます。</p>
+<h2>第三部　一本増やす手順</h2>
+<p>実際の手順は次のとおりです。私はブラウザでGitHubのサイトを開き、画面からファイルを上げています。</p>
+<h3>1　電さんから二つのファイルを受け取る</h3>
+<p>記事が仕上がると、電さんから記事の本体（例えば「2026-10-10-kaji-no-ibasho.html」）と、新しい記事を書き足した目録（articles.json）の二つを受け取ります。目録は、私が手で書き足すのではなく、全体を作り直したものを受け取ります。</p>
+<h3>2　記事の本体を上げる</h3>
+<p>ブラウザでGitHubの自分の置き場を開き、kiroku、2026とフォルダをたどります。画面の「Add file」から「Upload files」を選び、記事のファイルを引き込んで、「Commit changes」を押します。これで記事の本体が置かれます。</p>
+<h3>3　目録を上げる</h3>
+<p>一つ上のkirokuのフォルダに戻り、同じ要領でarticles.jsonを上げます。同じ名前のファイルがすでにあるので、新しいもので置き換わります。</p>
+<h3>4　確かめる</h3>
+<p>一、二分待ってから記録の一覧を開くと、新しい記事がいちばん上に並んでいます。題をたどって、記事が正しく表示されるかを見ておきます。</p>
+<h3>5　楽天ブログのアドレスを書き足す</h3>
+<p>楽天ブログに載せたら、そのアドレスを目録に書き足しておくと、正本と配信先がつながります。これは次の記事を上げるときの目録に、まとめて入れてもらえば済みます。</p>
+<h2>第四部　気をつけていること</h2>
+<p>目録は、記事全体の名簿のようなものです。書式が一か所でも崩れると、一覧そのものが表示されなくなります。私が目録を手で直さず、電さんに全体を作り直してもらうのはそのためです。</p>
+<p>もう一つは、目録をいつも最新のものにしておくことです。一日に何本も記事を作ると、そのたびに目録も新しくなります。上げるのは、最後に受け取った目録一つで構いません。それに、その日の記事がすべて入っています。</p>
+<div class="box">
+<div class="t">始めてみたい方へ</div>
+<p>同じような置き場を作ってみたい方のために、入口だけ書いておきます。</p>
+<p>まずGitHubのアカウントを作ります。次に「ユーザー名.github.io」という名前で置き場（リポジトリ）を作ると、そこに置いたページが「https://ユーザー名.github.io/」というアドレスで公開されます。公開の設定は、置き場の設定画面の「Pages」の項目で確かめられます。</p>
+<p>あとは、玄関のページと、記録の一覧、目録を一度作ってしまえば、毎回の作業は第三部の手順だけです。最初の仕組みづくりは、AIに手伝ってもらうと早いと思います。</p>
+</div>
+<h2>結びに — 一度作れば、あとは続けるだけ</h2>
+<p>仕組みを作るのには手間がかかりました。けれども、いったん出来上がってからは、記事を一本増やすのに上げるファイルは二つだけです。おかげで、私は何を書くかと、何を確かめるかに力を注げるようになりました。</p>
+<p>記録は、続けてこそ意味を持ちます。続けるために、手間のかかるところを仕組みに任せる。この置き場も、「公の日記」を支える道具の一つです。</p>
+<div class="prev">※　この記録は、筆者のサイトの仕組みと記事の掲載手順をまとめたものです。GitHubの画面の表示は変わることがあります。文責は三原嘉明にあります。<br>前の記録 <a href="2026-10-10-ooyake-no-nikki.html">「公の日記」のつくり方</a> も合わせてご覧ください。</div>
+<hr>
+<div class="cta"><div class="t">姓名科学のページ</div>
+<p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。お名前から、その方の持つ数理をご覧いただけます。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#牧正人史　#マシレ予測　#公の日記　#GitHub　#記事のつくり方　#ブログ運営　#電任</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div></body></html>

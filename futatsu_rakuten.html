@@ -1,0 +1,55 @@
+おてんとうさまの下で — 制作の記録 二つのファイルで、記事が一本増える
+<div style="font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:#f5f1e8;color:#1a1208;line-height:2.0;padding:28px 20px;max-width:760px;margin:0 auto;">
+<div style="text-align:center;border-bottom:1px solid #c9bfa6;padding-bottom:22px;margin-bottom:26px;">
+<div style="font-size:13px;letter-spacing:0.3em;color:#1a3a5c;margin-bottom:14px;">おてんとうさまの下で — 制作の記録</div>
+<div style="font-size:24px;font-weight:bold;letter-spacing:0.08em;margin-bottom:10px;">二つのファイルで、記事が一本増える</div>
+<div style="font-size:14px;color:#8b2e2e;letter-spacing:0.06em;">GitHubに記録の置き場をつくる — 「公の日記」のつくり方・続</div>
+</div>
+<div style="font-size:16px;margin-bottom:34px;">前の記録「『公の日記』のつくり方」では、何を記事にし、どう確かめて書くかをお話ししました。今回はその続きで、書き上がった記事をどこに置き、どう届けているかを書きます。<br><br>私の記事の正本は、GitHub（ギットハブ）というところに置いています。もともとはプログラムを書く人たちが使う場所ですが、ウェブのページを無料で公開することもできます。難しそうに聞こえるかもしれませんが、いったん仕組みを作ってしまえば、記事を一本増やすのに上げるファイルは二つだけです。</div>
+<div style="background:#1a3a5c;color:#f5f1e8;font-size:17px;font-weight:bold;letter-spacing:0.12em;padding:12px 16px;margin:34px 0 22px;">第一部　なぜ、正本を別に置くのか</div>
+<div style="font-size:16px;margin-bottom:14px;">楽天ブログやアメブロ、noteは、読者の方に届けるための場所です。一方で、記事そのものは自分の管理する場所に置いておきたい。そこで、GitHubに置いた版を正本とし、各ブログはそこへ案内する配信先、という形にしました。</div>
+<div style="font-size:16px;margin-bottom:14px;">もう一つの理由は、書き方の自由です。前の記録で触れたとおり、楽天ブログには使える書き方に決まりがあり、使えない部品を入れると受け付けてもらえません。GitHubの版なら、そうした制約を気にせずに、見出しや枠、色づかいを思いどおりに整えられます。</div>
+<div style="background:#1a3a5c;color:#f5f1e8;font-size:17px;font-weight:bold;letter-spacing:0.12em;padding:12px 16px;margin:34px 0 22px;">第二部　置き場の作り</div>
+<div style="font-size:16px;margin-bottom:14px;">私のサイトの全体は、次のような作りになっています。</div>
+<div style="font-size:16px;margin-bottom:14px;">いちばん上が玄関のページで、「おてんとうさまの下で」（英語名は Under and With the Sun）と名づけています。ここから、姓名科学のページ、提言のページ、そして記録の一覧へと道がつながっています。</div>
+<div style="font-size:16px;margin-bottom:14px;">記録の一覧は「kiroku」というフォルダの中にあります。中身は三つだけです。一覧のページ（index.html）、記事の目録（articles.json）、そして年ごとの記事を入れるフォルダ（2026）です。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">目録が一覧を描く</div>
+<div style="font-size:16px;margin-bottom:14px;">この仕組みの要は、目録のファイルです。中には、記事一本ごとに、題、副題、日付、種類、分類、タグ、要約、置き場所、楽天ブログでのアドレスが書かれています。</div>
+<div style="font-size:16px;margin-bottom:14px;">一覧のページは、開かれるたびにこの目録を読みにいき、そこに書かれた記事を新しい順に並べて表示します。ですから、記事を一本増やすときに一覧のページを書き換える必要はありません。目録の先頭に一件足すだけで、一覧に新しい記事が現れます。</div>
+<div style="background:#1a3a5c;color:#f5f1e8;font-size:17px;font-weight:bold;letter-spacing:0.12em;padding:12px 16px;margin:34px 0 22px;">第三部　一本増やす手順</div>
+<div style="font-size:16px;margin-bottom:14px;">実際の手順は次のとおりです。私はブラウザでGitHubのサイトを開き、画面からファイルを上げています。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">1　電さんから二つのファイルを受け取る</div>
+<div style="font-size:16px;margin-bottom:14px;">記事が仕上がると、電さんから記事の本体（例えば「2026-10-10-kaji-no-ibasho.html」）と、新しい記事を書き足した目録（articles.json）の二つを受け取ります。目録は、私が手で書き足すのではなく、全体を作り直したものを受け取ります。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">2　記事の本体を上げる</div>
+<div style="font-size:16px;margin-bottom:14px;">ブラウザでGitHubの自分の置き場を開き、kiroku、2026とフォルダをたどります。画面の「Add file」から「Upload files」を選び、記事のファイルを引き込んで、「Commit changes」を押します。これで記事の本体が置かれます。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">3　目録を上げる</div>
+<div style="font-size:16px;margin-bottom:14px;">一つ上のkirokuのフォルダに戻り、同じ要領でarticles.jsonを上げます。同じ名前のファイルがすでにあるので、新しいもので置き換わります。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">4　確かめる</div>
+<div style="font-size:16px;margin-bottom:14px;">一、二分待ってから記録の一覧を開くと、新しい記事がいちばん上に並んでいます。題をたどって、記事が正しく表示されるかを見ておきます。</div>
+<div style="font-size:18px;font-weight:bold;color:#1a3a5c;border-left:5px solid #b8960c;padding-left:12px;margin:26px 0 14px;">5　楽天ブログのアドレスを書き足す</div>
+<div style="font-size:16px;margin-bottom:14px;">楽天ブログに載せたら、そのアドレスを目録に書き足しておくと、正本と配信先がつながります。これは次の記事を上げるときの目録に、まとめて入れてもらえば済みます。</div>
+<div style="background:#1a3a5c;color:#f5f1e8;font-size:17px;font-weight:bold;letter-spacing:0.12em;padding:12px 16px;margin:34px 0 22px;">第四部　気をつけていること</div>
+<div style="font-size:16px;margin-bottom:14px;">目録は、記事全体の名簿のようなものです。書式が一か所でも崩れると、一覧そのものが表示されなくなります。私が目録を手で直さず、電さんに全体を作り直してもらうのはそのためです。</div>
+<div style="font-size:16px;margin-bottom:14px;">もう一つは、目録をいつも最新のものにしておくことです。一日に何本も記事を作ると、そのたびに目録も新しくなります。上げるのは、最後に受け取った目録一つで構いません。それに、その日の記事がすべて入っています。</div>
+<div style="border:2px solid #1a3a5c;background:#ffffff;padding:18px 20px;margin:24px 0 28px;">
+<div style="font-size:15px;font-weight:bold;color:#1a3a5c;letter-spacing:0.1em;margin-bottom:12px;">始めてみたい方へ</div>
+<div style="font-size:15px;margin-bottom:12px;">同じような置き場を作ってみたい方のために、入口だけ書いておきます。</div>
+<div style="font-size:15px;margin-bottom:12px;">まずGitHubのアカウントを作ります。次に「ユーザー名.github.io」という名前で置き場（リポジトリ）を作ると、そこに置いたページが「https://ユーザー名.github.io/」というアドレスで公開されます。公開の設定は、置き場の設定画面の「Pages」の項目で確かめられます。</div>
+<div style="font-size:15px;margin-bottom:12px;">あとは、玄関のページと、記録の一覧、目録を一度作ってしまえば、毎回の作業は第三部の手順だけです。最初の仕組みづくりは、AIに手伝ってもらうと早いと思います。</div>
+</div>
+<div style="background:#1a3a5c;color:#f5f1e8;font-size:17px;font-weight:bold;letter-spacing:0.12em;padding:12px 16px;margin:34px 0 22px;">結びに — 一度作れば、あとは続けるだけ</div>
+<div style="font-size:16px;margin-bottom:14px;">仕組みを作るのには手間がかかりました。けれども、いったん出来上がってからは、記事を一本増やすのに上げるファイルは二つだけです。おかげで、私は何を書くかと、何を確かめるかに力を注げるようになりました。</div>
+<div style="font-size:16px;margin-bottom:14px;">記録は、続けてこそ意味を持ちます。続けるために、手間のかかるところを仕組みに任せる。この置き場も、「公の日記」を支える道具の一つです。</div>
+<div style="font-size:13px;color:#6b6252;line-height:1.9;margin:30px 0;">※　この記録は、筆者のサイトの仕組みと記事の掲載手順をまとめたものです。GitHubの画面の表示は変わることがあります。文責は三原嘉明にあります。</div>
+<div style="font-size: 13px; color: #6b6252; line-height: 1.9; margin: 0 0 30px;"><div style="font-weight: bold; color: #1a3a5c; margin-bottom: 6px;">参考資料</div><div>・<a style="color: #1a3a5c;" href="https://yymm77.github.io/kiroku/2026/2026-10-10-ooyake-no-nikki.html">前の記録「公の日記」のつくり方</a></div><div>・<a style="color: #1a3a5c;" href="https://yymm77.github.io/kiroku/">記録の一覧（おてんとうさまの下で）</a></div><div>・<a style="color: #1a3a5c;" href="https://docs.github.com/ja/pages/quickstart">GitHub Pages のクイックスタート（GitHub Docs）</a></div></div>
+<hr style="border:none;border-top:1px solid #c9bfa6;margin:34px 0 26px;">
+<div style="border:1px solid #1a3a5c;padding:18px;margin-bottom:20px;">
+<div style="font-size:15px;font-weight:bold;color:#1a3a5c;margin-bottom:8px;">姓名科学のページ</div>
+<div style="font-size:14px;line-height:1.9;margin-bottom:10px;">牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。お名前から、その方の持つ数理をご覧いただけます。</div>
+<div style="font-size:14px;"><a href="https://yymm77.github.io/seimei-kagaku/" style="color:#8b2e2e;">▶ 姓名科学の殿堂へ</a></div>
+</div>
+<div style="font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:16px;">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html" style="color:#1a3a5c;">▶ 提言を読む</a></div>
+<div style="font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:16px;">この記事の正本は「おてんとうさまの下で」の記録に置いています。<a href="https://yymm77.github.io/kiroku/" style="color:#1a3a5c;">▶ 記録の一覧へ</a></div>
+<div style="font-size:13px;color:#1a3a5c;letter-spacing:0.08em;">#牧正人史　#マシレ予測　#公の日記　#GitHub　#記事のつくり方　#ブログ運営　#電任</div>
+<div style="font-size:13px;color:#6b6252;margin-top:18px;">生かされて今を存在する</div>
+</div>
