@@ -1,0 +1,391 @@
+<title>GitHubで記事が消えた日</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500&display=swap">
+<style>
+  /* 和紙パレット × 教材レイアウト */
+  :root {
+    --bg: #f5f1e8;
+    --text: #1a1208;
+    --primary: #1a3a5c;
+    --accent: #b8960c;
+    --muted: #3e2a1b;
+    --sub: #8b2e2e;
+    --surface: #fff;
+    --border: #d4c9a8;
+    --code-bg: #eae6da;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1a1610;
+      --text: #e8e0d0;
+      --primary: #7ab0d8;
+      --accent: #d4ac30;
+      --muted: #c4a882;
+      --sub: #d08080;
+      --surface: #252018;
+      --border: #3a3020;
+      --code-bg: #2a2418;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1a1610;
+    --text: #e8e0d0;
+    --primary: #7ab0d8;
+    --accent: #d4ac30;
+    --muted: #c4a882;
+    --sub: #d08080;
+    --surface: #252018;
+    --border: #3a3020;
+    --code-bg: #2a2418;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Serif JP", 游明朝, serif;
+    line-height: 1.95;
+    font-size: 16px;
+    padding-inline: 20px;
+    padding-block: 32px 64px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  .pan { font-size: 13px; color: var(--sub); margin-bottom: 14px; }
+  .pan a { color: var(--sub); text-decoration: none; }
+  .pan a:hover { text-decoration: underline; }
+
+  h1.title {
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 6px;
+    line-height: 1.4;
+    text-wrap: balance;
+  }
+  .subtitle { font-size: 15px; color: var(--text); margin: 0 0 8px; opacity: 0.8; }
+  .meta { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+  hr.rule { border: none; border-top: 2px solid var(--accent); margin: 0 0 28px; }
+
+  p { margin: 0 0 18px; }
+
+  h2 {
+    font-size: 18px;
+    color: var(--primary);
+    border-left: 5px solid var(--accent);
+    padding-left: 12px;
+    margin: 40px 0 14px;
+  }
+  h3 {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 28px 0 10px;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+
+  /* 事件ボックス */
+  .incident {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--sub);
+    padding: 18px 20px;
+    margin: 28px 0;
+    font-size: 15px;
+  }
+  .incident-title {
+    font-size: 13px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    color: var(--sub);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  /* 構造図 */
+  .tree {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    padding: 18px 20px;
+    margin: 20px 0;
+    font-family: "Noto Sans JP", monospace;
+    font-size: 14px;
+    line-height: 2;
+    overflow-x: auto;
+  }
+  .tree .ok { color: var(--primary); font-weight: 500; }
+  .tree .ng { color: var(--sub); text-decoration: line-through; opacity: 0.7; }
+  .tree .label {
+    font-size: 11px;
+    background: var(--accent);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 8px;
+    font-weight: 500;
+    vertical-align: middle;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+  .tree .label-ng {
+    font-size: 11px;
+    background: var(--sub);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-left: 8px;
+    font-weight: 500;
+    vertical-align: middle;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+
+  /* 対比テーブル */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .compare th {
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+  }
+  .compare td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .compare tr:nth-child(even) td { background: var(--code-bg); }
+  .compare .ok-cell { color: var(--primary); font-weight: 500; }
+  .compare .ng-cell { color: var(--sub); }
+  .wrap > .compare-wrap { overflow-x: auto; }
+
+  /* ポイントボックス */
+  .point {
+    background: var(--primary);
+    color: #fff;
+    padding: 16px 20px;
+    margin: 28px 0;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .point strong { color: var(--accent); }
+
+  /* 教訓ボックス */
+  .lesson {
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    padding: 18px 20px;
+    margin: 28px 0;
+  }
+  .lesson-title {
+    font-size: 12px;
+    font-family: "Noto Sans JP", sans-serif;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  /* フッター */
+  .foot {
+    margin-top: 48px;
+    font-size: 13px;
+    line-height: 1.9;
+    border: 1px solid var(--accent);
+    padding: 18px 20px;
+    background: var(--surface);
+  }
+  .foot a { color: var(--primary); }
+  .sig { text-align: right; font-size: 12px; color: var(--sub); margin-top: 10px; }
+
+  .note {
+    font-size: 13px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+    margin-top: 36px;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 520px) {
+    h1.title { font-size: 20px; }
+    h2 { font-size: 16px; }
+    .tree { font-size: 13px; }
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="pan">
+    <a href="../../">おてんとうさまの下で</a> ／
+    <a href="../">記録の一覧</a> ／
+    GitHub入門
+  </div>
+
+  <h1 class="title">GitHubで記事が消えた日</h1>
+  <div class="subtitle">――初心者が実際にやらかした「フォルダ構造」の罠と、その直し方</div>
+  <div class="meta">2026年10月13日（火）｜記録｜GitHub入門</div>
+  <hr class="rule">
+
+  <p>GitHubを使い始めて間もないころ、私は「記事の一覧が表示されない」という問題に何度もぶつかった。エラーメッセージはこうだった。</p>
+
+  <div class="incident">
+    <div class="incident-title">画面に表示されたエラー</div>
+    記事の一覧を読み込めませんでした。<br>
+    articles.json を取得できません（404）<br>
+    <small style="opacity:0.7">※このページはファイルを直接開くと動きません。GitHub Pages 上で確認してください。</small>
+  </div>
+
+  <p>結論から言うと、原因は二つあった。<strong>ファイルを間違った場所に置いていた</strong>こと、そして<strong>どこを参照しているかが食い違っていた</strong>ことだ。この記録が、同じ状況でつまずいた人の手がかりになれば嬉しい。</p>
+
+  <h2>そもそも「フォルダ構造」とは何か</h2>
+
+  <p>GitHubのリポジトリ（ファイルを置く場所）は、パソコンのフォルダと同じ階層構造を持っている。私のサイトの場合、記事を管理する仕組みは次のようになっている。</p>
+
+  <div class="tree">
+    yymm77.github.io/<br>
+    &nbsp;&nbsp;kiroku/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;index.html　　　← 記録の一覧ページ<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;2026/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;articles.json　<span class="label">本物・ここだけ</span><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2026-10-13-yoro-……html　← 記事本体
+  </div>
+
+  <p>ここで大事なのは、<strong>「目録ファイル（articles.json）は <code>kiroku/2026/</code> の中に一つだけある」</strong>という設計だ。ところが私はこれを理解しておらず、間違った場所にも同じ名前のファイルを作ってしまった。</p>
+
+  <h2>やらかした三つのミス</h2>
+
+  <h3>ミス① 間違った場所にarticles.jsonを作った</h3>
+
+  <p>最初、私は <code>kiroku/articles.json</code>（<code>2026/</code> の外）にファイルを作った。</p>
+
+  <div class="tree">
+    kiroku/<br>
+    &nbsp;&nbsp;<span class="ng">articles.json</span>　<span class="label-ng">誤・削除すべき</span><br>
+    &nbsp;&nbsp;2026/<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;<span class="ok">articles.json</span>　<span class="label">正・これだけ残す</span>
+  </div>
+
+  <p>2か所に同名ファイルがあると、どちらが本物か分からなくなる。しかもこの二つは中身の形式も違っていた。</p>
+
+  <h3>ミス② ファイルの中身の形式が間違っていた</h3>
+
+  <div class="compare-wrap">
+    <table class="compare">
+      <tr>
+        <th>項目</th>
+        <th class="ng-cell">誤ったファイル</th>
+        <th class="ok-cell">正しいファイル</th>
+      </tr>
+      <tr>
+        <td>全体の形</td>
+        <td class="ng-cell">単独オブジェクト <code>{ }</code></td>
+        <td class="ok-cell">配列 <code>[ { }, { } ]</code></td>
+      </tr>
+      <tr>
+        <td>フィールド名</td>
+        <td class="ng-cell">series, episode, file, source…</td>
+        <td class="ok-cell">subtitle, type, category, path…</td>
+      </tr>
+    </table>
+  </div>
+
+  <p>見た目は似ていても、一覧ページが読める形式と読めない形式がある。実際のファイルを開いて確認するまで、このズレに気づかなかった。</p>
+
+  <h3>ミス③ 削除しようとして本物を上書きした</h3>
+
+  <p>誤ったファイルを消そうとして操作を誤り、<code>kiroku/2026/articles.json</code>（本物）を上書きして壊してしまった。これが「記事が見えなくなった」直接の原因だった。</p>
+
+  <div class="incident">
+    <div class="incident-title">このとき起きたこと</div>
+    正しいarticles.json（本物）の中身が、間違った形式のものに置き換わった。
+    一覧ページはファイルを読めても中身を解釈できず、「記事がない」と判断した。
+  </div>
+
+  <h2>もう一つの問題：fetchのパス</h2>
+
+  <p>ファイルを正しく直した後でも、まだ404エラーが出た。今度は別の原因だった。</p>
+
+  <p><code>kiroku/index.html</code> の中に、こういうコードがある。</p>
+
+  <div class="tree">
+    fetch('<span class="ng">articles.json</span>', { cache: 'no-cache' })
+  </div>
+
+  <p><strong>fetch（フェッチ）</strong>とは「サーバーからファイルを取ってくる」命令のことだ。問題は、このコードが「同じ階層のarticles.json」を探すという点にある。</p>
+
+  <div class="compare-wrap">
+    <table class="compare">
+      <tr>
+        <th>項目</th>
+        <th>パス</th>
+      </tr>
+      <tr>
+        <td>fetchが探しに行く場所</td>
+        <td class="ng-cell"><code>kiroku/articles.json</code>（存在しない）</td>
+      </tr>
+      <tr>
+        <td>ファイルが実際にある場所</td>
+        <td class="ok-cell"><code>kiroku/2026/articles.json</code></td>
+      </tr>
+    </table>
+  </div>
+
+  <p>「同じ名前のファイルがある」ではなく「同じ場所を見ているか」が大事だと、この件で初めて実感した。</p>
+
+  <div class="point">
+    修正したコード：<br>
+    fetch('<strong>2026/articles.json</strong>', { cache: 'no-cache' })
+  </div>
+
+  <p><code>2026/</code> を付けることで「自分がいる <code>kiroku/</code> の中の <code>2026/</code> フォルダを見に行け」という指示になる。これで404エラーが解消された。</p>
+
+  <h2>この一件で学んだこと</h2>
+
+  <div class="lesson">
+    <div class="lesson-title">教訓 その一</div>
+    同じ名前のファイルは、一か所にだけ置く。<br>
+    複数の場所に置くと、どれが本物か分からなくなる。
+  </div>
+
+  <div class="lesson">
+    <div class="lesson-title">教訓 その二</div>
+    GitHubでファイルを編集するとき、上部に表示されているパス（例：kiroku/2026/articles.json）を必ず確認してから保存する。
+  </div>
+
+  <div class="lesson">
+    <div class="lesson-title">教訓 その三</div>
+    一覧ページがファイルを「取りに行く場所」と、ファイルが「実際にある場所」が一致していないと404になる。<br>
+    エラーが出たら「どこを見ているか」と「どこにあるか」を照合する。
+  </div>
+
+  <div class="lesson">
+    <div class="lesson-title">教訓 その四</div>
+    来年（2027年）になって新しいフォルダを作ったら、fetch のパスも <code>2027/articles.json</code> に変える必要がある。
+  </div>
+
+  <h2>記録を終えて</h2>
+
+  <p>理解してから直すより、直してから動作を確認する方が先で構わない。今回の一連の作業を通じて、「フォルダの階層」と「ファイルを参照するパス」が連動しているという感覚が、少しだけ身についた気がする。</p>
+
+  <p>何十回と繰り返さないと自分の知識にならない、というのが正直なところだ。それでも、同じ問題に次に当たったとき、「あの件か」と思えるようになれば上出来だと思っている。</p>
+
+  <div class="note">
+    この記事は2026年10月13日に実際に起きたトラブルの記録です。Claude（AI）との対話をもとに整理しました。
+  </div>
+
+  <div class="foot">
+    <strong>▼ 姓名科学</strong>　あなたの名前が持つ意味を調べてみませんか。<br>
+    → <a href="https://yymm77.github.io/seimei/">https://yymm77.github.io/seimei/</a><br><br>
+    <strong>▼ 記録の一覧へ戻る</strong><br>
+    → <a href="https://yymm77.github.io/kiroku/">https://yymm77.github.io/kiroku/</a>
+    <div class="sig">生かされて今を存在する　三原嘉明</div>
+  </div>
+
+</div>
