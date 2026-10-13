@@ -9,7 +9,18 @@
     "思索",
     "随想"
   ],
-  "articles": [    {
+  "articles": [ {
+  "id": "2026-10-13-github-structure-lesson",
+  "title": "GitHubで記事が消えた日",
+  "subtitle": "初心者が実際にやらかした「フォルダ構造」の罠と、その直し方",
+  "date": "2026-10-13",
+  "type": "記録",
+  "category": "GitHub入門",
+  "tags": ["GitHub", "初心者", "フォルダ構造", "articles.json", "404エラー"],
+  "summary": "kiroku/articles.jsonを誤った場所に作り、本物を上書きして消してしまった顛末。fetchのパスのズレが404エラーの原因だったことも含め、初心者が陥りやすい三つのミスと教訓を記録する。",
+  "path": "2026/2026-10-13-github-structure-lesson.html",
+  "rakuten_url": "https://plaza.rakuten.co.jp/yymm88/diary/202610130008/"
+},   {
       "id": "2026-10-13-yoro-jinsei-tetsugaku-01",
       "title": "現代人が失ったもの",
       "subtitle": "養老孟司先生に学ぶ「意味のない世界」の怖さ",
