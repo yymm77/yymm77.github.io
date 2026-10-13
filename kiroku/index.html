@@ -183,7 +183,7 @@
     listEl.innerHTML = html;
   }
 
-  fetch('articles.json', { cache: 'no-cache' })
+  fetch('2026/articles.json', { cache: 'no-cache' })
     .then(function (r) {
       if (!r.ok) throw new Error('articles.json を取得できません（' + r.status + '）');
       return r.json();
