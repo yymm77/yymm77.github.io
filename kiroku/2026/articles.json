@@ -11,6 +11,25 @@
   ],
   "articles": [
     {
+      "id": "2026-10-21-kyukyoku-no-bungyo-02",
+      "title": "初めて代金を受け取る",
+      "subtitle": "連載　究極の分業　第二回 ― 電さんと方位予定帖を作った二日間",
+      "date": "2026-10-21",
+      "type": "論考",
+      "category": "AI・技術",
+      "tags": [
+        "究極の分業",
+        "電任",
+        "Claude",
+        "方位予定帖",
+        "AIとの協働",
+        "ネット販売"
+      ],
+      "summary": "ネットで一円も稼いだことのない私が、方位予定帖に値段を付け、代金を受け取る仕組みを設けた。難儀な所は電さんに任せ、お金の流れだけは、自分で一度買って返すことで確かめた。",
+      "path": "2026/2026-10-21-kyukyoku-no-bungyo-02.html",
+      "rakuten_url": "https://plaza.rakuten.co.jp/yymm88/diary/202610210004/"
+    },
+    {
       "id": "2026-10-19-te-de-tsukuru-03",
       "title": "移民より、FAI",
       "subtitle": "連載 手で作る ― 移民より、FAI　第3回（最終回）",
