@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相次ぐ情報漏洩、その裏で何が起きているのか（論考　情報漏洩を読む）｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.eyecatch{display:block;width:100%;height:auto;margin:6px 0 4px;border:1px solid #c9bfa6;}
+.nextbox{border:1px dashed var(--navy);padding:14px 18px;font-size:14px;margin:30px 0;line-height:1.9;}
+.video{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:8px 0 6px;background:#fff;}
+.cap{font-size:13px;color:#6b6252;text-align:center;margin-bottom:26px;}
+.caution{border-left:4px solid var(--verm);background:#fbf3f0;padding:12px 16px;font-size:14px;line-height:1.9;margin:20px 0 28px;}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">論考　情報漏洩を読む</div>
+<h1>相次ぐ情報漏洩、その裏で何が起きているのか</h1>
+<div class="sub">パソコン博士TAIKI氏の解説を、報道で確かめながら読む</div>
+<div class="meta">2026年10月23日（金）　｜　論考　｜　AI・技術</div>
+</header>
+<svg class="eyecatch" role="img" aria-label="開いた錠前と、こぼれ出る書類の束" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f5f1e8"/>
+<text x="600" y="62" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-size="26" fill="#1a3a5c" letter-spacing="8">論考　情報漏洩を読む</text>
+<path d="M520 270 v-60 a80 80 0 0 1 160 0 v18" fill="none" stroke="#1a3a5c" stroke-width="22" stroke-linecap="round"/>
+<rect x="470" y="270" width="260" height="200" rx="18" fill="#1a3a5c"/>
+<circle cx="600" cy="352" r="22" fill="#f5f1e8"/><rect x="590" y="360" width="20" height="56" rx="6" fill="#f5f1e8"/>
+<g fill="#fffdf7" stroke="#b8960c" stroke-width="3">
+<rect x="770" y="300" width="110" height="140" rx="6" transform="rotate(12 825 370)"/>
+<rect x="840" y="260" width="110" height="140" rx="6" transform="rotate(24 895 330)"/>
+<rect x="910" y="230" width="110" height="140" rx="6" transform="rotate(38 965 300)"/>
+</g>
+<g stroke="#8b2e2e" stroke-width="4"><line x1="790" y1="340" x2="850" y2="352"/><line x1="786" y1="362" x2="846" y2="374"/><line x1="782" y1="384" x2="842" y2="396"/></g>
+<line x1="80" y1="545" x2="1120" y2="545" stroke="#b8960c" stroke-width="2"/>
+<text x="600" y="597" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="34" fill="#1a1208" letter-spacing="4">相次ぐ情報漏洩、その裏で何が起きているのか</text>
+</svg>
+<div class="intro">
+<p>この秋、企業や役所からの情報漏洩が止まりません。パソコン博士TAIKI氏の解説動画を手がかりに、報道で確かめられる事実と、まだ推測の段階にある話とを分けて整理します。</p>
+</div>
+
+<h2>1か月半で1億件を超えた漏洩</h2>
+<p>TAIKI氏の集計では、9月から10月前半に漏洩を公表した企業の件数を合わせると、約1億1481万件にのぼります。ただし各社の数字には「可能性」や「最大」の件数が含まれ、実際の人数とは一致しません。主な事案を各社の発表で確かめると、次のとおりです。</p>
+<div class="fact">
+<div class="t">主な漏洩事案（公表日の新しい順）</div>
+<p><b>9月25日〜29日　タイムズカー（パーク24）</b><br>最大約660万件。うち約160万件で運転免許証画像などの本人確認書類</p>
+<p><b>9月24日　EPARK リラク＆エステ</b><br>約2218万レコード。外部への転送を確認</p>
+<p><b>9月16日　Gyazo（Helpfeel）</b><br>利用者データ約2362万件。メールアドレス、暗号化されたパスワードなど</p>
+<p><b>9月11日　デジタル庁（GSS）</b><br>約24.6万件。政府職員や関係事業者の氏名・連絡先</p>
+</div>
+<p>このほか、焼肉きんぐ、ヤマト運輸、佐川急便など、業種を問わず流出のおそれが相次いでいます。</p>
+
+<h2>免許証画像の流出はなぜ深刻か</h2>
+<p>中でも重いのが、タイムズカーの免許証画像約160万件です。免許証は身分証明書として通用するため、勝手にクレジットカードを作られる、携帯電話を契約されるといった「なりすまし」に使われかねません。</p>
+<p>TAIKI氏が特に恐ろしいとするのは「時間差攻撃」です。報道では、コンビニのコピー機に免許証を置き忘れた男性が、7年後にその免許証で携帯電話を契約された例が紹介されました。いま被害がなくても、何年も先に悪用されるおそれが残るということです。</p>
+<p>さらに問題となったのが保存期間です。共同通信の取材によれば、同社は免許証画像を「退会から7年」保存する設定にしていました。個人情報保護法は、不要になったデータを速やかに消去するよう努めることを求めています。</p>
+<p>TAIKI氏はこれを、コンビニの「レジ締め」にたとえます。売上金をレジに貯め込む店はなく、一日の終わりには金庫へ移します。免許証画像が必要なのは最初の本人確認のときだけです。確認が済んだら、ネットから切り離した場所へ移すべきだった、という指摘です。</p>
+
+<h2>攻撃の裏にAIはあるのか</h2>
+<p>TAIKI氏は、一連の攻撃に「ローカルAI」が使われている可能性が極めて高いと見ています。ただし、これは同氏自身も断るとおり、証拠のある話ではありません。</p>
+<p>ローカルAIとは、無料で公開されているAIの模型を自分のパソコンに入れて動かすものです。それ自体は悪い道具ではなく、外部に情報を出さずに使えるため、企業にも導入が進んでいます。問題は、危険な依頼を断る「止め金」を外した改造版が出回っていることです。</p>
+<p>この点は裏付けがあります。Anthropic社は9月29日、中国のZhipu AIが公開した「GLM-5.3」の分析を発表しました。このモデルは攻撃用のプログラムを組む高い能力を持ちながら、公開から数日のうちに止め金を外した版が複数出回りました。簡単な手口でも、安全対策を最大100％の確率で回避できたといいます。</p>
+<div class="caution">一方で、今回の漏洩でAIが使われたと確認された事案はありません。侵入の入り口が公表された事案は、いずれもシステムの脆弱性を突かれたものです。「AIによって脆弱性の発見が容易になった」という構図は説得力がありますが、個々の事案については、まだ推測の域を出ないと読むのが妥当です。</div>
+
+<h2>守る側もAIを使う時代</h2>
+<p>TAIKI氏の結論は明快です。攻撃側がAIを使うなら、守る側もAIを使い、攻撃される前に自社の穴を見つけて塞ぐべきだというものです。AIは休みなく働き続け、性能も上がり続けます。対策が遅れた企業ほど被害が広がるという見立てです。</p>
+<p>防御のためのAIとして注目されているのが、Anthropic社の「Claude Mythos」です。脆弱性を見つける能力が高すぎるため、提供先は限られています。日本では6月、政府と複数の金融機関に利用が認められたと片山金融担当相が明らかにしました。</p>
+<p>では、一般の企業はどうすればよいのか。TAIKI氏は、ローカルAIを防御に生かす道を示しつつ、会社を守る目的なら専門業者に依頼するよう勧めています。自前で中途半端に手を出すことの危うさを、よく踏まえた助言だと思います。</p>
+
+<h2>「自分の情報は自分で守る」発言をどう読むか</h2>
+<p>10月6日、古川俊治デジタル大臣は定例会見で、相次ぐ流出を受けて国民に対策を呼びかけました。このうち「自分の情報は自分で守る」という趣旨の部分が報じられると、「企業が漏らしたのに、個人にどう守れというのか」という批判がSNSで相次ぎました。</p>
+<p>TAIKI氏も最初は無責任だと感じたといいます。しかし会見全体を見ると、大臣は企業にも対策を求めており、個人向けの部分が強く切り取られた面があります。大臣が示した対策は、パスワードの使い回しをやめる、多要素認証を設定する、不審なメールやSMSのリンクを開かない、の三つです。</p>
+<p>漏洩そのものは個人には防げません。しかし、漏れた後に二次被害を防ぐことはできます。大臣が言いたかったのはこの点だろう、というのがTAIKI氏の読みです。</p>
+
+<h2>個人がいますぐできる三つのこと</h2>
+<div class="box">
+<div class="t">一、パスワードの使い回しをやめる</div>
+<p>犯人は漏れたメールアドレスとパスワードで、楽天やAmazon、Googleなど他のサービスにもログインを試します。TAIKI氏が紹介する調査では、日本人の85％が使い回しているといいます。同じパスワードを使っているものは、早く変えるほど助かる確率が上がります。</p>
+<div class="t">二、多要素認証を設定する</div>
+<p>パスワードに加え、スマホに届く確認コードなどで本人確認を重ねる仕組みです。パスワードが漏れても、それだけでは入れなくなります。</p>
+<div class="t">三、「漏洩のお知らせ」メールのリンクを踏まない</div>
+<p>騒動に便乗し、「情報が漏洩しました。今すぐパスワードを変更してください」といった偽メールが出回っています。パスワードの変更は、メールではなく、自分で公式サイトを開いて行います。</p>
+</div>
+
+<h2>企業の責任を問いにくい法制度</h2>
+<p>TAIKI氏が大臣の発言で最も違和感を覚えたのは、漏らした企業の責任をどう問うのかが見えない点でした。個人情報保護法は安全に管理するよう求めていますが、具体的なやり方はガイドラインの例示にとどまり、多くを企業の判断に委ねています。</p>
+<p>2026年7月に成立した改正個人情報保護法では、違反した企業から金銭を徴収する課徴金制度が新設されました。しかし、安全管理の義務違反はその対象から外されました。サイバー攻撃で情報を漏らしても、原則として課徴金はかからないということです。</p>
+<p>EUの一般データ保護規則（GDPR）と比べると、差は歴然としています。GDPRでは安全管理の義務に違反すると、最大1000万ユーロか年間売上高の2％のうち高い方、より重い違反では最大2000万ユーロか4％のうち高い方が制裁金の上限です。</p>
+<p>TAIKI氏は、国が明確な基準を示し、守れない企業には罰則や営業停止を科すくらいの厳しさが要ると訴えます。そうした企業には、そもそも個人情報を集めさせないという考え方です。</p>
+<p>そのデジタル庁自身も、6月25日に不審なアクセスを検知しながら、公表は9月11日でした。日本のデジタル政策の司令塔でさえ防げなかった以上、中小企業はなおさら慎重に個人情報を扱う必要がある、とTAIKI氏は締めくくっています。</p>
+
+<h2>結び</h2>
+<p>預けた情報が漏れるのを、個人が止めることはできません。それでも、漏れた後の備えは自分でできます。一方で、情報を集める側の責任を曖昧にしたままでは、同じことが繰り返されます。個人の備えと、企業と国の責任。その両方がそろって、初めて安心して情報を預けられる社会になるのだと思います。</p>
+<p>なお、TAIKI氏は個人向けのおすすめの設定を次回の動画で紹介するとしています。</p>
+
+<hr>
+<div class="note">◆ 出典<br>
+・<a href="https://youtu.be/54kIXdmtySU" target="_blank">パソコン博士TAIKI｜情報漏洩の解説動画（YouTube）</a><br>
+・<a href="https://share.timescar.jp/news/2026/0929/1816.html" target="_blank">タイムズカー｜不正アクセスに関する調査結果（第3報）</a><br>
+・<a href="https://www.oanda.jp/lab-education/?p=129750" target="_blank">共同通信｜タイムズカー、情報保護法を軽視</a><br>
+・<a href="https://internet.watch.impress.co.jp/docs/news/2141538.html" target="_blank">INTERNET Watch｜Gyazoに不正アクセス</a><br>
+・<a href="https://smartscope.blog/blog/japan-data-breach-list-tier-2026-09-10/" target="_blank">SmartScope｜情報漏洩・不正アクセスの企業一覧（2026年9月〜10月）</a><br>
+・<a href="https://internet.watch.impress.co.jp/docs/news/2140157.html" target="_blank">INTERNET Watch｜GSSに不正アクセス、約24.6万件が漏えいの可能性</a><br>
+・<a href="https://pc.watch.impress.co.jp/docs/news/2144470.html" target="_blank">PC Watch｜Mythos並みのサイバー攻撃能力を持つGLM-5.3にAnthropicが警鐘</a><br>
+・<a href="https://www.nippon.com/en/news/yjj2026060201148/" target="_blank">nippon.com（時事）｜日本政府・銀行にMythosの利用を許可</a><br>
+・<a href="https://www.smartwatchlife.jp/82969/" target="_blank">古川デジタル大臣の10月6日会見の整理</a><br>
+・<a href="https://www.nagashima.com/publications/publication20260515-1/" target="_blank">長島・大野・常松法律事務所｜令和8年個人情報保護法改正法案 課徴金制度の導入</a></div>
+<div class="cta"><div class="t">姓名科学のページ</div><p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a>　<a href="https://yymm77.github.io/seimei-kagaku/namemaster_v5.html">▶ お名前を解析する</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#情報漏洩　#サイバー攻撃　#タイムズカー　#パスワード　#多要素認証　#個人情報保護法　#AIとセキュリティ　#パソコン博士TAIKI</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div>
+<div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
