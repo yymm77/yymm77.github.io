@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>一人法人の決算を、自分の手で（電さんと作った「決算集計」ツールのご紹介）｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.eyecatch{display:block;width:100%;height:auto;margin:6px 0 4px;border:1px solid #c9bfa6;}
+.nextbox{border:1px dashed var(--navy);padding:14px 18px;font-size:14px;margin:30px 0;line-height:1.9;}
+.video{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:8px 0 6px;background:#fff;}
+.cap{font-size:13px;color:#6b6252;text-align:center;margin-bottom:26px;}
+.caution{border-left:4px solid var(--verm);background:#fbf3f0;padding:12px 16px;font-size:14px;line-height:1.9;margin:20px 0 28px;}
+.vtable{overflow-x:auto;margin:16px 0 26px;}
+.vtable table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.75;min-width:560px;}
+.vtable th,.vtable td{border:1px solid #c9bfa6;padding:8px 10px;vertical-align:top;text-align:left;}
+.vtable th{background:#1a3a5c;color:#f5f1e8;font-weight:bold;white-space:nowrap;}
+.vtable td.j{white-space:nowrap;font-weight:bold;}
+.j1{color:#2f6b47;} .j2{color:#8a6a00;} .j3{color:#6b6252;} .j4{color:#8b2e2e;}
+.claim{border-left:4px solid #c9bfa6;background:#efe9db;padding:10px 14px;font-size:14px;line-height:1.9;margin:0 0 12px;}
+.claim b{color:#1a3a5c;}
+
+.shot{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:10px 0 4px;}
+.steps{counter-reset:st;margin:8px 0 22px;}
+.step{position:relative;padding:8px 0 8px 46px;border-bottom:1px dotted #c9bfa6;font-size:15px;line-height:1.85;}
+.step::before{counter-increment:st;content:counter(st);position:absolute;left:4px;top:9px;width:28px;height:28px;border-radius:50%;background:#1a3a5c;color:#f5f1e8;font-size:14px;line-height:28px;text-align:center;font-weight:bold;}
+.step b{color:#1a3a5c;margin-right:8px;}
+.tool-cta{border:2px solid #8b2e2e;background:#fffdf5;padding:16px 20px;margin:24px 0 30px;text-align:center;font-size:15px;line-height:1.9;}
+.tool-cta a{display:inline-block;margin-top:6px;padding:10px 26px;background:#8b2e2e;color:#fff;text-decoration:none;border-radius:4px;letter-spacing:.1em;font-weight:bold;}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">道具の紹介　電さんと作る</div>
+<h1>一人法人の決算を、自分の手で</h1>
+<div class="sub">電さんと作った「決算集計」ツールのご紹介</div>
+<div class="meta">2026年10月27日（火）　｜　紹介　｜　AI・技術</div>
+</header>
+<svg class="eyecatch" role="img" aria-label="帳簿から決算書ができる図" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f5f1e8"/>
+<circle cx="600" cy="300" r="220" fill="#b8960c" opacity=".12"/>
+<g fill="#fffdf5" stroke="#1a3a5c" stroke-width="4">
+<rect x="250" y="170" width="220" height="280" rx="6"/>
+<rect x="730" y="170" width="220" height="280" rx="6"/>
+</g>
+<g stroke="#c9bfa6" stroke-width="3">
+<line x1="275" y1="215" x2="445" y2="215"/><line x1="275" y1="250" x2="445" y2="250"/><line x1="275" y1="285" x2="445" y2="285"/>
+<line x1="275" y1="320" x2="445" y2="320"/><line x1="275" y1="355" x2="445" y2="355"/><line x1="275" y1="390" x2="445" y2="390"/>
+</g>
+<g stroke="#1a3a5c" stroke-width="3"><line x1="755" y1="230" x2="925" y2="230"/><line x1="755" y1="300" x2="925" y2="300"/><line x1="755" y1="370" x2="925" y2="370"/><line x1="840" y1="230" x2="840" y2="410"/></g>
+<path d="M505 310 H680" stroke="#8b2e2e" stroke-width="10" stroke-linecap="round"/>
+<path d="M655 285 L690 310 L655 335" fill="none" stroke="#8b2e2e" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="360" y="495" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="30" fill="#1a1208">小口現金</text>
+<text x="840" y="495" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="30" fill="#1a3a5c">決算書</text>
+<line x1="80" y1="575" x2="1120" y2="575" stroke="#b8960c" stroke-width="2"/>
+<text x="600" y="55" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-size="26" fill="#1a3a5c" letter-spacing="8">道具の紹介　電さんと作る</text>
+<text x="600" y="615" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="32" fill="#1a1208" letter-spacing="6">一人法人の決算を、自分の手で</text>
+</svg>
+<div class="intro">
+<p>日昇リサーチの決算月は10月です。小さな会社で、帳簿は私が自分でつけ、申告書も自分で入力しています。日々の出入りは小口現金のExcelに書いてきました。ところが一年分が七百行を超えると、これを勘定科目ごとにまとめ、損益計算書と貸借対照表に仕立てるのが、毎年の大仕事になります。</p>
+<p>そこで今年は、AIの電さん（Claude）と一緒に、Excelを放り込めば決算書の下ごしらえができる道具を作りました。名前はそのまま「決算集計」です。ブラウザで開くだけで動き、インストールも会員登録もいりません。同じように一人で経理をしている会社の方に使っていただければと思い、ご紹介します。</p>
+</div>
+<div class="tool-cta">ブラウザで開くだけ。無料です。<br><a href="https://yymm77.github.io/kessan.html/" target="_blank">決算集計を開く</a></div>
+<h2>一　何ができるのか</h2>
+<p>小口現金のExcelを読み込み、画面の順に進むだけで、決算に要る書類の下書きまでたどり着きます。</p>
+<div class="steps"><div class="step"><b>会社の設定</b>会社名、会計期間、前期末の残高を一度だけ入れます。</div><div class="step"><b>Excelを読む</b>月ごとのシートをまとめて読み込みます。ファイルがいくつに分かれていても構いません。</div><div class="step"><b>点検</b>重複した行、期間の外の日付、マイナスの金額などを自動で洗い出します。</div><div class="step"><b>費目を振り分ける</b>「食費」「備品」といった自分の費目を、「福利厚生費」「消耗品費」などの勘定科目に結びつけます。一度決めれば、次の年も覚えています。</div><div class="step"><b>一件ずつ判断する</b>同じ費目でも、会社の経費か私的なものかが分かれる行を、内容の似たものごとにまとめて判断します。</div><div class="step"><b>損益計算書・貸借対照表</b>勘定科目ごとに集計し、前期と並べて表示します。貸借対照表は、借方と貸方が一致するかを確かめます。</div><div class="step"><b>印刷する</b>決算書一式（損益計算書・貸借対照表・株主資本等変動計算書）、申告書への転記表、総勘定元帳、仕訳一覧を印刷やPDFで出せます。</div></div>
+<p>このほか、メールで届いた領収書や、AmazonなどのPDFの領収書から、日付・金額・支払先を読み取る機能も付けました。</p>
+<h2>二　画面のようす</h2>
+<img class="shot" src="img/2026-10-27-kessan-furiwake.jpg" alt="費目を勘定科目に振り分ける画面。黄色の欄が、まだ決めていない費目です（数字は見本です）" loading="lazy"><div class="cap">費目を勘定科目に振り分ける画面。黄色の欄が、まだ決めていない費目です（数字は見本です）</div>
+<img class="shot" src="img/2026-10-27-kessan-sonneki.jpg" alt="損益計算書の画面。「個人」と区分した行は、集計から外れていることが一目で分かります（数字は見本です）" loading="lazy"><div class="cap">損益計算書の画面。「個人」と区分した行は、集計から外れていることが一目で分かります（数字は見本です）</div>
+<h2>三　決めるのは、人です</h2>
+<p>この道具で一番大事にしたのは、最後に決めるのは人だ、という点です。勘定科目の候補は道具が示しますが、確定のボタンを押すまでは何も決まりません。10万円以上の行を含むまとまりは、一括で確定する対象から外し、必ず目で確かめるようにしました。</p>
+<p>私は、申告書の入力も自分の手で行っています。人の手がどこかに残っていないと、安心できないからです。この道具は、その手前の下ごしらえと、数字の確かめを受け持ちます。電さんと私の間で決めてきた「電任」、つまり丸投げでも使い走りでもなく、信頼を前提に役目を分け合うという働き方を、そのまま形にしたものです。</p>
+<p>もう一つの工夫は、Excelの一番右の列に「法人」か「個人」かを書いておけることです。何を買ったかは、買ったその日なら覚えています。決算のときに一年前を思い出すより、ずっと正確です。この列を埋めておくと、決算のときの判断の手間が大きく減ります。</p>
+<h2>四　会社の数字は、どこにも送りません</h2>
+<p>読み込んだExcelの中身も、領収書の内容も、すべてお使いのパソコンのブラウザの中だけで処理します。会社名や残高、費目の振り分けは、そのパソコンのブラウザの中にだけ保存されます。道具のファイル自体には、会社の数字は一つも入っていません。</p>
+<p>ネットにつながるのは、ExcelやPDFを読むための部品（公開されているプログラム）を最初に読み込むときだけです。保存した内容は、設定の画面からいつでも消せます。</p>
+<h2>五　税務署の説明会を聞いて、その日に直しました</h2>
+<p>10月27日、日野税務署の決算説明会に参加しました。説明を聞きながら、この道具と一行ずつ照らし合わせたところ、一か所、古い数字が残っていました。申告書への転記表で、交際費を損金にできる上限が年300万円になっていたのです。いまの中小法人の上限は、年800万円です。</p>
+<p>その日のうちに電さんと直し、配られた冊子『会社の決算申告の実務』の計算式（800万円×月数÷12）と一致することを確かめて、公開中の道具に反映しました。説明会では、令和8年4月から少額減価償却資産の上限が30万円未満から40万円未満に上がったことなど、ほかにも手を入れたい点が見つかっています。決算の前後に、順に足していきます。</p>
+<h2>六　できないこと・ご注意</h2>
+<div class="fact"><div class="t">お使いになる前に</div><p>・法人向けです。個人事業主の青色申告決算書の様式には対応していません（仕訳と集計の部分は使えます）。</p><p>・まだ開発中です。令和8年10月期の決算を実際に処理しながら作っており、本番の申告を一度も通っていません。数字は必ずご自身で検算してください。</p><p>・税理士業務の代わりではありません。勘定科目の提案は目安で、申告の内容と最終的な判断は、お使いになる方の責任です。</p><p>・紙のレシートを撮影・スキャンしたPDFは読み取れません。手で入力してください。</p><p>・別表二・五・六など、帳簿から作れない書類は、前期の申告書を引き継いでください。</p><p>・減価償却や少額減価償却資産の扱いは、まだ入っていません。これから足します。</p></div>
+<h2>七　使い方</h2>
+<p>使い方は簡単です。</p>
+<div class="steps"><div class="step"><b>開く</b>ブラウザで <a href="https://yymm77.github.io/kessan.html/" target="_blank">決算集計</a> を開きます。</div><div class="step"><b>設定する</b>「0　会社の設定」に、会社名・会計期間・前期末の残高を入れます。</div><div class="step"><b>放り込む</b>小口現金のExcelを画面に引きずって落とします。シート名に「家計」を含むシートを読み、列は位置で判断します（A列に日付、C列に費目、D〜F列に金額、G列に内容、H列に法人・個人）。</div><div class="step"><b>進む</b>画面のタブの順に進みます。</div></div>
+<p>まだ小口現金をExcelでつけていない方のために、この道具に合わせた<a href="https://yymm77.github.io/kessan.html/%E5%B0%8F%E5%8F%A3%E7%8F%BE%E9%87%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0.xlsx" target="_blank">記入用のExcel</a>も用意しました。費目と区分は一覧から選べ、日付を入れると曜日が入り、月の合計と区分の未記入の件数がいつも表示されます。銀行の入出金、借入金、年間の固定費のシートも入っています。</p>
+<h2>結び</h2>
+<p>小さな会社の決算は、規模が小さいからこそ、すべてを一人で背負いがちです。税理士に頼むほどではない、けれど一年分の帳簿をまとめるのは骨が折れる。そんな方の机の上で、この道具が少しでも役に立てば嬉しく思います。</p>
+<p>使ってみて、おかしな数字や、欲しい機能に気づかれたら、ぜひこのブログのコメントでお知らせください。10月決算の皆さま、締めまであと少しです。ご一緒に乗り切りましょう。</p>
+<div class="tool-cta"><a href="https://yymm77.github.io/kessan.html/" target="_blank">決算集計を開く</a><br><span style="font-size:13px;color:#6b6252;">作り方の記録（ソース）は <a href="https://github.com/yymm77/kessan.html" target="_blank" style="background:none;color:#1a3a5c;padding:0;font-weight:normal;letter-spacing:0;text-decoration:underline;margin:0;">GitHub</a> で公開しています（MITライセンス）</span></div>
+<hr>
+<div class="note">◆ 参考<br>・日野税務署・法人会「決算法人説明会」（2026年10月27日）配布資料『会社の決算申告の実務 令和8年版』<br>・<a href="https://github.com/yymm77/kessan.html" target="_blank">決算集計のソースと説明（GitHub）</a></div>
+<div class="cta"><div class="t">姓名科学のページ</div><p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a>　<a href="https://yymm77.github.io/seimei-kagaku/namemaster_v5.html">▶ お名前を解析する</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#決算　#一人法人　#小口現金　#決算書　#法人税申告　#電任　#AIとの協働　#無料ツール</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div>
+<div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
