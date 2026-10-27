@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GMOの不正アクセス、何が起きたのか（高橋洋一チャンネルの解説を、発表と報道で確かめる）｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.eyecatch{display:block;width:100%;height:auto;margin:6px 0 4px;border:1px solid #c9bfa6;}
+.nextbox{border:1px dashed var(--navy);padding:14px 18px;font-size:14px;margin:30px 0;line-height:1.9;}
+.video{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:8px 0 6px;background:#fff;}
+.cap{font-size:13px;color:#6b6252;text-align:center;margin-bottom:26px;}
+.caution{border-left:4px solid var(--verm);background:#fbf3f0;padding:12px 16px;font-size:14px;line-height:1.9;margin:20px 0 28px;}
+.vtable{overflow-x:auto;margin:16px 0 26px;}
+.vtable table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.75;min-width:560px;}
+.vtable th,.vtable td{border:1px solid #c9bfa6;padding:8px 10px;vertical-align:top;text-align:left;}
+.vtable th{background:#1a3a5c;color:#f5f1e8;font-weight:bold;white-space:nowrap;}
+.vtable td.j{white-space:nowrap;font-weight:bold;}
+.j1{color:#2f6b47;} .j2{color:#8a6a00;} .j3{color:#6b6252;} .j4{color:#8b2e2e;}
+.claim{border-left:4px solid #c9bfa6;background:#efe9db;padding:10px 14px;font-size:14px;line-height:1.9;margin:0 0 12px;}
+.claim b{color:#1a3a5c;}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">論考　サイバーと国の守りを読む</div>
+<h1>GMOの不正アクセス、何が起きたのか</h1>
+<div class="sub">高橋洋一チャンネルの解説を、発表と報道で確かめる</div>
+<div class="meta">2026年10月27日（火）　｜　論考　｜　AI・技術</div>
+</header>
+<svg class="eyecatch" role="img" aria-label="鍵と、つながった画面の図" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f5f1e8"/>
+<circle cx="600" cy="300" r="220" fill="#b8960c" opacity=".12"/>
+<g fill="#fffdf5" stroke="#1a3a5c" stroke-width="4">
+<rect x="300" y="180" width="170" height="120" rx="6"/><rect x="515" y="180" width="170" height="120" rx="6"/><rect x="730" y="180" width="170" height="120" rx="6"/>
+</g>
+<line x1="270" y1="360" x2="930" y2="360" stroke="#8b2e2e" stroke-width="8" stroke-linecap="round"/>
+<g stroke="#8b2e2e" stroke-width="5"><line x1="385" y1="300" x2="385" y2="360"/><line x1="600" y1="300" x2="600" y2="360"/><line x1="815" y1="300" x2="815" y2="360"/></g>
+<circle cx="600" cy="440" r="34" fill="none" stroke="#1a1208" stroke-width="10"/>
+<rect x="590" y="472" width="20" height="62" fill="#1a1208"/><rect x="610" y="500" width="22" height="10" fill="#1a1208"/><rect x="610" y="520" width="16" height="10" fill="#1a1208"/>
+<line x1="80" y1="575" x2="1120" y2="575" stroke="#b8960c" stroke-width="2"/>
+<text x="600" y="55" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-size="26" fill="#1a3a5c" letter-spacing="8">論考　サイバーと国の守りを読む</text>
+<text x="600" y="615" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="32" fill="#1a1208" letter-spacing="6">GMOの不正アクセス、何が起きたのか</text>
+</svg>
+<div class="intro">
+<p>GMOインターネットが運営する「お名前.com デスクトップクラウド」への不正アクセスが、連日報じられています。FX（外国為替証拠金取引）の自動売買に使われるサービスで、利用者の取引口座が勝手に動かされ、攻撃者は身代金を要求し、10月27日正午には「顧客のパソコンを攻撃する」と予告しました。GMOは政府に「能動的サイバー防御」の適用まで求めています。</p>
+<p>この件を、元財務官僚で経済学者の高橋洋一氏が、自身のチャンネルで解説しました。高橋氏は自宅でも似た仕組みを趣味で組んでいるそうで、技術の話にまで踏み込んだ、分かりやすい解説です。ただ、話の中には、攻撃者の主張をもとにした推測も混じっています。そこでこれまでと同じく二部に分け、第一部で発表と報道で確かめられたことを、第二部で番組の主張を一つずつ表にしました。</p>
+</div>
+<div class="prev">前稿：<a href="https://yymm77.github.io/kiroku/2026/2026-10-26-mienai-sensou.html">見えない戦争は、始まっているのか（10月26日）</a>　― 10月に相次いだ警報・クラウド・PHPの出来事と、能動的サイバー防御について。</div>
+
+<h2>第一部　報道と公式の発表で確かめられたこと</h2>
+
+<h3>一　何が起きたのか</h3>
+<div class="claim"><b>番組では</b>　GMOはホワイトハッカーを売りにしてきたのに、そこがやられた。しかも金融、FXにかかわる話だ。</div>
+<p>被害を受けたのは、GMOインターネットの「お名前.com デスクトップクラウド」です。ネット上の仮想のWindowsパソコン（仮想専用サーバー、VPS）を貸すサービスで、FXの自動売買ソフト（MT4・MT5）を24時間動かすために使われてきました。</p>
+<p>経緯は次のとおりです。10月19日、利用者からの問い合わせで調査を始め、20日、一部の利用者のサーバーに第三者が不正なプログラムを仕掛けているのを見つけました。21日未明には全プランのサーバーを順に止めています。影響を受けた可能性があるサーバーは2万6,739台で、これは被害が確定した数ではありません。24日の第4報では、顧客の情報が外に持ち出されたことを確認したと発表しました。一部の利用者のFX口座では、身に覚えのない取引も起きています。</p>
+<p>GMOは、不正な取引による実際の損失を補償し、利用者全員に一律5,000円を支払うとしています。いまの仕組みは元に戻さず、別の基盤へ移す方針です。</p>
+<p>番組の言うとおり、GMOのグループは「GMOサイバーセキュリティ byイエラエ」など、ホワイトハッカーを抱えるセキュリティ事業を前面に出してきました。その足元で起きた事件だという点が、驚きを大きくしています。</p>
+
+<h3>二　「事前に指摘されていた」という告白</h3>
+<div class="claim"><b>番組では</b>　GMOが能動的サイバー防御を求めた文章には、少し前から気づいていたが怠っていた、と書いてあった。ホワイトハッカーは無能と言いにくいので、ホワイトハッカーはうまくやったが経営の判断を誤った、という筋書きだろう。</div>
+<p>大筋で事実です。熊谷正寿代表は10月25日、自身のブログで、能動的サイバー防御を求めた理由を説明しました。その中で「社内のホワイトハッカーから改善すべき課題が事前に現場へ指摘されていた」「対応の深度とスピードが十分ではなく、攻撃者にその間隙を突かれてしまった」と認めています。遅れた理由は、サービスへの影響や、ほかの対応との優先順位を考えながら慎重に進めた結果だ、としています。</p>
+<p>番組の「怠っていた」は、この告白を言い換えたものです。ただ、どんな課題が指摘され、どこまで手を打っていたのかは、まだ明らかにされていません。SNSでは「経営の判断の誤りを、国の問題にすり替えている」という批判も出ました。「ホワイトハッカーは正しく、経営が誤った」という番組の読み筋は、代表の説明と重なりますが、細部が分かるまでは見立ての一つとして読むのが妥当です。</p>
+
+<h3>三　侵入の手口　攻撃者の主張と、分かっていないこと</h3>
+<div class="claim"><b>番組では</b>　仮想サーバーを一気にまとめて管理するActive Directory（アクティブ・ディレクトリー）という古い仕組みを、まだ使っていた。全部に横串が一本通っているので、そこを押さえると全部を操れる。その鍵は、内部の人から漏れたらしい。</div>
+<p>GMOは、侵入の経路をまだ公表していません。セキュリティ会社と調べている最中です。</p>
+<p>番組の説明は、攻撃者が自分のサイトで公開した「犯行の説明」に沿ったものです。攻撃者は、すべての仮想サーバーに使える共通の管理者アカウントがActive Directoryの中にあり、それで網全体を操れた、と主張しています。また、利用者の手助けをする担当者がつないだ際に、その管理者の情報が漏れた、とも述べています。高橋氏も「攻撃者の話が全部正しいとは思わない」と断ったうえで、話の筋が通っていると見ています。</p>
+<p>ただし、これらはどれも攻撃者の言い分で、GMOも捜査機関も認めてはいません。また、Active Directoryは「やめた」古い仕組みではありません。マイクロソフトはいまも提供を続けており、多くの企業や役所が使っています。問題は道具そのものより、すべてに効く一つの鍵を作ってしまう使い方にあった、と読むべきでしょう。</p>
+
+<h3>四　お客のパソコンまで乗っ取られたのか</h3>
+<div class="claim"><b>番組では</b>　利用者が自宅のパソコンからつなぐリモートデスクトップの設定が、お客のパソコンの中まで見える状態になっていた。だからGMOがやられたついでに、お客のパソコンも乗っ取られた可能性が高い。電源を切っても、入れた途端に暗号化されて動かなくなる。極端な話、お客のパソコンは全部捨てることになる。</div>
+<p>利用者は、自宅のパソコンから「リモートデスクトップ」という仕組みで、GMOの仮想パソコンを遠隔で操作していました。攻撃者は、GMOが配った接続用の設定ファイルが、利用者の手元のパソコンのドライブを仮想パソコン側から見える状態にしていた、そこから利用者のパソコンに裏口を仕掛けた、と主張しています。</p>
+<p>これも、確かめられていない主張です。手元のドライブを見せる設定があったとしても、実際に裏口が仕掛けられたかどうかは別の問題です。GMOは10月25日から、社員が全国の利用者を訪ねてパソコンを預かり、26日からグループのホワイトハッカーが、本当に不正なプログラムが入っているかを解析しています。結果は、対策が分かればメールとサイトで知らせるとしています。</p>
+<p>攻撃者は、身代金を払わなければ、27日正午に顧客情報を公開し、顧客のパソコンにランサムウェア（データを暗号化して使えなくする攻撃）を仕掛けると予告しました。要求額は、報道によって100万ドル（約1億6,000万円）とも約80億円とも伝えられています。GMOは支払わない方針です。GMOは予告を受けて、利用者に、27日正午までにデータを控えてからパソコンの電源を切り、つながっているコードも抜くよう呼びかけました。</p>
+<p>27日正午、攻撃者は自分のサイトに「被害者第1号」として一人分の個人情報を載せたと主張し、今後も毎日正午に公開すると予告しています。載せた情報が本物か、GMOの顧客のものかは確かめられていません。手元のパソコンが実際に暗号化されたという報道も、この記事を書いている時点では見当たりません。「お客のパソコンは全部捨てることになる」というのは、最悪の場合を想定した番組の推測です。</p>
+<div class="caution">このサービスを使っている方は、GMOからの公式の案内に従ってください。GMOは、パスワードや認証コードを聞くことは決してないとしています。この騒動に便乗して、GMOを名乗る偽のメールやSMSが届くおそれがあります。案内はメールのリンクからではなく、自分でGMOの公式サイトを開いて確かめてください。FX口座のパスワードの変更と、二段階の認証の設定も急いでください。</div>
+
+<h3>五　能動的サイバー防御は、助けになるのか</h3>
+<div class="claim"><b>番組では</b>　社長は政府に能動的サイバー防御の適用を頼んだ。被害は1,000億円を超えるのではないか。</div>
+<p>GMOは10月24日、政府に、10月1日に始まったばかりの能動的サイバー防御の適用を緊急に求め、本件を「発動第1号事案」と位置づけました。国が攻撃の基盤を追い、遮断し、無力化してほしい、という要請です。GMOはまた、サイバー犯罪の撲滅に向けて、総額100万ドルの懸賞金を設けるとも発表しました。</p>
+<p>ただ、この制度で助けられるかには疑問も出ています。政府の関係者は、個別の企業の求めに応じて発動する制度ではないとの見方を示しています。制度はもともと被害を未然に防ぐためのもので、被害が起きたあとに使うのは難しい、という指摘もあります。GMOは、この制度で守りを固める基幹インフラの事業者にも入っていません。前稿で触れた能動的サイバー防御が、早くも民間の被害で試されている形です。</p>
+<p>被害額について、GMOは「業績への影響はまだ見積もれない」としています。番組の「1,000億円を超える」は、高橋氏の見立てです。</p>
+
+<h3>六　この事件から学べること</h3>
+<p>番組の最後で高橋氏は、「金融がやられると深刻だ」と語っています。そのとおりだと思います。お金の出入りに直結する仕組みは、攻撃者にとって最も割のよい的です。そして今回の事件は、守りの専門家を抱える会社でさえ、指摘を受けてから手を打つまでの「間」を突かれることを示しました。</p>
+<p>私たち一人ひとりにできることは、限られていますが、無いわけではありません。お金にかかわるサービスほど、パスワードを使い回さず、二段階の認証を設定すること。遠隔で別のパソコンにつなぐときは、手元のパソコンのドライブや貼り付けの機能を、必要がなければ切っておくこと。そして、取引に使うパソコンと、ふだん使いのパソコンとを分けられるなら分けておくこと。10月23日の記事「相次ぐ情報漏洩、その裏で何が起きているのか」で書いた、漏れたあとの二次被害を防ぐ備えは、ここでもそのまま役に立ちます。</p>
+
+<h2>第二部　主張の見極め表</h2>
+<p>番組で語られた主な主張を、報道や公式の発表と照らして五つに分けました。これは真偽の最終的な判定ではなく、「いま手に入る資料で、どこまで確かめられるか」を示すものです。調査が進むなど新しい資料が出れば、見直します。</p>
+<div class="fact"><div class="t">五つの区分</div>
+<p><b class="j1">報道で確認</b>　GMOの公式の発表や、複数の報道で裏付けが取れたもの</p>
+<p><b class="j2">一部確認</b>　核心は裏付けが取れたが、細部に言い過ぎや食い違い、裏付けの弱いところがあるもの</p>
+<p><b class="j3">確認できず</b>　発表や報道で確かめられなかったもの。攻撃者の主張にとどまるものを含みます。資料が番組の説明と違うことを示している場合は、右の欄に記しました</p>
+<p><b class="j4">調査で裏付けなし</b>　公的な機関や検証団体が調べたうえで、裏付けが見つからなかったと結論したもの</p>
+<p><b class="j3">資料が見当たらない</b>　確かめるための発表や資料そのものが見当たらないもの</p>
+</div>
+<div class="vtable"><table>
+<tr><th>番組での主張</th><th>判定</th><th>報道・発表・調査で分かること</th></tr>
+<tr><td>GMOが不正アクセスを受け、FXの取引にかかわる被害が出ている</td><td class="j j1">報道で確認</td><td>お名前.com デスクトップクラウド（FX自動売買用のVPS）。影響の可能性は2万6,739台。一部の口座で身に覚えのない取引</td></tr>
+<tr><td>ホワイトハッカーを売りにしてきた会社がやられた</td><td class="j j1">報道で確認</td><td>グループはホワイトハッカーを抱えるセキュリティ事業を展開している</td></tr>
+<tr><td>熊谷社長が政府に能動的サイバー防御の適用を求めた</td><td class="j j1">報道で確認</td><td>10月24日に緊急要請し、「発動第1号事案」と位置づけた</td></tr>
+<tr><td>GMOは、前から気づいていたが怠っていたと認めた</td><td class="j j2">一部確認</td><td>代表のブログで「事前に指摘されていた」「対応の深度とスピードが十分ではなかった」と認めた。指摘の中身は未公表</td></tr>
+<tr><td>ホワイトハッカーは正しく、経営が判断を誤ったという筋書き</td><td class="j j2">一部確認</td><td>代表の説明と重なる。ただし細部は未公表で、番組の読み筋の一つ</td></tr>
+<tr><td>攻撃者が手口を次々と公開している</td><td class="j j1">報道で確認</td><td>攻撃者が自分のサイトで侵入の説明や予告を公開している（内容の真偽は別）</td></tr>
+<tr><td>全サーバーをまとめて操れるActive Directoryの共通の鍵を押さえられた</td><td class="j j3">確認できず</td><td>攻撃者の主張。GMOは侵入経路を調査中で未公表</td></tr>
+<tr><td>Active Directoryはマイクロソフトがやめた古い仕組み</td><td class="j j3">確認できず</td><td>マイクロソフトはいまも提供しており、広く使われている。番組の言い過ぎ</td></tr>
+<tr><td>鍵は内部の人から漏れたらしい</td><td class="j j3">確認できず</td><td>攻撃者は、支援担当者の接続時に漏れたと主張。確かめられていない</td></tr>
+<tr><td>リモートデスクトップの設定で、お客のパソコンの中まで見えていた</td><td class="j j3">確認できず</td><td>攻撃者の主張。配布された設定ファイルが実際にそうだったかは未確認</td></tr>
+<tr><td>お客のパソコンも乗っ取られた可能性が高い</td><td class="j j3">確認できず</td><td>GMOが預かった端末を解析中。乗っ取りが確認されたという発表はまだない</td></tr>
+<tr><td>GMOが顧客にパソコンの電源を切るよう求めた</td><td class="j j1">報道で確認</td><td>27日正午の攻撃予告を受け、データを控えたうえで電源を切り、コードも抜くよう呼びかけた</td></tr>
+<tr><td>電源を入れた途端に暗号化され、パソコンは全部捨てることになる</td><td class="j j3">資料が見当たらない</td><td>最悪の場合を想定した番組の推測。実際に暗号化されたという報道は、執筆時点で見当たらない</td></tr>
+<tr><td>被害は1,000億円を超える</td><td class="j j3">資料が見当たらない</td><td>高橋氏の見立て。GMOは業績への影響をまだ見積もれないとしている</td></tr>
+<tr><td>金融が狙われると深刻だ</td><td class="j j1">報道で確認</td><td>不正な取引による損失の補償と、利用者全員への5,000円の支払いを発表している</td></tr>
+</table></div>
+
+<h2>結び　専門家の解説を、どう聞くか</h2>
+<p>高橋氏の解説は、仮想サーバーやリモートデスクトップといった、ふだん目にしない仕組みを身近な例で説明してくれる点で、とても役に立ちます。GMO自身が「事前に指摘されていた」と認めたことも、番組の読みを裏づけました。</p>
+<p>一方で、侵入の手口や、お客のパソコンの乗っ取りについての話は、いまのところ攻撃者の言い分に頼っています。攻撃者は、自分を大きく見せ、相手を追い込むために話を盛ることがあります。その主張が「筋が通って見える」こと自体が、攻撃の一部であることもあります。</p>
+<p>GMOの調べと、預かったパソコンの解析の結果が出れば、どこまでが本当だったのかが分かってくるはずです。それまでは、確かな発表と、攻撃者の主張と、専門家の見立てを、分けて手元に置いておきたいと思います。この表が、その仕分けの助けになれば幸いです。</p>
+
+<hr>
+<div class="note">◆ 出典<br>
+・<a href="https://youtu.be/GYGIoqg3_mM" target="_blank">高橋洋一チャンネル｜GMOの不正アクセス問題を扱った回（YouTube）</a><br>
+・<a href="https://ir.group.gmo/pdf/irlibrary/gmo_disclose_info20261023.pdf" target="_blank">GMOインターネットグループ｜連結子会社の提供サービスへの不正アクセスに関するお知らせ（10月23日）</a><br>
+・<a href="https://piyolog.hatenadiary.jp/entry/2026/10/23/014520" target="_blank">piyolog｜お名前.com デスクトップクラウドへの不正アクセスについてまとめてみた</a><br>
+・<a href="https://www.watch.impress.co.jp/docs/news/2150944.html" target="_blank">Impress Watch｜不正アクセスを受けたGMOに金銭要求 政府に「能動的サイバー防御」要請</a><br>
+・<a href="https://www.itmedia.co.jp/news/article/2610/26/2000002571/" target="_blank">ITmedia NEWS｜GMO熊谷代表「社内ホワイトハッカーが事前に指摘」も対策遅れ</a><br>
+・<a href="https://www.sbbit.jp/article/cont1/187764" target="_blank">ビジネス+IT｜GMO「能動的サイバー防御」を要請も、現行法制度では限界か</a><br>
+・<a href="https://note.com/offtrack_notes/n/n2511c6ce0fcd" target="_blank">脱線ノート｜GMOデスクトップクラウド攻撃者が侵入経路を公開。ADとRDPに何があったのか（攻撃者の主張の整理）</a><br>
+・<a href="https://www.itmedia.co.jp/news/article/2610/27/2000002610/" target="_blank">ITmedia NEWS｜犯人側は「27日に顧客のPC攻撃」予告 GMOが端末回収、ホワイトハッカーが解析中</a><br>
+・<a href="https://www.itmedia.co.jp/news/article/2610/27/2000002616/" target="_blank">ITmedia NEWS｜GMO、PCのバックアップと電源オフ呼びかけ VPS利用者に</a><br>
+・<a href="https://www.nikkei.com/article/DGXZQOUC271G20X21C26A0000000/" target="_blank">日本経済新聞｜GMO、顧客にパソコン電源オフを要請 27日正午に攻撃との脅迫受け</a><br>
+・<a href="https://cozydeskjournal.com/gmo-koekisha-kojinjoho-kokai/" target="_blank">GMO攻撃者が個人情報1件を公開（27日正午の状況）</a></div>
+<div class="cta"><div class="t">姓名科学のページ</div><p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a>　<a href="https://yymm77.github.io/seimei-kagaku/namemaster_v5.html">▶ お名前を解析する</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#GMO　#不正アクセス　#お名前.comデスクトップクラウド　#能動的サイバー防御　#FX　#高橋洋一　#ファクトチェック　#情報の見極め</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div>
+<div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
