@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>守りの要は、体力と気力（竹田恒泰『それいけ！エクスチェンジャーズ』第37回が語ったPHPとGMOの問題）｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.eyecatch{display:block;width:100%;height:auto;margin:6px 0 4px;border:1px solid #c9bfa6;}
+.nextbox{border:1px dashed var(--navy);padding:14px 18px;font-size:14px;margin:30px 0;line-height:1.9;}
+.video{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:8px 0 6px;background:#fff;}
+.cap{font-size:13px;color:#6b6252;text-align:center;margin-bottom:26px;}
+.caution{border-left:4px solid var(--verm);background:#fbf3f0;padding:12px 16px;font-size:14px;line-height:1.9;margin:20px 0 28px;}
+.vtable{overflow-x:auto;margin:16px 0 26px;}
+.vtable table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.75;min-width:560px;}
+.vtable th,.vtable td{border:1px solid #c9bfa6;padding:8px 10px;vertical-align:top;text-align:left;}
+.vtable th{background:#1a3a5c;color:#f5f1e8;font-weight:bold;white-space:nowrap;}
+.vtable td.j{white-space:nowrap;font-weight:bold;}
+.j1{color:#2f6b47;} .j2{color:#8a6a00;} .j3{color:#6b6252;} .j4{color:#8b2e2e;}
+.claim{border-left:4px solid #c9bfa6;background:#efe9db;padding:10px 14px;font-size:14px;line-height:1.9;margin:0 0 12px;}
+.claim b{color:#1a3a5c;}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">論考　サイバーと国の守りを読む</div>
+<h1>守りの要は、体力と気力</h1>
+<div class="sub">竹田恒泰『それいけ！エクスチェンジャーズ』第37回が語ったPHPとGMOの問題</div>
+<div class="meta">2026年10月30日（金）　｜　論考　｜　AI・技術</div>
+</header>
+<svg class="eyecatch" role="img" aria-label="迷路と、磨かれた盾の図" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+<rect width="1200" height="630" fill="#f5f1e8"/>
+<circle cx="600" cy="310" r="230" fill="#b8960c" opacity=".12"/>
+<g fill="none" stroke="#1a3a5c" stroke-width="6" stroke-linecap="square">
+<rect x="250" y="170" width="300" height="300"/><path d="M250 230h240v60h-180v60h180v60h-240"/><path d="M310 170v0M550 290h-40"/>
+</g>
+<path d="M800 170 L950 220 V330 C950 420 880 470 800 500 C720 470 650 420 650 330 V220 Z" fill="#fffdf5" stroke="#1a1208" stroke-width="8"/>
+<path d="M740 330 l45 45 l80 -95" fill="none" stroke="#8b2e2e" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="80" y1="575" x2="1120" y2="575" stroke="#b8960c" stroke-width="2"/>
+<text x="600" y="62" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-size="26" fill="#1a3a5c" letter-spacing="8">論考　サイバーと国の守りを読む</text>
+<text x="600" y="618" text-anchor="middle" font-family="Noto Serif JP, Shippori Mincho, serif" font-weight="bold" font-size="34" fill="#1a1208" letter-spacing="6">守りの要は、体力と気力</text>
+</svg>
+<div class="intro">
+<p>10月29日（木）の夜、竹田恒泰氏の番組『それいけ！エクスチェンジャーズ』第37回が配信されました。この回は、竹田氏が営むエクスチェンジャーズ社のエンジニア、奥田氏を迎え、いま世の中を騒がせている二つの出来事、プログラミング言語PHPの重大な欠陥と、GMOインターネットのサービスへの不正アクセスを、じっくり語る回でした。</p>
+<p>エンジニア自身が、その夜に何をしたのかを話しているので、報道だけでは見えない現場の手ざわりがあります。そして話の行き着いた先は、意外なほどアナログな、しかし日本人にはなじみの深い結論でした。以下、番組の流れに沿ってまとめ、最後に、番組で語られたことを公式の記録と報道で確かめた表を付けます。</p>
+</div>
+<div class="prev">前稿：<a href="https://yymm77.github.io/kiroku/2026/2026-10-27-gmo-fusei-access.html">GMOの不正アクセス、何が起きたのか（10月27日）</a>　― 高橋洋一チャンネルの解説を、発表と報道で確かめたもの。</div>
+<h3>一　PHPに見つかった「何でもできてしまう」穴</h3>
+<p>PHPは、ウェブサイトの裏側で動くプログラミング言語の一つです。手軽にホームページを作れるWordPress（ワードプレス）もPHPで動いています。比較的やさしい言語なので広く使われ、奥田氏によれば、世界のウェブサイトの七割ほどがPHPを使っています。</p>
+<p>今回見つかった弱点は、「リモートコード実行」と呼ばれる種類のものでした。悪意のある人が、自分で書いたプログラムを、よそのサーバーの上で勝手に動かせてしまう。しかもパスワードによるログインも要らない。パスワードを破られて乗っ取られる、という話とは質がまるで違う、と奥田氏は言います。</p>
+<p>直し方そのものは簡単で、PHPを新しい版に上げればよい。ただ、穴があまりに危なく、使われている範囲があまりに広かったために、世界中が震え上がりました。高市首相が自らXで対応を呼びかけたことにも、竹田氏は「一国の首相がこんな投稿をするのか」と驚いていました。</p>
+<h3>二　人が見逃した迷路を、AIが一瞬で解いた</h3>
+<p>番組で印象に残ったのは、この穴が見つかった経緯です。奥田氏によれば、弱点そのものは2024年ごろ、すでに人間が見つけていました。ただ、それを悪用するのは無理だろうと判断され、後回しにされていたといいます。</p>
+<p>奥田氏はこれを迷路にたとえました。とてつもなく大きな迷路があって、一瞬で解ける者が現れれば悪用できるが、そんな者はなかなか現れない。だから放っておかれた。ところが2025年から今年にかけてAIが急速に賢くなり、その迷路を一瞬で解ける存在になってしまった。</p>
+<p>さらに、中身が公開されたAI（オープンウェイトのモデル）は、安全のための歯止め（ガードレール）を外す方向に学び直させることができます。そうして歯止めの外れたAIに「この言語にはこういう弱点があるらしい、やり方を見つけてみて」と頼めば、見つけてしまう。修正版が出る前に悪用が始まる弱点を「ゼロデイ脆弱性」と呼びますが、今回のPHPの件はまさにそれにあたる、という説明でした。</p>
+<p>そして奥田氏は、こうした穴はPHPに限らず、ほかの言語にもまだたくさん眠っていると考えてよい、と言います。人がまだ気づいていないか、誰にもできないだろうと放っておかれているだけだ、と。</p>
+<h3>三　その夜、エクスチェンジャーズは何をしたか</h3>
+<p>PHP側は、日本時間の夜11時に修正版を出すと予告していました。ところがその前に、ある研究者が攻撃のデモを公開してしまいます。これではやり方がすぐに広まる。修正版がまだない以上、できることはサイトを閉じることだけでした。</p>
+<p>エクスチェンジャーズはPHPを使う部分のサイトを早々に閉じ、11時に修正版が出るとすぐに当て、そこから検証に入りました。版を上げればすぐ元通り、とはいかないのがシステムの厄介なところで、動かなくなる部品が出てくることもある。ほかに穴はないか、すでに何かを仕込まれていないかを調べ、大丈夫と分かってから再び開く。その手順を踏んだので、エンジニアにとっては大変な一週間になりました。なお、エクスチェンジャーズのアプリはPHPを一切使っていないため、影響はなかったそうです。</p>
+<p>竹田氏は、もしこれが朝4時のアナウンスだったらどうなっていたか、と問いかけました。夜11時という、日本人がまだ起きている時間だったのは、たまたまの幸運だったのです。</p>
+<h3>四　怖いのは「潜伏期間」</h3>
+<p>では、ほかで実際にやられたサイトはあるのか。奥田氏によれば、悪用の動きは確認されているものの、攻撃が成功したという報告は今のところ出ていません。ただ、それは公表されていないだけかもしれない、と言います。</p>
+<p>攻撃する側の心理として、すぐに何かをするとは限らない。いったん何かを埋め込んでおき、皆が忘れたころに、データを暗号化するなどの悪さをする。竹田氏は「ウイルスみたいだね」と応じ、二人は「潜伏期間」という言葉で一致しました。</p>
+<p>とくに心配なのは、エンジニアが社内にいない中小企業や町の診療所など、仕組みが古いままのところです。システムは開発会社に任せきりで、その開発会社は多くの客先を抱えて手が回らない。首相のXを見て慌てた時点で、もう遅かったかもしれない。サイトを閉じても、すでに何かが埋め込まれている可能性は残り、外から見ても分からないことが多いのです。一か月後、二か月後に情報の流出がさらに出てくる可能性は否めない、というのが奥田氏の見立てでした。</p>
+<h3>五　GMOの件は、まったく別の話</h3>
+<p>話はGMOの件に移ります。奥田氏はまず、これはPHPとは無関係だと断ったうえで、被害を受けたサービスを説明しました。「お名前.com デスクトップクラウド」は、ネット越しにいつでも使える仮想のパソコンを貸すサービスで、24時間つけっぱなしにできるため、FX（外国為替証拠金取引）の自動売買に使う人が多かった。自動売買だったことが、かえって被害の発見を遅らせたとも言われます。</p>
+<p>なぜこうなったのか。攻撃者とされる者が出した声明では、GMOの経営が簡単な弱点を放置していた、と指摘しています。報道でも、社内では課題として把握されていたが、経営が後回しにした、と伝えられています。奥田氏は、確定した情報ではないと前置きしつつ、その見方はおおむね妥当だろうと同意しました。簡単な修正だったはずなのに、なぜ後回しにしたのかは謎だ、とも。</p>
+<p>攻撃者は身代金を求め、払わなければ個人情報をさらすと脅し、実際に一部をさらしました。竹田氏はこれを「劇場型」と呼びました。一方で、声明の出し方には不自然な点が多いとも二人は言います。ふつうはダークウェブ（一般の検索では届かない裏のネット）で公表するところを、一般のサーバーで公開している。成りすましや愉快犯の可能性も否めず、もし本人なら相当な素人だ、という見方でした。</p>
+<p>身代金を払う会社はあるのか、という問いには、大手でも払った例は結構あると聞く、という答えでした。払えば戻るケースが多いが、戻らないこともある。アメリカではサイバー攻撃への保険が充実していて、払ってしまう選択がなされることもある。世の中には「払えば止めてくれる」と信用されている攻撃集団まであるそうで、竹田氏も驚いていました。</p>
+<h3>六　守りの要は、戦前と変わらない</h3>
+<p>竹田氏は、視聴者のために「エクスチェンジャーズはなぜ大丈夫と言えるのか」を尋ねました。奥田氏が挙げたのは三つです。</p>
+<p>一つ目は、情報の隔離です。一か所を破られても、ほかには及ばないようにする。乗っ取られても、持ち出される情報がない、少なくとも限られる。これは設計の初めから貫いてきた考え方だといいます。二つ目は点検です。穴はないか、変なものはないか、身に覚えのないことが起きていないか。これを怠っている会社は多いが、自分たちはきちんとやっている、と。三つ目は、一人ひとりの心構えです。やられる多くは、まず個人が破られ、そこから社内の網に入られる、という形だからです。</p>
+<p>ここで竹田氏が、サイバーの話だが、要点は戦前から同じだ、と言いました。いつもきれいに掃き清めているから、異常にすぐ気づける。日本海軍は軍艦をぴかぴかに磨き上げていた。客船でもないのにそこまで磨いてどうするのか、と思われるほどだったが、それは異常を一瞬で見つけるためだった、と。</p>
+<p>奥田氏は、医療の現場、手術室に近いと応じました。メスをきちんと整え、今日何をするかを全員で確かめてから始める。呼ばれたらすぐ行けるようにしておく。整理、整頓、体力、気力。竹田氏は「どれだけアナログなんだ」と笑いながらも、「そういうのは日本人の得意なところだ。ものづくりの現場もそうだ」と結びました。</p>
+<p>では、これからしばらく続くであろう守りの日々をどう乗り切るのか。奥田氏の答えは「今のところは、エンジニアの気力と体力」でした。修正の知らせが出たらすぐ気づける仕組みを整え、エンジニアは枕元にスマホを置いて、何かあれば起きられるようにしておく。やがては守る側もAIの力を借りられるだろうが、今の時点ではそれしかない、と。</p>
+<h3>七　私たち一人ひとりにできること</h3>
+<p>会社から情報が漏れること自体は、個人では防ぎようがありません。個人が防ぎたいのは、どこかで漏れたパスワードを使い回していたために、別のサービスまで破られることです。奥田氏が勧めたのは次のようなことでした。</p>
+<p>まず、パスワードの使い回しをやめること。そして、使えるところでは必ず二段階認証かパスキーを設定すること。二段階認証は、申し込みや決済のときにメールなどで届く番号を入れる方式です。パスキーは、スマホそのものを鍵にする方式で、スマホのロックを指紋や暗証番号で解けることをもって本人とみなします。メールのアカウントを乗っ取られると二段階認証は破られかねないが、パスキーなら手元のスマホが鍵なので、より安全だ、という説明でした。</p>
+<p>次に、GoogleやYahoo!のアカウントのように、ほかの多くのサービスの親鍵になるものは、心臓部だと考えること。そのパスワードは、紙に書いて金庫にしまうくらいでもよい。使い回しは絶対にだめです。それ以外のパスワードは、自分で考えるより、ブラウザが自動で作る完全にでたらめなものを使い、ブラウザに覚えさせるのがよい、と奥田氏は言います。ブラウザを常に最新にしておくことが前提です。</p>
+<p>ブラウザに覚えさせる利点として挙げられたのが、フィッシング詐欺への備えでした。本物そっくりの偽のログイン画面は、ふつうの人には見分けがつきません。けれどもブラウザは、登録した本物のサイトと違えば、パスワードを入れようとしないので、偽物だと気づかせてくれる。これはブラウザにしかできない働きだ、ということでした。</p>
+<p>家庭や職場のWi-Fiルーターも、常に最新の版にしておくべきなのに、怠っているところが多いそうです。版を上げるだけなら、エンジニアでなくてもできることがある、という指摘は、私たちにも耳が痛いところです。</p>
+<h3>八　経営者が気をつけること</h3>
+<p>経営者は何に気をつければよいか。奥田氏の答えは、自分の会社がどんな情報を持っているかを常にはっきりさせておくこと、でした。それはどういう情報か、誰が管理しているか、どんな認証がかかっているか。毎月確かめてもよいくらいだと言います。さらに言えば、使っている仕組みの版が最新か遅れているかにまで関心を持てれば、なおよい、と。</p>
+<h3>九　本人確認は、ICチップの時代へ</h3>
+<p>エクスチェンジャーズからの知らせとしては、止めていたサービスがこの日までに安全に復旧したこと、AIエージェントによる決済の取り組みは、しばらく守りに徹しつつも続けていくこと、などが語られました。</p>
+<p>なかでも私たちの暮らしにかかわるのは、本人確認のやり方の変更です。これからは、免許証の写真を撮って送るだけでは本人確認ができなくなり、マイナンバーカードなどのICチップをスマホにかざして読み取らせる方式に切り替えていくといいます。すでに本人確認を済ませた人はそのままでよいそうです。</p>
+<p>理由は、ディープフェイク（AIによる偽の画像や動画）の進歩です。免許証の画像が漏れれば、それを手に持った自分の顔写真のような偽物を作れてしまう。手元のパソコンで動かせる動画生成のAIも出回っています。漏れた情報を突き合わせれば、どのお年寄りが地方で一人暮らしか、といったことまで分かってしまう。竹田氏は、ここ一か月の個人情報の流出は合計で3億件に上るという集計に触れ、日本の人口をはるかに超える数だと嘆いていました。</p>
+<h3>結び　大事なところはアナログで、挑むところは先端で</h3>
+<p>番組の終わり近く、竹田氏は、飛行機に乗ったらQRコードが使えず紙の券を渡された話をしました。最後はアナログなのだ、と。日本がこれを機にデジタル化で足踏みするのか、それでも進めていくのか、分かれ目の時代なのかもしれない、と二人は語り合います。</p>
+<p>奥田氏が気にかけていたのは、日本が足踏みしたとき、新しいことに挑めなくなったエンジニアが海外の仕事に移り、日本がさらに遅れていくことでした。そのうえで、エクスチェンジャーズとしては、大事なところはアナログで着実に管理しつつ、先端のことにも挑み続けたい、と結びました。同社が一番漏れてはならないものとしている現物の金や宝石は、誰も知らない金庫に収められているそうです。</p>
+<p>AIが人の見逃した穴を一瞬で掘り当てる時代になりました。けれども、それに立ち向かう守りの要として語られたのは、磨き上げた軍艦であり、整えられた手術台であり、枕元のスマホでした。掃き清め、点検し、呼ばれたらすぐ動く。日本人が昔から大切にしてきた構えが、いちばん新しい戦場でも試されているのだと感じます。私たち一人ひとりも、まずはパスワードの使い回しをやめるところから始めたいと思います。</p>
+<h2>付記　番組の話を、記録と報道で確かめる</h2>
+<p>番組で語られたことのうち、事実にかかわるものを、公式の発表と報道で確かめました。番組の側だけでなく記録の側も鵜呑みにせず、記録で確かめられることと、記録からは分からないことを分けています（10月30日時点）。</p>
+<div class="vtable"><table><tr><th>番組での話</th><th>判定</th><th>記録で分かること</th></tr>
+<tr><td>高市首相がXで対応を呼びかけた</td><td class="j j1">報道で確認</td><td>10月21日22時ごろ、「今夜に対応して頂きたい大至急のお願い」と投稿。直せない場合のサイト一時停止にも触れた</td></tr>
+<tr><td>修正版は日本時間の夜11時に出ると予告された</td><td class="j j1">報道で確認</td><td>PHPの開発チームは21日14時（世界標準時）、つまり日本時間23時の公開を予告していた</td></tr>
+<tr><td>公表は10月21日の日本時間14時ごろ</td><td class="j j2">一部異なる</td><td>記録では、予告は20日（世界標準時）に出ている。「14時」は修正版の公開時刻（世界標準時）と重なる。番組の言い違いの可能性</td></tr>
+<tr><td>世界のウェブサイトの7割ほどがPHP</td><td class="j j1">報道で確認</td><td>W3Techsの集計で約7割（69.3％）。ただし「サーバー側の言語が判別できたサイトのうち」の割合</td></tr>
+<tr><td>認証なしでリモートコード実行ができる</td><td class="j j1">報道で確認</td><td>深刻度は10点中9.2の重大な脆弱性2件（CVE-2026-109618／109619、通称PHP2Shell）。設定によってはログインなしで外部からプログラムを実行できる</td></tr>
+<tr><td>弱点は2024年ごろに人間が見つけていた</td><td class="j j2">一部確認</td><td>2024年の外部監査で一方の欠陥の兆しが出ていた。修正が何か月も止まったのは、互換性や性能との兼ね合いを小さなチームで量りかねたため、とされる。「悪用は無理と見て後回し」という理由づけは記録からは分からない</td></tr>
+<tr><td>穴を見つけたのはAI</td><td class="j j1">報道で確認</td><td>OpenAIのAIが発見したと報じられている</td></tr>
+<tr><td>中国などの歯止めのないAIで、悪用する者が先に見つけた</td><td class="j j3">確認できず</td><td>公開前に詳細が漏れ、開示の4日前に悪用の試みがあったとの報告はある。誰がどうやって見つけたかは記録からは分からない</td></tr>
+<tr><td>修正版の前に、研究者が攻撃のデモを公開した</td><td class="j j1">報道で確認</td><td>公開前に技術の詳細が漏れ、概念実証（攻撃のやり方を示すコード）も出回ったと報じられている</td></tr>
+<tr><td>攻撃が成功したという報告はまだない</td><td class="j j1">報道で確認</td><td>攻撃の試みは多数報告されているが、公に確認された侵害の成功例は報告されていない（執筆時点）</td></tr>
+<tr><td>GMOは課題を把握しながら経営が後回しにした</td><td class="j j2">一部確認</td><td>代表がブログで「事前に指摘されていた」と認め、対応が十分でなかったとした。指摘の中身と後回しの理由は未公表</td></tr>
+<tr><td>GMOは身代金を求められ、個人情報をさらされた</td><td class="j j1">報道で確認</td><td>80億円を要求され、GMOは応じないと表明。27日正午に個人情報1件が公開されたとの報道がある</td></tr>
+<tr><td>攻撃者の声明は一般のサーバーに出ており、不自然</td><td class="j j3">確認できず</td><td>番組の見立て。声明の出し手が本当に攻撃者かは確かめられていない</td></tr>
+<tr><td>ここ一か月の個人情報の流出は合計3億件（しんぶん赤旗の集計）</td><td class="j j3">確認できず</td><td>元の記事に当たれていない</td></tr>
+<tr><td>Googleの技術、Node.jsの圧縮の部品にも脆弱性</td><td class="j j3">確認できず</td><td>この件は今回確かめていない。なお、Node.jsはGoogleの製品ではなく、その中で動く仕組み（V8）がGoogle製。言い方には確かめが要る</td></tr>
+</table></div><hr>
+<div class="note">◆ 出典<br>・<a href="https://www.youtube.com/live/dzIL5ougqpk" target="_blank">☆竹田恒泰の『それいけ！エクスチェンジャーズ』第37回☆（YouTube、10月29日配信）</a><br>
+・<a href="https://www.j-cast.com/2026/10/22518636.html?p=all" target="_blank">J-CAST ニュース｜高市首相「今夜に対応して頂きたい大至急のお願い」PHPの脆弱性で呼びかけ</a><br>
+・<a href="https://gigazine.net/news/20261021-php2shell/" target="_blank">GIGAZINE｜PHPに深刻度「9.2」の脆弱性が2件発覚、緊急パッチを10月21日に公開へ</a><br>
+・<a href="https://www.gizmodo.jp/article/php-vulnerability-incident-explained/" target="_blank">ギズモード・ジャパン｜結局“PHP騒動”って、何があったの?</a><br>
+・<a href="https://internet.watch.impress.co.jp/docs/news/2150203.html" target="_blank">INTERNET Watch｜高市首相がPHPの脆弱性対応を呼びかけ（AIによる発見にも触れる）</a><br>
+・<a href="https://www.recordedfuture.com/jp/blog/php2shell-vulnerability-exploitation" target="_blank">Recorded Future｜PHP2Shellの悪用：PHPの2つの重大な脆弱性を解説</a><br>
+・<a href="https://app.dealroom.co/news/note/php-ships-emergency-patches-for-critical-php2shell-flaws-enabling-remote-code-execution" target="_blank">Dealroom｜PHP ships emergency patches for critical php2shell flaws（2024年の監査と修正の遅れ）</a><br>
+・<a href="https://www.computing.co.uk/news/2026/security/php-finds-new-remote-code-flaw-no-fix" target="_blank">Computing｜PHP2Shellの悪用の試みと、成功例が確認されていないこと</a><br>
+・<a href="https://www.watch.impress.co.jp/docs/news/2151375.html" target="_blank">Impress Watch｜GMO不正アクセス、犯人が27日12時の利用者PC攻撃を予告 80億円の金銭要求</a><br>
+・<a href="https://www.itmedia.co.jp/news/article/2610/26/2000002571/" target="_blank">ITmedia NEWS｜GMO熊谷代表「社内ホワイトハッカーが事前に指摘」も対策遅れ</a><br>
+・<a href="https://cozydeskjournal.com/gmo-koekisha-kojinjoho-kokai/" target="_blank">GMO攻撃者が個人情報1件を公開（27日正午の状況）</a></div>
+<div class="cta"><div class="t">姓名科学のページ</div><p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a>　<a href="https://yymm77.github.io/seimei-kagaku/namemaster_v5.html">▶ お名前を解析する</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#PHP　#PHP2Shell　#GMO　#サイバーセキュリティ　#ゼロデイ　#パスキー　#竹田恒泰　#エクスチェンジャーズ　#情報の見極め</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div>
+<div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
