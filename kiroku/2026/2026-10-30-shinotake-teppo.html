@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>しの竹てっぽうのつくり方 ｜ おてんとうさまの下で</title>
+<meta name="description" content="篠竹（しのだけ）を使った昔ながらのおもちゃ「しの竹てっぽう」のつくり方。水でぬらした紙のタマを空気圧で飛ばす仕組みを、図解つきで紹介します。">
+<meta property="og:title" content="しの竹てっぽうのつくり方">
+<meta property="og:description" content="篠竹（しのだけ）を使った昔ながらのおもちゃ。水でぬらした紙のタマを空気圧で飛ばす仕組みを、図解つきで紹介します。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-10-30">
+<style>
+  :root{
+    --washi:#f5f1e8;
+    --sumi:#1a1208;
+    --kon:#1a3a5c;
+    --kin:#b8960c;
+    --shu:#8b2e2e;
+    --kogecha:#3e2a1b;
+    --midori:#4a6b3a;
+    --usumidori:#f0f4ec;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.95;
+    font-size:16.5px;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:28px 22px 64px;}
+
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:24px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  .title{font-size:29px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 8px;}
+  .sub{font-size:17px;color:var(--shu);margin:0 0 12px;}
+  .meta{font-size:14px;color:var(--kogecha);margin-bottom:16px;}
+  .meta .sep{color:var(--kin);margin:0 7px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 30px;}
+
+  .note{
+    font-size:14px;color:var(--kogecha);line-height:1.8;
+    border-top:1px solid var(--kin);padding-top:14px;margin-top:36px;
+  }
+
+  .foot{margin-top:34px;font-size:15px;}
+  .foot a{color:var(--kon);}
+
+  h3{
+    font-size:20px;font-weight:bold;color:var(--kon);line-height:1.5;
+    border-left:6px solid var(--kin);padding-left:13px;
+    margin:38px 0 16px;
+  }
+  p{margin:0 0 20px;}
+  ul,ol{margin:0 0 20px;padding-left:1.8em;}
+  li{margin-bottom:6px;}
+
+  .fig{
+    background:#faf9f5;border:1px solid #ddd;border-radius:6px;
+    padding:16px;margin:20px 0;text-align:center;overflow-x:auto;
+  }
+  .fig-caption{font-size:0.85em;color:var(--kogecha);margin-top:8px;}
+
+  .point{
+    background:var(--usumidori);border-left:4px solid var(--midori);
+    padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;
+    font-size:15.5px;
+  }
+
+  hr{border:0;border-top:1px solid var(--kin);margin:32px 0;}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:23px;}
+    .sub{font-size:15px;}
+    h3{font-size:18px;}
+    .fig svg{width:100%;height:auto;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">記録</a> ／ 本文</div>
+
+  <h1 class="title">しの竹てっぽうのつくり方</h1>
+  <p class="sub">府中町ゼミ・三原先生の手ほどき</p>
+  <p class="meta">
+    2026年10月30日<span class="sep">|</span>随想<span class="sep">|</span>ものづくり
+  </p>
+  <hr class="rule">
+
+  <p>篠竹（しのだけ）を使った「てっぽう」は、水でぬらした紙を丸めてタマにして飛ばす、昔ながらのおもちゃです。構造はシンプルですが、サイズのちょっとしたコツを知っているかどうかで、ちゃんと飛ぶかどうかが決まります。府中町ゼミで三原先生の指導のもと実践した内容をご紹介します。</p>
+
+  <hr>
+
+  <h3>材料と道具</h3>
+
+  <p><strong>材料：</strong>篠竹（太さが異なる2本）、新聞紙など、水</p>
+  <p><strong>道具：</strong>のこぎり（または小刀）</p>
+  <p><strong>大原則：</strong>①太い竹の口径（a）＞ ②細い竹の口径（b）</p>
+
+  <hr>
+
+  <h3>材料の切り分け方</h3>
+
+  <!-- 図1：材料と切る位置 -->
+  <div class="fig">
+  <svg width="580" height="220" viewBox="0 0 580 220">
+    <defs>
+      <marker id="arr-r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L0,7 L7,3.5 Z" fill="#333"/>
+      </marker>
+      <marker id="arr-l" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto">
+        <path d="M7,0 L7,7 L0,3.5 Z" fill="#333"/>
+      </marker>
+      <marker id="garr-r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L0,7 L7,3.5 Z" fill="#4a6b3a"/>
+      </marker>
+      <marker id="garr-l" markerWidth="7" markerHeight="7" refX="1" refY="3.5" orient="auto">
+        <path d="M7,0 L7,7 L0,3.5 Z" fill="#4a6b3a"/>
+      </marker>
+    </defs>
+
+    <!-- ① 太い竹のラベル -->
+    <text x="16" y="22" font-size="15" font-weight="bold" fill="#333">①　太い竹（ハンドルと筒）</text>
+
+    <!-- 節の部分（左端）：二重線で仕切り -->
+    <rect x="16" y="34" width="50" height="50" fill="#fff" stroke="#333" stroke-width="2" rx="2"/>
+    <line x1="26" y1="34" x2="26" y2="84" stroke="#333" stroke-width="2"/>
+    <!-- 節の内部（詰まってる感じ） -->
+    <line x1="16" y1="44" x2="26" y2="44" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="54" x2="26" y2="54" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="64" x2="26" y2="64" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="74" x2="26" y2="74" stroke="#888" stroke-width="1"/>
+    <text x="16" y="96" font-size="12" fill="#6b6a65">節</text>
+
+    <!-- ① 太い竹の本体（節の右〜右端） -->
+    <rect x="66" y="34" width="490" height="50" fill="#fff" stroke="#333" stroke-width="2" rx="2"/>
+
+    <!-- 切る位置 A（破線縦線） -->
+    <line x1="240" y1="20" x2="240" y2="94" stroke="#b03a2e" stroke-width="2.5" stroke-dasharray="6,3"/>
+    <text x="240" y="15" text-anchor="middle" font-size="14" font-weight="bold" fill="#b03a2e">A（切る）</text>
+
+    <!-- ハンドル範囲ラベル（左：66→238） -->
+    <path d="M70 88 L236 88" stroke="#4a6b3a" stroke-width="1.2" fill="none" marker-start="url(#garr-l)" marker-end="url(#garr-r)"/>
+    <text x="153" y="104" text-anchor="middle" font-size="12" fill="#4a6b3a">ハンドル（節あり）</text>
+
+    <!-- てっぽう筒範囲ラベル（右：242→右端） -->
+    <path d="M244 88 L548 88" stroke="#4a6b3a" stroke-width="1.2" fill="none" marker-start="url(#garr-l)" marker-end="url(#garr-r)"/>
+    <text x="396" y="104" text-anchor="middle" font-size="12" fill="#4a6b3a">てっぽうの筒</text>
+
+    <!-- c（タマの長さ）の両矢印：右端付近 -->
+    <path d="M528 28 L556 28" stroke="#4a6b3a" stroke-width="1.2" fill="none" marker-start="url(#garr-l)" marker-end="url(#garr-r)"/>
+    <text x="542" y="22" text-anchor="middle" font-size="12" font-weight="bold" fill="#4a6b3a">c</text>
+
+    <!-- ② 細い竹のラベル -->
+    <text x="16" y="132" font-size="15" font-weight="bold" fill="#333">②　細い竹（押し棒）</text>
+
+    <!-- ② 細い竹本体（細長い棒）＋右端に丸いタマ -->
+    <rect x="66" y="148" width="450" height="16" fill="#eef1e8" stroke="#333" stroke-width="2" rx="3"/>
+    <!-- 右端のタマ（丸） -->
+    <circle cx="540" cy="156" r="14" fill="#e3ecd9" stroke="#4a6b3a" stroke-width="2"/>
+    <text x="540" y="172" text-anchor="middle" font-size="12" fill="#4a6b3a" font-weight="bold">タマ</text>
+
+    <!-- b mm の両矢印 -->
+    <path d="M68 188 L514 188" stroke="#333" stroke-width="1.2" fill="none" marker-start="url(#arr-l)" marker-end="url(#arr-r)"/>
+    <text x="291" y="202" text-anchor="middle" font-size="12" fill="#333">b mm（ピストン棒の長さ）</text>
+
+    <!-- a > b の式 -->
+    <text x="16" y="218" font-size="14" font-weight="bold" fill="#b03a2e">a（①口径）＞ b（②口径）　これが必須条件</text>
+  </svg>
+  <div class="fig-caption">①太い竹を切る位置Aで切り分ける。②細い竹の右端に丸めた紙（タマ c ＝ 5〜6mm）をつける</div>
+  </div>
+
+  <hr>
+
+  <h3>① 太い竹を切り分ける</h3>
+
+  <p>太い篠竹①を、節（ふし）の位置 <strong>A</strong> で切ります。</p>
+  <ul>
+    <li><strong>節のある側（短い方）：</strong>ハンドルになります</li>
+    <li><strong>節のない側（長い方）：</strong>てっぽうの筒（本体）になります</li>
+  </ul>
+  <p>節がピストンの押し棒を受け止める「底」の役割を果たします。</p>
+
+  <hr>
+
+  <h3>② 細い竹でピストン棒をつくる</h3>
+
+  <p>細い篠竹②を、ハンドルの節の穴に差し込みます。これがピストン棒（押し棒）になります。</p>
+
+  <!-- 図2：切り分けた部品 -->
+  <div class="fig">
+  <svg width="580" height="180" viewBox="0 0 580 180">
+    <defs>
+      <marker id="arr2-r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L0,7 L7,3.5 Z" fill="#6b6a65"/>
+      </marker>
+    </defs>
+
+    <!-- 「切り分けた部品」セクション -->
+    <text x="16" y="20" font-size="14" font-weight="bold" fill="#4a6b3a">切り分けた部品</text>
+
+    <!-- 押し棒（ハンドル節付き＋細い棒） -->
+    <rect x="16" y="36" width="100" height="38" fill="#fff" stroke="#333" stroke-width="2" rx="2"/>
+    <line x1="26" y1="36" x2="26" y2="74" stroke="#333" stroke-width="2"/>
+    <line x1="16" y1="46" x2="26" y2="46" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="56" x2="26" y2="56" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="66" x2="26" y2="66" stroke="#888" stroke-width="1"/>
+    <!-- 細い棒（ハンドルの節から出る） -->
+    <rect x="116" y="48" width="240" height="14" fill="#eef1e8" stroke="#333" stroke-width="2" rx="2"/>
+    <!-- 押し棒のラベル -->
+    <text x="16" y="88" font-size="13" fill="#333" font-weight="bold">押し棒</text>
+    <text x="168" y="88" font-size="12" fill="#6b6a65">←ハンドルの節に差し込む</text>
+
+    <!-- 矢印で差し込む方向を示す -->
+    <text x="16" y="116" font-size="12" fill="#b03a2e" font-weight="bold">↓ ハンドルの節の穴に②の細い竹を差し込む</text>
+
+    <!-- てっぽうの筒（別体） -->
+    <text x="380" y="20" font-size="14" font-weight="bold" fill="#4a6b3a">てっぽうの筒</text>
+    <rect x="380" y="36" width="180" height="38" fill="#fff" stroke="#333" stroke-width="2" rx="2"/>
+    <text x="430" y="82" font-size="12" fill="#6b6a65">（節なし）</text>
+
+    <!-- c の説明（押し棒は筒より c だけ短い） -->
+    <text x="16" y="148" font-size="13" fill="#4a6b3a"><tspan font-weight="bold">c（5〜6mm）</tspan> = タマの長さ。押し棒は筒の長さより c だけ短くする</text>
+    <text x="16" y="168" font-size="12" fill="#6b6a65">押し込んだとき、先端がちょうどタマを押し出せる位置で止まるようにするため</text>
+  </svg>
+  <div class="fig-caption">ハンドルの節の穴に細い竹（押し棒）を差し込む。押し棒の長さは筒よりも c（タマ分）だけ短くする</div>
+  </div>
+
+  <div class="point">
+  <strong>押し棒の長さ ＝ てっぽうの筒の長さ − 5〜6mm（c）</strong><br>
+  押し込んだときに先端がちょうどタマを押し出せる位置で止まるよう、押し棒は筒よりわずかに短くします。この差（c）がタマの長さ分です。
+  </div>
+
+  <hr>
+
+  <h3>できあがりの構造</h3>
+
+  <!-- 図3：できあがり -->
+  <div class="fig">
+  <svg width="580" height="130" viewBox="0 0 580 130">
+    <defs>
+      <marker id="arr3-r" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <path d="M0,0 L0,7 L7,3.5 Z" fill="#6b6a65"/>
+      </marker>
+    </defs>
+
+    <!-- ハンドル（節付き、左端） -->
+    <rect x="16" y="36" width="110" height="50" fill="#fff" stroke="#333" stroke-width="2" rx="2"/>
+    <line x1="26" y1="36" x2="26" y2="86" stroke="#333" stroke-width="2"/>
+    <line x1="16" y1="48" x2="26" y2="48" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="58" x2="26" y2="58" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="68" x2="26" y2="68" stroke="#888" stroke-width="1"/>
+    <line x1="16" y1="78" x2="26" y2="78" stroke="#888" stroke-width="1"/>
+
+    <!-- 押し棒（細い、ハンドルから筒の中へ） -->
+    <rect x="126" y="53" width="350" height="16" fill="#eef1e8" stroke="#333" stroke-width="1.5" rx="2"/>
+
+    <!-- てっぽうの筒（ハンドルに重なるように差し込まれる） -->
+    <rect x="126" y="36" width="410" height="50" fill="none" stroke="#333" stroke-width="2" rx="2"/>
+
+    <!-- タマ（筒の先端、丸） -->
+    <circle cx="553" cy="61" r="16" fill="#e3ecd9" stroke="#4a6b3a" stroke-width="2"/>
+
+    <!-- ラベル -->
+    <line x1="21" y1="88" x2="21" y2="96" stroke="#6b6a65" stroke-width="1"/>
+    <text x="21" y="108" text-anchor="middle" font-size="12" fill="#6b6a65">節</text>
+
+    <line x1="75" y1="88" x2="75" y2="96" stroke="#6b6a65" stroke-width="1"/>
+    <text x="75" y="108" text-anchor="middle" font-size="12" fill="#333">ハンドル</text>
+
+    <line x1="280" y1="88" x2="280" y2="96" stroke="#6b6a65" stroke-width="1"/>
+    <text x="280" y="108" text-anchor="middle" font-size="12" fill="#333">てっぽうの筒</text>
+
+    <text x="553" y="90" text-anchor="middle" font-size="13" fill="#4a6b3a" font-weight="bold">タマ</text>
+
+    <!-- 操作説明 -->
+    <text x="16" y="124" font-size="12" fill="#b03a2e">← ハンドルを押すとタマが「パン！」と飛び出す</text>
+  </svg>
+  <div class="fig-caption">できあがりの構造。ハンドル（節付き）が押し棒を支え、筒の先端のタマを空気圧で押し出す</div>
+  </div>
+
+  <hr>
+
+  <h3>タマのつくり方と遊び方</h3>
+
+  <p>新聞紙などを水でしっかり湿らせ、筒の口径に合わせて<strong>少しきつめ</strong>に丸めます。</p>
+
+  <p>タマには二つの役割があります：</p>
+  <ul>
+    <li><strong>先端のタマ（弾）：</strong>空気圧で飛び出す「弾丸」</li>
+    <li><strong>押し棒の先のタマ（ピストン）：</strong>空気を押す「ピストン」</li>
+  </ul>
+
+  <p><strong>遊び方：</strong></p>
+  <ol>
+    <li>筒の先端にタマ（弾）を詰める</li>
+    <li>押し棒の先にもタマ（ピストン）をつける</li>
+    <li>ハンドルを筒に差し込み、勢いよくシュッと押す！</li>
+  </ol>
+
+  <p>「パン！」と先端の弾が飛び出します。撃ったあとは、押し棒の先にまたタマを詰めるだけで、そのまま続けて遊べます。</p>
+
+  <hr>
+
+  <h3>うまく飛ばないときは</h3>
+
+  <ul>
+    <li><strong>タマが飛ばない：</strong>タマが小さすぎる → もう少しきつく丸める</li>
+    <li><strong>押し棒が入らない：</strong>タマが大きすぎる → 少し小さくする</li>
+    <li><strong>音がしない：</strong>隙間がある → タマの大きさを調整する</li>
+  </ul>
+
+  <div class="note">
+  ※ 府中町ゼミ（2026年10月）での実践にもとづきます。三原先生に感謝申し上げます。
+  </div>
+
+  <p class="foot"><a href="../">← 記録の一覧へ戻る</a></p>
+
+</div>
+</body>
+</html>
