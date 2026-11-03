@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ロボットの手はなぜ難しいか ｜ おてんとうさまの下で</title>
+<meta name="description" content="イーロン・マスクがOptimusの開発で直面した「手の難しさ」を語った発言を紹介し、人間の手の神秘と、それを再現しようとする挑戦について考える。">
+<meta property="og:title" content="ロボットの手はなぜ難しいか">
+<meta property="og:description" content="イーロン・マスク本人の発言から読み解く、ヒューマノイドロボット開発の核心。">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-03">
+<style>
+  :root{
+    --washi:#f5f1e8;
+    --sumi:#1a1208;
+    --kon:#1a3a5c;
+    --kin:#b8960c;
+    --shu:#8b2e2e;
+    --kogecha:#3e2a1b;
+    --midori:#4a6b3a;
+    --usumidori:#f0f4ec;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--washi);
+    color:var(--sumi);
+    font-family:"Shippori Mincho","Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.95;
+    font-size:16.5px;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:28px 22px 64px;}
+
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:24px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .pan a:hover{color:var(--shu);}
+
+  .title{font-size:29px;font-weight:bold;color:var(--kon);line-height:1.45;margin:0 0 8px;}
+  .sub{font-size:17px;color:var(--shu);margin:0 0 12px;}
+  .meta{font-size:14px;color:var(--kogecha);margin-bottom:16px;}
+  .meta .sep{color:var(--kin);margin:0 7px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 30px;}
+
+  .note{
+    font-size:14px;color:var(--kogecha);line-height:1.8;
+    border-top:1px solid var(--kin);padding-top:14px;margin-top:36px;
+  }
+
+  .foot{margin-top:34px;font-size:15px;}
+  .foot a{color:var(--kon);}
+
+  h3{
+    font-size:20px;font-weight:bold;color:var(--kon);line-height:1.5;
+    border-left:6px solid var(--kin);padding-left:13px;
+    margin:38px 0 16px;
+  }
+  p{margin:0 0 20px;}
+  ul,ol{margin:0 0 20px;padding-left:1.8em;}
+  li{margin-bottom:6px;}
+
+  blockquote{
+    border-left:4px solid var(--kin);
+    margin:20px 0;
+    padding:12px 18px;
+    background:#faf9f5;
+    color:var(--kogecha);
+    font-size:15.5px;
+    line-height:1.85;
+  }
+
+  .point{
+    background:var(--usumidori);border-left:4px solid var(--midori);
+    padding:12px 16px;margin:16px 0;border-radius:0 6px 6px 0;
+    font-size:15.5px;
+  }
+
+  hr{border:0;border-top:1px solid var(--kin);margin:32px 0;}
+
+  @media (max-width:520px){
+    .wrap{padding:20px 16px 48px;}
+    .title{font-size:23px;}
+    .sub{font-size:15px;}
+    h3{font-size:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">記録</a> ／ 本文</div>
+
+  <h1 class="title">ロボットの手はなぜ難しいか</h1>
+  <p class="sub">イーロン・マスクの言葉から読み解く、人間の手の神秘</p>
+  <p class="meta">
+    2026年11月3日<span class="sep">|</span>随想<span class="sep">|</span>技術・AI
+  </p>
+  <hr class="rule">
+
+  <p>イーロン・マスクが、テスラのヒューマノイドロボット「Optimus」開発について語った発言がある。その書き起こしを読んで、いくつかのことを考えた。</p>
+
+  <hr>
+
+  <h3>「缶詰めデモ」という言葉</h3>
+
+  <p>まずマスクが指摘したのは、ロボットのデモ動画についての注意だ。</p>
+
+  <blockquote>
+    複雑そうに見えるロボットのデモ動画は、ほぼ例外なく「缶詰めデモ」だ。ルーティンを実行しているだけで、本物のAIではない。本物のAIとは、それまで見たことのないものを見せても対応できるということだ。
+  </blockquote>
+
+  <p>「缶詰めデモ」（canned demo）という表現がいい。あらかじめプログラムされた手順を再生しているだけで、現実への対応力はない。テスラのFSD（完全自動運転）は、行ったことのない街、はじめて見る状況でも対応できる。ロボットも同じレベルのAIが必要だ、というのがマスクの主張だ。</p>
+
+  <hr>
+
+  <h3>手と腕が「ショッキングなほど難しい」</h3>
+
+  <p>では、Optimusの開発で何がいちばん難しいのか。マスクの答えは明確だった。</p>
+
+  <blockquote>
+    手と腕の巧みな動き（fine motor skills）を正しく実現することが、驚くほど難しい。自分の名前を書くだけでも、ペンを拾い上げ、繊細に動かす無数の小さな筋肉の動作が必要だ。
+  </blockquote>
+
+  <p>自分の署名を書く——それだけのことが、ロボットには非常に困難な課題だという。</p>
+
+  <p>もうひとつ、マスクが強調したのは「精度と力を同時に使う」という問題だ。</p>
+
+  <blockquote>
+    小さなネジを拾い上げ、木材にセルフタッピングスクリューを打ち込む作業を考えてみてほしい。精確さと力を同時に要求される。それが自分の知る限り、どのロボットのハンドも実現できていない。
+  </blockquote>
+
+  <p>ネジ一本を締める。人間ならほぼ無意識にやってのける動作が、ロボットには未解決の技術的課題だ。</p>
+
+  <hr>
+
+  <h3>皮膚が「再生する」という当たり前</h3>
+
+  <p>マスクが次に語ったのが、触覚センサーの話だ。</p>
+
+  <blockquote>
+    センサーを表面に近づけすぎると損傷する。ロボットの「皮膚」はゴムで覆われているだけで、滑って物を掴めないこともある。また人間の手は常に自己修復している。キーボードを打ち続けてもキーが擦り切れるが、指は残っている——それは再生しているからだ。ロボットにはそれがない。
+  </blockquote>
+
+  <p>「常に自己修復する」という機能を人間は持って生まれてくる。それが当たり前すぎて、失われて初めてその価値に気づく。ロボット開発は、人間の身体の精妙さを逆照射する鏡でもある。</p>
+
+  <div class="point">
+    ピクルスの瓶を開けようとしたとき、ゴム製のロボット皮膚では滑って回せない。皮膚が下の構造物の上でただ空回りしてしまう——この例がわかりやすかった。
+  </div>
+
+  <hr>
+
+  <h3>「原子を割るほどの難題ではないが、無数にある」</h3>
+
+  <p>マスクはこう言った。</p>
+
+  <blockquote>
+    どれひとつも「原子を割るような」種類の難しさではない。しかし問題は無数にある。そして最終的にそれらすべてを、ビジョン（視覚）とタッチ（触覚）をリアルタイムで処理するAIチップと組み合わせなければならない。
+  </blockquote>
+
+  <p>突破口は一つの「ブレークスルー」ではなく、無数の小さな問題を一つひとつ解決することだ。研究者でも職人でも、本物の仕事とはそういうものだと思う。</p>
+
+  <hr>
+
+  <h3>サプライチェーンという現実</h3>
+
+  <p>技術の話に加えて、マスクはサプライチェーンの問題も語った。</p>
+
+  <blockquote>
+    昨年、中国が電気モーター用の磁石の輸出を規制した。その影響でOptimusの開発が2〜3ヶ月遅れた。腕のないロボットが工場に並んでいた（笑）。
+  </blockquote>
+
+  <p>腕のないロボット。笑い話として語られているが、事態の深刻さは伝わってくる。技術が完成しても、部品が来なければ動かない。これは自動車に限らず、あらゆるものづくりの現実だ。</p>
+
+  <hr>
+
+  <h3>人間の手は、技術者への最良の教科書だ</h3>
+
+  <p>府中の町ゼミで、竹トンボを作った。ナタを使って竹を削るとき、指の感覚がいかに微妙な情報を伝えているか、改めて感じた。力の入れ方、角度、竹の繊維の向き——それらをすべて手のひらで読み取りながら動かしている。</p>
+
+  <p>マスクの発言を読んで、その感触を思い出した。ロボットがこれを再現しようとしているのだから、難しくて当然だ。</p>
+
+  <p>人間の手は、数百万年の進化が作り上げた精密機械だ。それを模倣しようとすること自体が、どれほど壮大な挑戦かを、この書き起こしはよく伝えている。</p>
+
+  <div class="note">
+    ※ 本記事はイーロン・マスクによるOptimus開発に関する発言（英語書き起こし）をもとに作成しました。発言の意図を損なわないよう翻訳・要約しましたが、文責は三原にあります。
+  </div>
+
+  <p class="foot"><a href="../">← 記録の一覧へ戻る</a></p>
+
+</div>
+</body>
+</html>
