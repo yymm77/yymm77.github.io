@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人の神経細胞で動くコンピューター（苫米地英人氏の話を聞いて）｜おてんとうさまの下で</title>
+<meta name="description" content="人の神経細胞で動くコンピューターが、すでにプログラムで動かせる段階に来ている。苫米地英人氏の番組の要点と、事実確認の注。">
+<meta property="og:title" content="人の神経細胞で動くコンピューター">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-04">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+.box{border:2px solid var(--navy);background:#fff;padding:20px 22px;margin:26px 0 30px;}
+.box .t{font-size:15px;font-weight:bold;color:var(--navy);letter-spacing:0.1em;margin-bottom:12px;}
+.box p{font-size:15px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.eyecatch{display:block;width:100%;height:auto;margin:6px 0 4px;border:1px solid #c9bfa6;}
+.nextbox{border:1px dashed var(--navy);padding:14px 18px;font-size:14px;margin:30px 0;line-height:1.9;}
+.video{display:block;width:100%;height:auto;border:1px solid #c9bfa6;margin:8px 0 6px;background:#fff;}
+.cap{font-size:13px;color:#6b6252;text-align:center;margin-bottom:26px;}
+.caution{border-left:4px solid var(--verm);background:#fbf3f0;padding:12px 16px;font-size:14px;line-height:1.9;margin:20px 0 28px;}
+.vtable{overflow-x:auto;margin:16px 0 26px;}
+.vtable table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.75;min-width:560px;}
+.vtable th,.vtable td{border:1px solid #c9bfa6;padding:8px 10px;vertical-align:top;text-align:left;}
+.vtable th{background:#1a3a5c;color:#f5f1e8;font-weight:bold;white-space:nowrap;}
+.vtable td.j{white-space:nowrap;font-weight:bold;}
+.j1{color:#2f6b47;} .j2{color:#8a6a00;} .j3{color:#6b6252;} .j4{color:#8b2e2e;}
+.claim{border-left:4px solid #c9bfa6;background:#efe9db;padding:10px 14px;font-size:14px;line-height:1.9;margin:0 0 12px;}
+.claim b{color:#1a3a5c;}
+</style></head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">論考　AI・技術</div>
+<h1>人の神経細胞で動くコンピューター</h1>
+<div class="sub">苫米地英人氏の話を聞いて</div>
+<div class="meta">2026年11月4日（水）　｜　論考　｜　AI・技術</div>
+</header>
+<div class="prev">▶ 本稿のもとにした番組：<a href="https://youtu.be/ex_SAZYsGWs" target="_blank">YouTube（苫米地英人氏）</a>　／　▶ 楽天ブログ版：<a href="https://plaza.rakuten.co.jp/yymm88/diary/202611040006/" target="_blank">こちら</a></div>
+<p>苫米地英人氏の動画番組で、驚くような話を聞いた。人の神経細胞（ニューロン）をそのまま使ったコンピューターが、すでにプログラムで動かせる段階に来ているという。話はそこから、AIの電力問題、人型ロボットの危うさ、そして「キルスイッチ」へと進んでいった。番組で語られた要点を書き留め、確かめられたことは末尾の注にまとめる。</p>
+<h3>ハエの脳から、人の神経細胞へ</h3>
+<p>苫米地氏はまず、ハエの脳の話から入った。ハエの脳の神経の配線をそっくりコンピューターの中で再現したところ、仮想のハエが動き出したという研究である。ただしこれは、本物の細胞ではなく、配線図をもとにした物理的な模擬（シミュレーション）にすぎない。</p>
+<p>本題はその先にある。いま成功し始めているのは、模擬ではなく、本物の人の神経細胞を使ったコンピューターだという。脳から取り出すのではなく、皮膚などの細胞から育てたニューロンだろう、と苫米地氏は見る。そのニューロンに、すでにプログラムを走らせることができる時代が来ている、というのである。</p>
+<h3>電気の壁を越える</h3>
+<p>なぜこれが大きいのか。電気である。</p>
+<p>今のAIを支えるGPUは、膨大な浮動小数点の計算を、ものすごい数だけ並べて回している。速いが、そのぶん電気を食う。苫米地氏は、かつてGoogleのサーバーだけでアメリカの電力の一割を使うと言われた時代があったと振り返り、今はそれ以上だろうと言う。AIの成長にとって、電気がのど元の詰まり（ボトルネック）になっているわけだ。</p>
+<p>これに対して人の神経細胞は、同じ働きを十万倍から百万倍少ない電気でこなせる、と苫米地氏は言う。量子コンピューターも速いが、絶対零度近くまで冷やさねばならず、その冷却にかかる電気は桁違いだ。冷やすためのヘリウムも、手に入る国が限られる。量子計算のほうが、かえって電気を食うことにもなりかねない。だから今、神経細胞を使う研究が、あちこちのスタートアップで成功し始めている。まだニュースではあまり聞かないが、と苫米地氏は付け加えた。</p>
+<p>今できているということは、一年後には間違いなくできる。そういう見立てである。</p>
+<h3>「AIを遅らせろ」という声</h3>
+<p>こうした新しいスタートアップが、AIのあらゆる分野で次々に成果を上げている。第二、第三のイーロン・マスクになりうる人が、百人、二百人といるかもしれない。苫米地氏によれば、すでにアメリカの大手AI企業にとって脅威になり始めており、彼らをこれ以上大きくさせないために「AIの開発を遅らせるべきだ」と唱える人々が、ホワイトハウスへ列をなしているという噂がある。</p>
+<p>AIをどう安全に保つかについても、アメリカではさまざまな案が出ている。ロボット工学の三原則（アシモフの三原則）をもう一度組み込もう、安全の仕組みを設計に入れよう、使う電力に上限をつけよう、政府が安全監査をしよう、中国と危険な情報（レッドライン）を交換しよう、といった具合だ。苫米地氏は、中国政府がそうした情報をアメリカと交換するとは考えにくく、むしろ研究者どうしのつながりのほうがまだ見込みがある、と見る。</p>
+<h3>本当に危ないのは、人型ロボット</h3>
+<p>では、何が一番危ないのか。苫米地氏の答えは、人型ロボット、いわゆるフィジカルAIである。</p>
+<p>人間とほとんど見分けのつかない皮膚を持つ人型ロボットが、今年中にも市場に出てくる。最初は高価でも、二、三年で高級車ほどの値段になり、軽自動車ほどになれば一家に一台の時代が来る。十年以内には、世界中の料理を作り、宿題まで手伝ってくれるロボットが家にいるのが当たり前になる。値段の勝負になれば、中国が強そうだ、とも言う。</p>
+<p>今のAIが人類にとって脅威になるとすれば、ハッキングで電気を止める、車に入っているチップを狂わせて事故を起こす、といった形だろう。しかし人型ロボットが家に入れば、話は変わる。寝ている間に、どこかの国からハッキングされたロボットに首を絞められる。そういうことが起こりうる、と苫米地氏は言う。映画『ターミネーター』の世界が、十年以内の現実になるかもしれない、というのである。</p>
+<h3>日本のセキュリティの遅れ</h3>
+<p>ここで苫米地氏は、日本に厳しい目を向ける。日本は今、フィジカルAIに最もお金をかけて力を入れようとしている。ところが、そのフィジカルAIに安全の仕組み（セキュリティモデル）がない。</p>
+<p>サイバーの面でも、日本は開発の段階から安全を組み込む「DevSecOps（デブセックオプス）」の考え方が根づいていない。苫米地氏によれば、日本のサイバーの水準は、途上国と呼ばれる国々を含めても下から数えたほうが早い。そんな国が人型ロボットを家に入れてどうするのか、という問いかけである。</p>
+<h3>最後の砦は「キルスイッチ」</h3>
+<p>では、どう守るのか。苫米地氏は「キルスイッチ」が要ると言う。いざというとき、その場でロボットを確実に止める仕組みである。</p>
+<p>ただし、電気で止める仕組みはすべてだめだという。電気で動くものは、電気の側から乗っ取られてしまうからだ。寝ている夜中に何かが起きたら、どうするのか。電気に頼らずに止める仕組みをどう作るかが、人類を滅亡から守る最大の技になる、と苫米地氏は言う。苫米地氏自身、この分野で長年研究を重ね、多くの特許を出しており、最近認められた国際特許の中にもその一つを紛れ込ませている、と語った。</p>
+<h3>聞き終えて</h3>
+<p>人の神経細胞で動くコンピューターという話には、驚きと同時に、ある種のためらいも覚える。命を持つ細胞を、計算の道具として使うことになるからだ。電気の壁を越える技術として期待が集まる一方で、それが何を意味するのかは、これから問われていくことになるだろう。</p>
+<p>そして人型ロボットの話は、遠い未来の空想ではなく、すぐそこにある備えの問題として聞いた。便利さが家の中に入ってくるとき、それを止める手立てを誰が持っているのか。技術を急ぐ国ほど、その問いを先に考えておかねばならない。</p>
+<div class="fact"><div class="t">※注（事実確認）</div><p>番組で語られた内容は、苫米地氏の見立てや予測を多く含む。ここでは、公の記録や報道で確かめられることと、確かめられないことを分けて記す。</p><p><b>記録で確かめられること</b></p><p>・人の神経細胞で動くコンピューターは、すでに製品になっている。オーストラリアのスタートアップ、Cortical Labs（コーティカル・ラボ）が2025年3月に発表した「CL1」は、約20万個の人のニューロンを電極の上で育て、プログラム（Python）で動かせる。ニューロンは、ボランティアの血液から作った幹細胞（iPS細胞）を育てたものと説明されている。</p><p>・Cortical Labsは2026年、メルボルンでCL1を約120台並べた「生体のデータセンター」を動かし始め、シンガポールでも最大1,000台規模の計画を進めている。</p><p>・アメリカでも、サンフランシスコのThe Biological Computing Co.が2026年2月に2,500万ドルの資金を集めるなど、生きた神経細胞を計算に使うスタートアップが複数出てきている。</p><p>・ハエの脳の話は、2024年に公表されたショウジョウバエの脳の全配線図（約12万5千〜14万個のニューロン、約5千万のシナプス）をもとに、サンフランシスコのEon Systemsが2026年3月、仮想の体を動かす模擬を公開したものと考えられる。仮想のハエは、歩く、身づくろいをする、餌を食べる、といった動きを見せた。</p><p><b>記録からは確かめられないこと、または記録と食い違うこと</b></p><p>・「アメリカで成功した」という点：最もよく知られた製品（CL1）はオーストラリアの会社のものである。アメリカにも同じ分野の会社はあるが、番組がどの成果を指していたのかは分からない。</p><p>・「ハエの模擬が文字を読むようになった」という点：確かめられた報道では、歩く・身づくろい・食べるといった動きまでで、文字を読んだという記録は見当たらない。</p><p>・「十万倍から百万倍少ない電気で済む」という点：CL1は1台30ワットほどで動き、GPUよりはるかに少ない電力で済むと報じられている。ただし、同じ計算をするのに何倍少ないかを比べた確かな数字は見当たらない。会社側の発表も、第三者による検証を経たものばかりではない。</p><p>・「Googleのサーバーがアメリカの電気の一割を使った時代があった」という点：これを裏づける記録は見当たらない。アメリカ政府の委託でローレンス・バークレー国立研究所がまとめた報告では、2023年にデータセンター全体で使った電気はアメリカ全体の約4.4％で、2028年には最大12％に達しうるとされている。</p><p>・「AIの開発を遅らせろという人々がホワイトハウスに列をなしている」という点：苫米地氏自身が「噂によると」と断っている。公の記録で確かめられるものではない。</p><p>・人型ロボットの普及の時期や値段、日本のサイバーの水準の順位、苫米地氏のキルスイッチの特許については、本稿では確かめていない。いずれも苫米地氏の見立てまたは本人の説明として記した。</p></div>
+<div class="note">◆ 出典<br>・<a href="https://youtu.be/ex_SAZYsGWs" target="_blank">YouTube｜苫米地英人氏の動画番組</a><br>・<a href="https://www.gizmodo.jp/article/cl1_brain/" target="_blank">ギズモード・ジャパン｜人間の脳細胞で動作するコンピューター、500万円です（2025年3月）</a><br>・<a href="https://hashout.jp/ai/13101/" target="_blank">hashout｜人間の脳細胞で動くデータセンター、消費電力はGPUの100分の1以下（2026年）</a><br>・<a href="https://siliconangle.com/?p=730192" target="_blank">SiliconANGLE｜The Biological Computing Co. raises $25M（2026年2月12日）</a><br>・<a href="https://letsdatascience.com/news/researchers-simulate-fruit-fly-brain-controlling-virtual-bod-55db9549" target="_blank">Let&#x27;s Data Science｜Researchers Simulate Fruit Fly Brain Controlling Virtual Body（2026年）</a><br>・<a href="https://www.itpro.com/infrastructure/data-centres/data-center-power-demand-to-triple-in-us-off-ai-boom" target="_blank">ITPro｜Berkeley Lab：米国データセンターの電力需要（2024年報告）</a></div>
+<div class="cta"><div class="t">姓名科学のページ</div><p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a>　<a href="https://yymm77.github.io/seimei-kagaku/namemaster_v5.html">▶ お名前を解析する</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#苫米地英人　#生体コンピューター　#ニューロン　#フィジカルAI　#人型ロボット　#キルスイッチ　#セキュリティ</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div>
+<div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
