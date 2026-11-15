@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無人の潜水艦と、どう話すか｜おてんとうさまの下で</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#1a3a5c;--gold:#b8960c;--verm:#8b2e2e;--washi:#f5f1e8;--ink:#1a1208;}
+*{box-sizing:border-box;}
+body{font-family:'Shippori Mincho','Noto Serif JP','游明朝',serif;background:var(--washi);color:var(--ink);
+line-height:2.05;margin:0;padding:0 20px 72px;font-size:16px;}
+.wrap{max-width:760px;margin:0 auto;}
+.crumb{font-size:13px;color:#6b6252;letter-spacing:0.06em;padding:22px 0 0;}
+.crumb a{color:var(--navy);text-decoration:none;}
+header.head{text-align:center;border-bottom:1px solid #c9bfa6;padding:26px 0 24px;margin-bottom:28px;}
+.eyebrow{font-size:13px;letter-spacing:0.3em;color:var(--navy);margin-bottom:14px;}
+h1{font-size:26px;letter-spacing:0.08em;margin:0 0 12px;line-height:1.7;}
+.sub{font-size:14px;color:var(--verm);letter-spacing:0.06em;}
+.meta{font-size:13px;color:#6b6252;letter-spacing:0.08em;margin-top:16px;}
+.photo{width:100%;padding-bottom:56.25%;height:0;background-image:url(https://image.space.rakuten.co.jp/d/strg/ctrl/9/916e0d3933a7a03f893c25e9b1bf3670264e6424.16.9.9.3.jpeg);
+background-size:contain;background-repeat:no-repeat;background-position:center top;
+margin-bottom:28px;}
+.intro{margin-bottom:36px;}
+h2{background:var(--navy);color:var(--washi);font-size:17px;letter-spacing:0.12em;
+padding:12px 16px;margin:38px 0 24px;font-weight:bold;}
+h3{font-size:18px;color:var(--navy);border-left:5px solid var(--gold);
+padding-left:12px;margin:28px 0 14px;line-height:1.7;}
+p{margin:0 0 14px;text-align:justify;}
+.fact{border:1px solid var(--gold);background:#fffdf5;padding:18px 20px;margin:24px 0 30px;}
+.fact .t{font-size:14px;font-weight:bold;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;}
+.fact p{font-size:14px;line-height:1.9;margin-bottom:9px;}
+.minor .t{font-size:16px;font-weight:bold;color:var(--verm);margin:22px 0 8px;}
+.minor p{font-size:15px;}
+.prev{border:1px solid #c9bfa6;background:#efe9db;padding:14px 16px;font-size:14px;margin:30px 0;}
+.prev a{color:var(--navy);}
+.cta{border:1px solid var(--navy);padding:18px 20px;margin:28px 0 20px;}
+.cta .t{font-size:15px;font-weight:bold;color:var(--navy);margin-bottom:8px;}
+.cta p{font-size:14px;line-height:1.9;}
+.cta a{color:var(--verm);}
+.note{font-size:13px;color:#6b6252;line-height:1.9;margin-bottom:14px;}
+.note a{color:var(--navy);}
+.tags{font-size:13px;color:var(--navy);letter-spacing:0.08em;margin:18px 0;}
+.sig{font-size:13px;color:#6b6252;margin-top:18px;}
+footer{border-top:1px solid #c9bfa6;margin-top:36px;padding-top:22px;text-align:center;}
+footer a{display:inline-block;padding:10px 22px;background:var(--navy);color:#fff;
+text-decoration:none;font-size:14px;letter-spacing:0.1em;border-radius:3px;}
+hr{border:none;border-top:1px solid #c9bfa6;margin:36px 0 26px;}
+@media(max-width:600px){h1{font-size:21px;}}
+
+.src{font-size:13px;line-height:1.9;color:#3e3426;margin:10px 0 24px;}
+.src a{color:var(--navy);}
+</style>
+</head><body><div class="wrap">
+<div class="crumb"><a href="../../index.html">おてんとうさまの下で</a> ＞ <a href="../index.html">記録</a> ＞ 2026</div>
+<header class="head">
+<div class="eyebrow">'+sys.argv[5]+'</div>
+<h1>無人の潜水艦と、どう話すか</h1>
+<div class="sub">'+sys.argv[4]+'</div>
+<div class="meta">2026年11月15日　｜　論考　｜　防衛・安全保障</div>
+</header>
+<div class="prev">前稿：<a href="2026-11-15-kaichu-denpa.html">海の中で電波がつながった ― 九工大の成果は潜水艦の何を変えるのか</a></div>
+<p>前の記事では、九州工業大学が海の中で電波を使って動画を送った成果を確かめました。届くのは数メートル。それでも、潜水艦と無人機をつなぐ「最後の数メートル」を担えば、運用は変わりうる、と書きました。</p>
+<p>書きながら、もう一つの問いが浮かびました。電波がだめならレーザーはどうか。音はどうか。海の中で無人の潜水艦（水中無人機、UUV）と話す手段は、結局どれがよいのか。</p>
+<div class="fact"><p>調べて分かったのは、<b>「どれか一つ」ではない</b>ということです。音・光・電波には、それぞれ得意な距離と苦手な海があります。答えは、三つを距離に応じて使い分ける通信の網です。そして防衛装備庁も、すでにその方向で研究を進めています。</p></div>
+<h2>一　三つの手段を、同じ物差しで測る</h2>
+<p>まず、海の中で使える三つの手段を並べます。</p>
+<h3>音（音響通信）― 遠くまで届くが、遅く、目立つ</h3>
+<p>海の中でいちばん遠くまで届くのは音です。ただし音の速さは電波の約20万分の1しかなく、送れる量にも限りがあります。それでもNTTは2022年、水深30メートルほどの浅い海で、300メートル離れて毎秒1メガビットの伝送に成功しました。画質の低い動画なら送れる速さです。<br>弱点は二つあります。一つは揺れです。防衛装備庁の研究者は、音響通信ではドップラー効果の影響が大きいことを課題に挙げています。動く無人機どうしでは、音の波が伸び縮みして信号が読み取りにくくなるのです。もう一つは、<b>音を出すことが自分の居場所を知らせることになる</b>点です。</p>
+<h3>光（光無線通信）― 速いが、濁りに弱い</h3>
+<p>光も電磁波の仲間ですが、海の中では電波とまるで違う振る舞いをします。青から緑の光（およそ460〜550ナノメートル）は、水の中で最も弱まりにくい「光の窓」を通ります。澄んだ深い海なら、数十メートルから100メートル級まで、毎秒ギガビット級のデータを送れます。<br>その代わり、濁りに弱い。泥やプランクトンが光を散らすので、沿岸の濁った海では届く距離が一気に縮みます。光はまっすぐ進むため、送る側と受ける側が互いを狙い続ける必要もあります。</p>
+<h3>電波（海中電波通信）― 近いが、濁りも揺れも気にしない</h3>
+<p>前の記事のとおり、九工大の成果は4メートルで毎秒1.2メガビットです。距離は三つの中でいちばん短い。けれども海中の電波は、濁りや塩分、水圧の違いにほとんど左右されず、海面や海底を越えることもできます。そして数メートルで消えるので、<b>遠くでは傍受できません</b>。</p>
+<p>ひと目で比べると</p>
+<p><b>音</b>：数百メートル〜数十キロ／遅い／濁りに強い／<b style="color:#8b2e2e;">音で見つかる</b></p>
+<p><b>光</b>：澄んだ海で〜100メートル級／とても速い／<b style="color:#8b2e2e;">濁りに弱い</b>／狙いが要る</p>
+<p><b>電波</b>：数メートル／動画が送れる程度／濁りに強い／<b style="color:#1a3a5c;">遠くへ漏れない</b></p>
+<p>三つは優劣を競う関係ではありません。九工大自身も、4年間の研究を振り返って、電波・音・光の三方式は互いに補い合う技術だと結論づけています。</p>
+<h2>二　日本の現在地</h2>
+<p>三つの手段のどれにも、日本の研究機関や企業の成果があります。</p>
+<p>・<b>光・深い海</b>：海洋研究開発機構（JAMSTEC）と新興企業トリマティスは、2022年11月、相模湾の水深約1,000メートルで、100メートル離れて毎秒1ギガビットの無線伝送に成功しました。トリマティスは「アクア・ローカル・エリア・ネットワーク（ALAN）」を2030年ごろに実用化する計画です。</p>
+<p>・<b>光・浅い海</b>：京セラは2025年8月、静岡県沼津市沖の水深6.7メートルで、青色の窒化ガリウム半導体レーザーを使い、毎秒750メガビットの通信を遅延なく達成しました。ただし距離は15センチから1.5メートルです。屋内の実験では毎秒1.8ギガビットに達しており、2027年の実用化を目指しています。</p>
+<p>・<b>光・追いかける</b>：ソフトバンクと東京海洋大学は、光の向きを自動で合わせ続ける追尾式の水中光通信機を開発し、2023年には北海道の厚岸湖の氷の下にいる水中ロボットを、約930キロ離れた東京の本社から遠隔操作しました。</p>
+<p>・<b>音</b>：NTTの浅い海での毎秒1メガビット・300メートルは前述のとおりです。防衛装備庁はドップラー効果を抑える研究を進めています。</p>
+<p>・<b>電波</b>：九工大とパナソニック。4メートルで毎秒1.2メガビット、中継をつないで40メートル。国際規格IEEE 1901cの土台です。</p>
+<p>二つの光の成果を並べると、海の性質の違いがよく分かります。澄んだ深海では100メートル、浅い沿岸では1.5メートル。同じ光でも、どの海で使うかで別物になります。</p>
+<p>光で海の中を「見る」研究にも長い歴史があります。航空機から緑のレーザーを海に撃って水深を測る技術は、いまは測量に使われていますが、もとは1960〜70年代の米海軍による潜水艦探知の研究から生まれたものです。水深が数十メートルの浅い海なら、レーザーで潜水艦を探すことは有効だとする研究もあります。</p>
+<h2>三　組み合わせる ― 防衛装備庁の構想</h2>
+<p>防衛装備庁は、安全保障技術研究推進制度で2015〜2017年度に、ある国立研究開発法人の光無線による1対1の水中通信の研究を支援しました。その成果を引き継ぎ、2020年度からは複数の機体と同時に光で通信する「多重化」、2022年度からは遠い距離や濁った水中でも通信できるよう音響通信と組み合わせる「光／音響ハイブリッド化」の研究を進めています。</p>
+<p>装備庁が示した構想図には、次の顔ぶれが並びます。</p>
+<p>・小型のUUV</p>
+<p>・それらを束ねる大型の「管制UUV」</p>
+<p>・海面に浮かぶ通信ブイ</p>
+<p>・海底に敷く音響通信の受け手の列（アレイ）</p>
+<p>・艦船</p>
+<p>目指す将来像は、水中での高速大容量通信と、自律的に協調して動く複数のUUVの実現です。それによって水中・洋上の警戒監視の力を大きく高める、としています。2023年度からは、管制役のUUVが他のUUVを管制する技術の研究も始まりました（研究期間は2029年度まで）。</p>
+<div class="fact"><p>ここに九工大の電波を加えると、三つの手段が距離ごとに役を分ける姿が見えてきます。<br><b>遠くは音で呼び合い、近づいたら光で大量に渡し、最後の数メートルや濁った海では電波で受け渡す。</b><br>（電波の組み込みは私の考察です。装備庁の構想図に並ぶのは光と音です。）</p></div>
+<h2>四　潜水艦は、どこで話すのか</h2>
+<p class="note">※この章は、公開資料をもとにした私の考察です。</p>
+<p>有人の潜水艦にとって、いちばん大切なのは見つからないことです。音を出して話せば、その音を敵に聞かれるおそれがあります。だからこそ、無人機の網は潜水艦にとって大きな意味を持ちます。</p>
+<h3>（1）音を出すのは、無人機に任せる</h3>
+<p>遠くの小型UUVと音で話すのは管制UUVの役目にして、潜水艦は黙っている。潜水艦は必要なときだけ管制UUVに近づき、光か電波で、まとめて情報を受け取る。音を出す役が見つかっても、失うのは無人機です。人の乗る艦ではありません。</p>
+<h3>（2）浮上しないで、外とつながる</h3>
+<p>いまの潜水艦が陸と大きなデータをやりとりするには、浅く上がってアンテナを出すしかありません。構想図にある通信ブイを無人機が担えば、潜水艦の代わりに無人機が海面近くへ上がり、衛星や陸とつながれます。潜水艦は深く潜ったまま、その無人機から話を受け取ればよいのです。なお、衛星から潜水艦へ青緑のレーザーで直接届ける通信も、昔から研究されてきました。</p>
+<h3>（3）海の性質で、手段を選ぶ</h3>
+<p>日本の周りの海は一様ではありません。外洋の深く澄んだ海なら光が主役になり、川の水が流れ込む沿岸の濁った海なら電波が頼りになります。前の記事で考えた海底ケーブルの網を港や海峡に敷けば、その結び目が受け渡しの場所になります。<b>どの海でも同じ一つの手段に頼らないこと</b>が、網の強さになるはずです。</p>
+<h2>五　まだ越えていない壁</h2>
+<p>・<b>光の濁り</b>：沿岸の光通信は、まだ1.5メートルの世界です。</p>
+<p>・<b>音の揺れと反射</b>：浅い海では、海面と海底で跳ね返った音が重なり、動く機体どうしではドップラー効果も加わります。</p>
+<p>・<b>電波の距離</b>：数メートル。網を作るには結び目をたくさん置く必要があります。</p>
+<p>・<b>切り替え</b>：三つの手段を、機体が動きながら途切れずに切り替える仕組みは、まだ研究の段階です。</p>
+<p>・<b>無人機そのもの</b>：防衛装備庁は、将来のUUVに1週間から1か月の間、支援なしで動き続けることを求めています。故障を起こさない信頼性と、自分で異常に気づいて対処する力も欠かせません。通信の網は、長く働き続ける無人機があって初めて意味を持ちます。</p>
+<h2>結び</h2>
+<p>陸の上では、電波一つで世界とつながります。海の中では、そうはいきません。音は遠くまで届くが遅く、光は速いが濁りに弱く、電波は濁りに強いが近くにしか届かない。どれも一つでは足りません。</p>
+<p>けれども三つを持ち寄れば、海の中にも網が張れます。音で呼び、光で渡し、電波で手渡す。その網の中で、無人機が働き、潜水艦は黙って耳を澄ます。日本はその三つのすべてに、自前の技術を持っています。<b>足りないのは、それらを一つの網に編み上げる構想と、続ける覚悟</b>なのかもしれません。</p>
+<hr>
+<div class="note">出典</div>
+<div class="src">・<a href="https://www.group.ntt/en/newsrelease/2022/11/01/221101a.html" target="_blank" rel="noopener">NTT「水中音響通信による1Mbps/300m伝送と無線ROV」（2022年11月、英語）</a><br>
+・<a href="https://www.mod.go.jp/atla/research/ats2022/pdf/prog_rnd_06.pdf" target="_blank" rel="noopener">防衛装備庁 艦艇装備研究所「電波の届かぬ海の中・音響通信の課題に挑む」（PDF）</a><br>
+・<a href="https://www.mod.go.jp/atla/research/ats2023/pdf_oral_matl/14_1145.pdf" target="_blank" rel="noopener">防衛装備庁「光／音響ハイブリッド水中通信装置の研究」ほか（2023年防衛技術シンポジウム、PDF）</a><br>
+・<a href="https://www.mod.go.jp/atla/research/ats2023/pdf_oral_matl/15_1115.pdf" target="_blank" rel="noopener">防衛装備庁 艦艇装備研究所 UUVの課題に関する資料（PDF）</a><br>
+・<a href="https://www8.cao.go.jp/ocean/policies/auv/call_for_participants/pdf/06/03_shiryou_2_4.pdf" target="_blank" rel="noopener">内閣府 総合海洋政策推進事務局 AUV関連資料（防衛省の無人機研究開発の主要事業、PDF）</a><br>
+・<a href="https://jstories.media/article/wireless-communication-below-the-waves" target="_blank" rel="noopener">J-STORIES「Wireless communication below the waves」（JAMSTEC・トリマティス、英語）</a><br>
+・<a href="https://global.kyocera.com/newsroom/news/2025/001127.html" target="_blank" rel="noopener">京セラ 水中光無線通信の海上試験の発表（2025年9月、英語）</a><br>
+・<a href="https://eetimes.itmedia.co.jp/ee/articles/2303/10/news083.html" target="_blank" rel="noopener">EE Times Japan「930km離れた水中ロボットの遠隔制御に成功」</a><br>
+・<a href="https://www.nict.go.jp/collabo/commission/B5Gsokushin/B5G_seika/r06/02301_gaiyo.pdf" target="_blank" rel="noopener">NICT「海中・水中IoTにおける無線通信技術の研究開発」令和6年度成果概要書（PDF）</a><br>
+・<a href="https://lidarmag.com/PDF/LIDARMagazine_Mandlburger-AirborneLidarPart3_Spring2025.pdf" target="_blank" rel="noopener">LIDAR Magazine「Airborne Lidar Part 3」（水に入る光の波長、英語、PDF）</a><br>
+・<a href="https://www.photonicsonline.com/doc/beyond-the-surface-how-laser-technology-revolutionized-marine-mapping-0001" target="_blank" rel="noopener">Photonics Online「レーザーが海の測量をどう変えたか」（英語）</a><br>
+・<a href="https://www.sciencegate.app/document/10.4028/www.scientific.net/kem.480-481.590" target="_blank" rel="noopener">「Research on Airborne Blue-Green Laser Anti-Submarine Technology」（2011年、英語）</a><br>
+・<a href="https://www.ioa.org.uk/system/files/publications/RL%20COOKE%20PH%20DICKINSON%20UNDERWATER%20LASER%20SYSTEMS.pdf" target="_blank" rel="noopener">Cooke・Dickinson「Underwater Laser Systems」（英国音響学会、英語、PDF）</a></div>
+<hr>
+<div class="cta"><div class="t">姓名科学のページ</div>
+<p>牧正人史先生が昭和三十三年に発見された姓名科学の体系を、デジタルの形で遺す仕事を続けています。お名前から、その方の持つ数理をご覧いただけます。<br><a href="https://yymm77.github.io/seimei-kagaku/">▶ 姓名科学の殿堂へ</a></p></div>
+<div class="note">AIと人の創作の関係については、UCA（新しい知財の構想）として提言をまとめています。<a href="https://yymm77.github.io/seimei-kagaku/copyright-proposal.html">▶ 提言を読む</a></div>
+<div class="tags">#水中無人機　#UUV　#潜水艦　#水中光無線通信　#音響通信　#海中電波通信　#防衛装備庁　#海上自衛隊　#安全保障</div>
+<div class="sig">生かされて今を存在する</div>
+<footer><a href="../index.html">← 記録の一覧へ戻る</a></footer>
+</div><div class="sun-home" style="text-align:center;margin:28px auto 40px;font-size:14px;letter-spacing:.06em;"><a href="https://yymm77.github.io/" style="color:#1a3a5c;text-decoration:none;border-bottom:1px solid #b8960c;padding-bottom:2px;">おてんとうさまの下で ｜ Under and With the Sun</a></div>
+</body></html>
