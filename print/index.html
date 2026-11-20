@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>印刷物 ｜ おてんとうさまの下で</title>
+<meta name="description" content="印刷してお使いいただけるレシピ・案内状・ちらしの置き場所です。">
+<style>
+  :root{--washi:#f5f1e8;--sumi:#1a1208;--kon:#1a3a5c;--kin:#b8960c;--shu:#8b2e2e;--kogecha:#3e2a1b;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--washi);color:var(--sumi);
+    font-family:"Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;
+    line-height:1.85;font-size:16px;}
+  .wrap{max-width:760px;margin:0 auto;padding:26px 22px 60px;}
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:20px;}
+  .pan a{color:var(--kon);text-decoration:none;border-bottom:1px solid var(--kin);}
+  .tools{margin:0 0 22px;}
+  .btn{display:inline-block;background:var(--kon);color:#fff;border:0;font:inherit;font-size:15px;
+    padding:9px 20px;border-radius:4px;cursor:pointer;}
+  .btn:hover{background:var(--shu);}
+  .tools .hint{font-size:13px;color:var(--kogecha);margin-left:10px;}
+  h1{font-size:26px;color:var(--kon);line-height:1.45;margin:0 0 6px;}
+  .lead{margin:0 0 14px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 22px;}
+  h2{font-size:19px;color:var(--kon);border-left:6px solid var(--kin);padding-left:12px;margin:30px 0 12px;}
+  h3{font-size:16.5px;color:var(--kogecha);margin:20px 0 8px;}
+  table.zairyo{border-collapse:collapse;width:100%;margin:0 0 8px;}
+  table.zairyo td{border-bottom:1px solid #d8cfb8;padding:6px 8px;vertical-align:top;}
+  table.zairyo td.ryo{white-space:nowrap;text-align:right;width:9em;font-weight:bold;}
+  ol.tejun{margin:0;padding:0;list-style:none;counter-reset:t;}
+  ol.tejun li{counter-increment:t;position:relative;padding:8px 0 10px 2.6em;border-bottom:1px dotted #cfc4a8;}
+  ol.tejun li::before{content:counter(t);position:absolute;left:0;top:8px;width:1.9em;height:1.9em;
+    border-radius:50%;background:var(--kon);color:#fff;text-align:center;line-height:1.9em;font-size:14px;font-weight:bold;}
+  ol.tejun b.midashi{display:block;color:var(--kon);}
+  ol.tejun .chk{display:inline-block;width:1em;height:1em;border:1px solid var(--kogecha);margin-right:6px;vertical-align:-2px;}
+  ul.ten{margin:0 0 10px;padding-left:1.3em;}
+  ul.ten li{margin-bottom:4px;}
+  .box{border:1px solid var(--kin);padding:12px 16px;margin:14px 0;background:#fbf8f0;}
+  .box.keikoku{border-color:var(--shu);}
+  .box.keikoku .lbl{color:var(--shu);font-weight:bold;}
+  .hochu{font-size:13.5px;color:var(--kogecha);}
+  .shutten{font-size:13.5px;color:var(--kogecha);border-top:1px solid var(--kin);padding-top:12px;margin-top:30px;line-height:1.8;}
+  .shutten a{color:var(--kon);word-break:break-all;}
+  .foot{margin-top:24px;font-size:14px;}
+  .foot a{color:var(--kon);}
+  .shomei{margin-top:10px;font-size:13px;color:var(--kogecha);}
+  .list a{color:var(--kon);font-size:17px;}
+  .list li{margin-bottom:12px;}
+  .list .setsumei{display:block;font-size:14px;color:var(--kogecha);}
+  @media (max-width:520px){.wrap{padding:18px 15px 44px;} h1{font-size:22px;}}
+  @page{size:A4;margin:14mm 15mm;}
+  @media print{
+    body{background:#fff;color:#000;font-size:10.5pt;line-height:1.65;}
+    .wrap{max-width:none;padding:0;}
+    .pan,.tools,.foot,.noprint{display:none !important;}
+    h1{font-size:17pt;color:#000;}
+    h2{font-size:12.5pt;color:#000;margin:14pt 0 6pt;break-after:avoid;}
+    h3{font-size:11pt;color:#000;break-after:avoid;}
+    ol.tejun li{break-inside:avoid;padding:5pt 0 6pt 2.4em;}
+    ol.tejun li::before{background:#fff;color:#000;border:1px solid #000;}
+    ol.tejun b.midashi{color:#000;}
+    .box{background:#fff;break-inside:avoid;}
+    table.zairyo{break-inside:avoid;}
+    .shutten a{color:#000;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ 印刷物</div>
+  <h1>印刷物</h1>
+  <p class="lead">印刷してお使いいただけるページの置き場所です。どのページも、A4の用紙に合わせて印刷できるようにしてあります。</p>
+  <hr class="rule">
+  <h2>レシピ</h2>
+  <ul class="list">
+      <li><a href="recipe/2026-11-20-oroshi-shoga.html">おろし生姜の長期保存（皮ごと・無添加の乳酸発酵）</a><span class="setsumei">生姜を皮ごとおろして瓶に詰め、冷蔵庫で2週間寝かせる乳酸発酵の作り置き。長持ちする仕組みの解説付き。</span></li>
+      <li><a href="recipe/2026-11-20-oroshi-ninniku.html">おろしにんにくの長期保存（はちみつ入り・乳酸発酵）</a><span class="setsumei">にんにくにはちみつを少し混ぜて瓶に詰め、1週間寝かせる乳酸発酵の作り置き。</span></li>
+      <li><a href="recipe/2026-11-20-shoga-syrup.html">非加熱の生姜シロップ（砂糖不使用のジンジャエール）</a><span class="setsumei">薄切りの生姜をはちみつに一晩漬けるだけのシロップ。佃煮・甘酢漬けのアレンジ付き。</span></li>
+  </ul>
+  <h2>案内状</h2>
+  <p class="hochu">まだありません。</p>
+  <h2>ちらし</h2>
+  <p class="hochu">まだありません。</p>
+  <div class="foot" style="display:block"><a href="../">おてんとうさまの下で</a>
+    <div class="shomei">生かされて今を存在する</div>
+  </div>
+</div>
+</body>
+</html>
