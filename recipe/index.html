@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レシピ帖 ｜ おてんとうさまの下で</title>
+<meta name="description" content="手元にある材料を入れると、作れるレシピが出てきます。三國清三シェフの公開動画のレシピを中心に、和食・中華・イタリアン・スイーツ・素材の下ごしらえまで。">
+<style>
+  :root{--washi:#f5f1e8;--sumi:#1a1208;--kon:#1a3a5c;--kin:#b8960c;--shu:#8b2e2e;--kogecha:#3e2a1b;--usu:#ebe4d3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--washi);color:var(--sumi);
+    font-family:"Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;line-height:1.8;font-size:16px;}
+  a{color:var(--kon);}
+  .wrap{max-width:980px;margin:0 auto;padding:22px 18px 60px;}
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:14px;}
+  .pan a{text-decoration:none;border-bottom:1px solid var(--kin);}
+  h1{font-size:28px;color:var(--kon);margin:0;letter-spacing:.08em;}
+  .lead{margin:4px 0 16px;color:var(--kogecha);font-size:15px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 18px;}
+  .kensaku{background:#fff;border:1px solid var(--kin);padding:16px 16px 12px;border-radius:4px;}
+  .kensaku label{display:block;font-weight:bold;color:var(--kon);margin-bottom:6px;}
+  .kensaku input[type=text]{width:100%;font:inherit;font-size:17px;padding:10px 12px;border:1px solid #c9bfa6;border-radius:4px;background:var(--washi);}
+  .kensaku input[type=text]:focus{outline:2px solid var(--kin);background:#fff;}
+  .hint{font-size:13px;color:var(--kogecha);margin:6px 0 0;}
+  .opts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:14px;}
+  .opts label{display:inline;font-weight:normal;color:var(--sumi);margin:0;cursor:pointer;}
+  .rei{margin-top:8px;font-size:13px;}
+  .rei button{font:inherit;font-size:13px;background:var(--usu);border:1px solid #d8cfb8;border-radius:12px;padding:1px 10px;margin:2px 3px 2px 0;cursor:pointer;color:var(--kogecha);}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 6px;}
+  .tabs button{font:inherit;font-size:15px;background:#fff;color:var(--kon);border:1px solid var(--kon);border-radius:20px;padding:5px 15px;cursor:pointer;}
+  .tabs button .n{font-size:12px;color:var(--kogecha);margin-left:4px;}
+  .tabs button.on{background:var(--kon);color:#fff;}
+  .tabs button.on .n{color:#e8dcb8;}
+  .kekka{font-size:14px;color:var(--kogecha);margin:10px 0 10px;}
+  .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+  .card{background:#fff;border:1px solid #d8cfb8;border-left:4px solid var(--kin);padding:10px 12px;cursor:pointer;border-radius:3px;}
+  .card:hover{border-color:var(--kon);border-left-color:var(--kon);}
+  .card .nm{font-weight:bold;color:var(--kon);line-height:1.5;}
+  .card .meta{font-size:12px;color:var(--kogecha);margin-top:3px;}
+  .card .hit{font-size:12.5px;color:var(--shu);margin-top:3px;}
+  .badge{display:inline-block;font-size:11px;padding:0 6px;border-radius:3px;margin-right:4px;background:var(--usu);color:var(--kogecha);}
+  .badge.mk{background:var(--kon);color:#fff;}
+  .badge.own{background:var(--shu);color:#fff;}
+  .badge.new{background:var(--kin);color:#fff;}
+  .more{display:block;margin:18px auto 0;font:inherit;background:var(--kon);color:#fff;border:0;border-radius:4px;padding:9px 26px;cursor:pointer;}
+  .nashi{background:#fff;border:1px dashed #c9bfa6;padding:18px;text-align:center;color:var(--kogecha);}
+  /* 詳細 */
+  .bg{position:fixed;inset:0;background:rgba(26,18,8,.55);display:none;z-index:10;overflow-y:auto;padding:24px 12px;}
+  .bg.on{display:block;}
+  .shosai{background:var(--washi);max-width:760px;margin:0 auto;border-radius:4px;padding:22px 22px 26px;position:relative;}
+  .tojiru{position:absolute;right:10px;top:8px;font-size:26px;background:none;border:0;cursor:pointer;color:var(--kogecha);}
+  .shosai h2{font-size:22px;color:var(--kon);margin:0 32px 2px 0;line-height:1.5;}
+  .shosai .sub{font-size:13px;color:var(--kogecha);margin-bottom:10px;}
+  .shosai h3{font-size:16px;color:var(--kon);border-left:5px solid var(--kin);padding-left:10px;margin:20px 0 8px;}
+  .shosai .txt{white-space:pre-wrap;background:#fff;border:1px solid #e2d9c3;padding:10px 12px;font-size:15px;line-height:1.85;}
+  .shosai .txt mark{background:#f6e6a8;}
+  .video{position:relative;padding-top:56.25%;background:#000;margin:8px 0 4px;}
+  .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
+  .btns a,.btns button{font:inherit;font-size:14px;background:var(--kon);color:#fff;border:0;border-radius:4px;padding:7px 16px;cursor:pointer;text-decoration:none;}
+  .chui{font-size:12.5px;color:var(--kogecha);margin-top:14px;}
+  .foot{margin-top:40px;border-top:1px solid var(--kin);padding-top:14px;font-size:13.5px;color:var(--kogecha);}
+  .shomei{margin-top:8px;}
+  @media (max-width:520px){h1{font-size:23px;} .wrap{padding:16px 12px 48px;} .shosai{padding:18px 14px;}}
+  @media print{
+    body{background:#fff;}
+    body.insatsu .wrap{display:none;}
+    .bg{position:static;background:none;padding:0;display:block;}
+    .bg:not(.on){display:none;}
+    .shosai{max-width:none;padding:0;}
+    .tojiru,.btns,.video{display:none !important;}
+    .shosai .txt{border:0;padding:0 0 0 4px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ レシピ帖</div>
+  <h1>レシピ帖</h1>
+  <p class="lead">手元にある材料を入れると、作れるレシピが出てきます。</p>
+  <hr class="rule">
+
+  <div class="kensaku">
+    <label for="zairyo">材料を入れてください</label>
+    <input type="text" id="zairyo" placeholder="例：鮭　かぼちゃ　玉ねぎ" autocomplete="off">
+    <p class="hint">材料はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。</p>
+    <div class="opts">
+      <label><input type="radio" name="mode" value="and" checked> 入れた材料を全部使うもの</label>
+      <label><input type="radio" name="mode" value="or"> どれか一つでも使うもの</label>
+      <label><input type="checkbox" id="mei"> 料理の名前でも探す</label>
+    </div>
+    <div class="rei">よく使う材料：
+      <button>鶏肉</button><button>豚肉</button><button>牛肉</button><button>鮭</button><button>卵</button><button>じゃがいも</button><button>玉ねぎ</button><button>キャベツ</button><button>トマト</button><button>きのこ</button><button>かぼちゃ</button><button>りんご</button>
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="opts" style="margin-top:4px;">
+    <label><input type="checkbox" class="src" value="mikuni" checked> 三國シェフ</label>
+    <label><input type="checkbox" class="src" value="archive" checked> ほかの料理動画</label>
+    <label><input type="checkbox" class="src" value="own" checked> わが家のレシピ</label>
+    <label><input type="checkbox" id="talk"> シェフのお話・動画日記も出す</label>
+  </div>
+  <div class="kekka" id="kekka">読み込んでいます…</div>
+  <div class="list" id="list"></div>
+  <button class="more" id="more" style="display:none">もっと見る</button>
+
+  <div class="foot">
+    三國清三シェフのレシピは、YouTubeで公開されている動画への索引です。制作者の自己責任において運営しています。料理の詳しい手元は、各レシピの元の動画でご覧ください。<br>
+    分類（フレンチ・和食など）は料理の名前から自動で振り分けたもので、ずれているものがあります。<br>
+    <a href="../print/">印刷物の一覧へ</a>　／　<a href="../">おてんとうさまの下で</a>
+    <div class="shomei">生かされて今を存在する</div>
+  </div>
+</div>
+
+<div class="bg" id="bg"><div class="shosai" id="shosai"></div></div>
+
+<script>
+const CATS=[['all','すべて'],['french','フレンチ'],['japanese','和食'],['chinese','中華'],['italian','イタリアン'],['sweets','スイーツ'],['sozai','素材・下ごしらえ'],['other','その他']];
+const CATNAME=Object.fromEntries(CATS);
+const SRCNAME={mikuni:'三國シェフ',archive:'料理動画',own:'わが家'};
+// 同じ材料の別の書き方（ひらがな・カタカナはまとめて扱うので、漢字やほかの言い方だけ）
+const DOUGI=[
+ ['たまねぎ','玉ねぎ','玉葱','オニオン'],['にんじん','人参','キャロット'],['じゃがいも','馬鈴薯','ポテト','ジャガ芋'],['さけ','鮭','サーモン','しゃけ'],
+ ['ぶた','豚','ポーク'],['とり','鶏','チキン'],['ぎゅう','牛','ビーフ'],['たまご','卵','玉子','エッグ'],['しょうが','生姜','ジンジャー'],
+ ['にんにく','大蒜','ガーリック'],['なす','茄子'],['かぼちゃ','南瓜','パンプキン'],['しいたけ','椎茸'],['えび','海老','蝦'],['ほたて','帆立'],
+ ['たら','鱈'],['さば','鯖'],['いわし','鰯'],['あじ','鯵'],['ぶり','鰤'],['たい','鯛'],['まぐろ','鮪'],['かつお','鰹'],['いか','烏賊'],['たこ','蛸'],
+ ['きゅうり','胡瓜'],['だいこん','大根'],['ぎゅうにゅう','牛乳','ミルク'],['いちご','苺'],['りんご','林檎','アップル'],['ねぎ','葱'],['きのこ','茸'],
+ ['とうもろこし','コーン'],['くり','栗'],['もも','桃'],['こめ','米','ライス'],['さとう','砂糖'],['しお','塩'],['こしょう','胡椒'],['みそ','味噌'],['しょうゆ','醤油'],
+ ['こむぎこ','小麦粉'],['なまくりーむ','生クリーム'],['ばたー','バター'],['ちーず','チーズ'],['ほうれんそう','ほうれん草'],['きゃべつ','キャベツ'],['はくさい','白菜'],
+ ['さつまいも','薩摩芋'],['さといも','里芋'],['ごぼう','牛蒡'],['れんこん','蓮根'],['のり','海苔'],['こんぶ','昆布'],['あさり','浅蜊'],['かき','牡蠣']
+];
+const kana=s=>s.normalize('NFKC').replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60)).toLowerCase();
+const DMAP={};DOUGI.forEach(g=>{const k=g.map(kana);k.forEach(x=>DMAP[x]=k);});
+// 入れた言葉を、同じ材料の別の書き方に広げる（「鶏肉」は「鶏」でも探すので「鶏もも肉」も見つかる）
+function iikae(w){
+  let k=kana(w);const out=new Set();
+  const add=x=>{out.add(x);if(DMAP[x])DMAP[x].forEach(y=>out.add(y));for(const d in DMAP){if(d!==x&&x.includes(d))DMAP[d].forEach(y=>out.add(x.replace(d,y)));}};
+  add(k);if(k.length>1&&(k.endsWith('肉')||k.endsWith('にく')))add(k.replace(/(肉|にく)$/,''));
+  return [...out].filter(Boolean);
+}
+
+let DATA=[],cat='all',shown=60,lastList=[];
+const $=id=>document.getElementById(id);
+fetch('data/recipes.json').then(r=>r.json()).then(j=>{DATA=j.items;DATA.forEach(r=>{r._i=kana(r.ing);r._n=kana(r.name+' '+(r.title||''));});
+  if(j.updated){$('kekka').dataset.up=j.updated;}
+  const h=location.hash.slice(1);render();if(h){const r=DATA.find(x=>x.id===h);if(r)open_(r);}
+}).catch(()=>{$('kekka').textContent='データを読み込めませんでした。時間をおいて開き直してください。';});
+
+function words(){return $('zairyo').value.split(/[\s、,，・/]+/).map(s=>s.trim()).filter(Boolean);}
+function match(r,ws,mode,mei){
+  if(!ws.length)return [];
+  const hits=[];
+  for(const w of ws){const alts=iikae(w);const ok=alts.some(a=>r._i.includes(a)||(mei&&r._n.includes(a)));if(ok)hits.push(w);else if(mode==='and')return null;}
+  return hits.length?hits:null;
+}
+function render(){
+  const ws=words(),mode=document.querySelector('input[name=mode]:checked').value,mei=$('mei').checked,talk=$('talk').checked;
+  const srcs=[...document.querySelectorAll('.src:checked')].map(e=>e.value);
+  const base=DATA.filter(r=>srcs.includes(r.src)&&(talk||r.sub!=='talk'));
+  const scored=[];
+  for(const r of base){if(ws.length){const h=match(r,ws,mode,mei);if(!h)continue;scored.push([r,h]);}else scored.push([r,[]]);}
+  if(ws.length)scored.sort((a,b)=>b[1].length-a[1].length);
+  // 分類ごとの件数
+  const cnt={all:scored.length};scored.forEach(([r])=>cnt[r.cat]=(cnt[r.cat]||0)+1);
+  $('tabs').innerHTML=CATS.map(([k,v])=>`<button data-k="${k}" class="${k===cat?'on':''}">${v}<span class="n">${cnt[k]||0}</span></button>`).join('');
+  lastList=scored.filter(([r])=>cat==='all'||r.cat===cat);
+  const up=$('kekka').dataset.up;
+  $('kekka').textContent=(ws.length?`「${ws.join('・')}」で ${lastList.length} 件見つかりました。`:`全 ${lastList.length} 件。材料を入れると絞り込みます。`)+(up?`（${up} 更新）`:'');
+  $('list').innerHTML=lastList.length?lastList.slice(0,shown).map(([r,h])=>card(r,h)).join(''):'<div class="nashi">見つかりませんでした。材料を減らすか、「どれか一つでも使うもの」に切り替えてみてください。</div>';
+  $('more').style.display=lastList.length>shown?'block':'none';
+}
+const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function card(r,h){
+  const b=r.src==='mikuni'?`<span class="badge mk">三國${r.no?' #'+r.no:''}</span>`:r.src==='own'?'<span class="badge own">わが家</span>':'<span class="badge">料理動画</span>';
+  return `<div class="card" data-id="${r.id}"><div class="nm">${esc(r.name)}</div><div class="meta">${b}${r.new?'<span class="badge new">新着</span>':''}${CATNAME[r.cat]}${r.wine?'　🍷':''}</div>${h.length?`<div class="hit">使う材料：${esc(h.join('・'))}</div>`:''}</div>`;
+}
+function hl(t,ws){let s=esc(t);if(!ws.length)return s;
+  // 見つけた材料に色をつける（ひらがな・カタカナの違いは見ない）
+  const k=kana(t);const marks=new Array(t.length).fill(false);
+  ws.forEach(w=>iikae(w).forEach(a=>{if(!a)return;let i=k.indexOf(a);while(i>=0){for(let j=i;j<i+a.length;j++)marks[j]=true;i=k.indexOf(a,i+a.length);}}));
+  if(k.length!==t.length)return s;let out='',on=false;for(let i=0;i<t.length;i++){if(marks[i]&&!on){out+='<mark>';on=true;}if(!marks[i]&&on){out+='</mark>';on=false;}out+=esc(t[i]);}if(on)out+='</mark>';return out;}
+function open_(r){
+  const ws=words();
+  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${esc(r.name)}</h2><div class="sub">${SRCNAME[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
+  if(r.title)h+=`<div class="sub">${esc(r.title)}</div>`;
+  if(r.vid)h+=`<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(r.vid)}" loading="lazy" allowfullscreen title="${esc(r.name)}"></iframe></div>`;
+  h+=`<h3>材料</h3><div class="txt">${hl(r.ing,ws)||'（記載なし）'}</div>`;
+  if(r.how)h+=`<h3>作り方</h3><div class="txt">${esc(r.how)}</div>`;
+  if(r.wine)h+=`<h3>合うお酒</h3><div class="txt">${esc(r.wine)}</div>`;
+  if(r.note)h+=`<h3>備考</h3><div class="txt">${esc(r.note)}</div>`;
+  h+='<div class="btns">';
+  if(r.url)h+=`<a href="${esc(r.url)}" target="_blank" rel="noopener">元の動画を開く</a>`;
+  if(r.print)h+=`<a href="../${esc(r.print)}">印刷用のページへ</a>`;
+  else h+='<button class="pr">このレシピを印刷する</button>';
+  h+='<button class="cl">一覧に戻る</button></div>';
+  if(r.src!=='own')h+='<div class="chui">公開動画への索引です。制作者の自己責任において運営しています。</div>';
+  $('shosai').innerHTML=h;$('bg').classList.add('on');document.body.style.overflow='hidden';history.replaceState(null,'','#'+r.id);
+}
+function close_(){$('bg').classList.remove('on');$('shosai').innerHTML='';document.body.style.overflow='';history.replaceState(null,'',location.pathname);}
+let t;$('zairyo').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{shown=60;render();},200);});
+document.querySelectorAll('input[name=mode],#mei,#talk,.src').forEach(e=>e.addEventListener('change',()=>{shown=60;render();}));
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.k;shown=60;render();});
+document.querySelector('.rei').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;const v=$('zairyo').value.trim();$('zairyo').value=(v?v+' ':'')+e.target.textContent;shown=60;render();});
+$('more').addEventListener('click',()=>{shown+=60;render();});
+$('list').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const r=DATA.find(x=>x.id===c.dataset.id);if(r)open_(r);});
+$('bg').addEventListener('click',e=>{if(e.target.id==='bg'||e.target.closest('.tojiru,.cl'))close_();if(e.target.closest('.pr')){document.body.classList.add('insatsu');window.print();document.body.classList.remove('insatsu');}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')close_();});
+</script>
+</body>
+</html>
