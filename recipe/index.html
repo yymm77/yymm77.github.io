@@ -62,6 +62,20 @@
   .btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
   .btns a,.btns button{font:inherit;font-size:14px;background:var(--kon);color:#fff;border:0;border-radius:4px;padding:7px 16px;cursor:pointer;text-decoration:none;}
   .chui{font-size:12.5px;color:var(--kogecha);margin-top:14px;}
+  .jibun{background:#fff;border:1px dashed var(--shu);padding:12px 16px;margin:14px 0 0;border-radius:4px;font-size:14px;}
+  .jibun .t{font-weight:bold;color:var(--shu);margin-right:8px;}
+  .jibun button,.henshu button,.banner button{font:inherit;font-size:13.5px;background:#fff;color:var(--kon);border:1px solid var(--kon);border-radius:4px;padding:3px 12px;margin:3px 4px 3px 0;cursor:pointer;}
+  .jibun button:hover,.henshu button:hover,.banner button:hover{background:var(--kon);color:#fff;}
+  .jibun .setsu{font-size:12.5px;color:var(--kogecha);margin-top:6px;line-height:1.7;}
+  .jibun .msg{color:var(--shu);font-size:13px;margin-top:4px;}
+  .badge.jb{background:#fff;color:var(--shu);border:1px solid var(--shu);}
+  .banner{background:#fbefe6;border-left:4px solid var(--shu);padding:8px 12px;margin:8px 0 10px;font-size:13.5px;}
+  .henshu label{display:block;font-weight:bold;color:var(--kon);margin:14px 0 4px;font-size:14px;}
+  .henshu input,.henshu textarea,.henshu select{width:100%;font:inherit;font-size:15px;padding:8px 10px;border:1px solid #c9bfa6;border-radius:4px;background:#fff;line-height:1.7;}
+  .henshu textarea{min-height:120px;}
+  .henshu .kotei{margin-top:18px;}
+  .henshu button.hozon{background:var(--kon);color:#fff;}
+  .henshu button.kesu{color:var(--shu);border-color:var(--shu);}
   .foot{margin-top:40px;border-top:1px solid var(--kin);padding-top:14px;font-size:13.5px;color:var(--kogecha);}
   .shomei{margin-top:8px;}
   @media (max-width:520px){h1{font-size:23px;} .wrap{padding:16px 12px 48px;} .shosai{padding:18px 14px;}}
@@ -71,7 +85,7 @@
     .bg{position:static;background:none;padding:0;display:block;}
     .bg:not(.on){display:none;}
     .shosai{max-width:none;padding:0;}
-    .tojiru,.btns,.video{display:none !important;}
+    .tojiru,.btns,.video,.banner button{display:none !important;}
     .shosai .txt{border:0;padding:0 0 0 4px;}
     .moto{border:0;padding:0;}
     .moto a{color:#000;text-decoration:none;}
@@ -99,11 +113,20 @@
     </div>
   </div>
 
+  <div class="jibun">
+    <span class="t">自分用の帳面</span><span id="mineCount"></span><br>
+    <button id="mAdd">自分のレシピを足す</button><button id="mExp">書き出す</button><button id="mImp">読み込む</button>
+    <input type="file" id="mFile" accept=".json,application/json" hidden>
+    <div class="setsu">レシピを開いて「自分用に直す」を押すと、材料や作り方を好みに書き換えられます。直したものや足したものは、<b>このパソコンのこのブラウザにだけ</b>保存され、ほかの人には見えません。ブラウザのデータを消すと消えるので、ときどき「書き出す」でファイルに残してください。別のパソコンや家族には、そのファイルを「読み込む」で渡せます。</div>
+    <div class="msg" id="mMsg"></div>
+  </div>
+
   <div class="tabs" id="tabs"></div>
   <div class="opts" style="margin-top:4px;">
     <label><input type="checkbox" class="src" value="mikuni" checked> 三國シェフ</label>
     <label><input type="checkbox" class="src" value="archive" checked> ほかの料理動画</label>
     <label><input type="checkbox" class="src" value="own" checked> わが家のレシピ</label>
+    <label><input type="checkbox" class="src" value="mine" checked> 自分で足したもの</label>
     <label><input type="checkbox" id="talk"> シェフのお話・動画日記も出す</label>
   </div>
   <div class="kekka" id="kekka">読み込んでいます…</div>
@@ -145,9 +168,28 @@ function iikae(w){
   return [...out].filter(Boolean);
 }
 
-let DATA=[],cat='all',shown=60,lastList=[];
+let BASE=[],DATA=[],cat='all',shown=60,lastList=[];
 const $=id=>document.getElementById(id);
-fetch('data/recipes.json').then(r=>r.json()).then(j=>{DATA=j.items;DATA.forEach(r=>{r._i=kana(r.ing);r._n=kana(r.name+' '+(r.title||''));});
+const FIELDS=['name','ing','how','wine','note'];
+
+// ---- 自分用の帳面（このブラウザにだけ保存する） ----
+const KEY='recipe-cho-jibun-v1';
+let MINE={v:1,edits:{},added:[]},HOZON=true;
+function loadMine(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&x.edits&&x.added)MINE=x;}catch(e){HOZON=false;}}
+function saveMine(){try{localStorage.setItem(KEY,JSON.stringify(MINE));return true;}catch(e){HOZON=false;msg('このブラウザでは保存できませんでした。プライベートモードでは保存できないことがあります。');return false;}}
+function msg(t){$('mMsg').textContent=t||'';}
+function prep(r){r._i=kana((r.ing||'')+' '+(r.how||''));r._n=kana((r.name||'')+' '+(r.title||''));}
+function applyMine(){
+  BASE.forEach(r=>{const e=MINE.edits[r.id];FIELDS.forEach(f=>r[f]=e&&e[f]!==undefined?e[f]:r.o[f]);r.mine=!!e;prep(r);});
+  const add=MINE.added.map(a=>{const r={id:a.id,src:'mine',no:null,title:'',cat:a.cat||'other',sub:null,url:a.url||'',vid:'',print:'',name:a.name,ing:a.ing,how:a.how,wine:a.wine,note:a.note,t:a.t};prep(r);return r;});
+  DATA=add.concat(BASE);
+  const n=Object.keys(MINE.edits).length,m=MINE.added.length;
+  $('mineCount').textContent=HOZON?(n||m?`直したレシピ ${n} 件・足したレシピ ${m} 件`:'まだ書き込みはありません'):'（このブラウザでは保存できません）';
+}
+
+fetch('data/recipes.json').then(r=>r.json()).then(j=>{
+  BASE=j.items;BASE.forEach(r=>{r.o={};FIELDS.forEach(f=>r.o[f]=r[f]||'');});
+  loadMine();applyMine();
   if(j.updated){$('kekka').dataset.up=j.updated;}
   const h=location.hash.slice(1);render();if(h){const r=DATA.find(x=>x.id===h);if(r)open_(r);}
 }).catch(()=>{$('kekka').textContent='データを読み込めませんでした。時間をおいて開き直してください。';});
@@ -166,7 +208,6 @@ function render(){
   const scored=[];
   for(const r of base){if(ws.length){const h=match(r,ws,mode,mei);if(!h)continue;scored.push([r,h]);}else scored.push([r,[]]);}
   if(ws.length)scored.sort((a,b)=>b[1].length-a[1].length);
-  // 分類ごとの件数
   const cnt={all:scored.length};scored.forEach(([r])=>cnt[r.cat]=(cnt[r.cat]||0)+1);
   $('tabs').innerHTML=CATS.map(([k,v])=>`<button data-k="${k}" class="${k===cat?'on':''}">${v}<span class="n">${cnt[k]||0}</span></button>`).join('');
   lastList=scored.filter(([r])=>cat==='all'||r.cat===cat);
@@ -177,44 +218,108 @@ function render(){
 }
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function card(r,h){
-  const b=r.src==='mikuni'?`<span class="badge mk">三國${r.no?' #'+r.no:''}</span>`:r.src==='own'?'<span class="badge own">わが家</span>':'<span class="badge">料理動画</span>';
-  return `<div class="card" data-id="${r.id}"><div class="nm">${esc(r.name)}</div><div class="meta">${b}${r.new?'<span class="badge new">新着</span>':''}${CATNAME[r.cat]}${r.wine?'　🍷':''}</div>${h.length?`<div class="hit">使う材料：${esc(h.join('・'))}</div>`:''}</div>`;
+  const b=r.src==='mikuni'?`<span class="badge mk">三國${r.no?' #'+r.no:''}</span>`:r.src==='own'?'<span class="badge own">わが家</span>':r.src==='mine'?'<span class="badge jb">自分で足した</span>':'<span class="badge">料理動画</span>';
+  return `<div class="card" data-id="${r.id}"><div class="nm">${esc(r.name)}</div><div class="meta">${b}${r.mine?'<span class="badge jb">自分用に直した</span>':''}${r.new?'<span class="badge new">新着</span>':''}${CATNAME[r.cat]}${r.wine?'　🍷':''}</div>${h.length?`<div class="hit">使う材料：${esc(h.join('・'))}</div>`:''}</div>`;
 }
-function hl(t,ws){let s=esc(t);if(!ws.length)return s;
-  // 見つけた材料に色をつける（ひらがな・カタカナの違いは見ない）
+function hl(t,ws){t=t||'';let s=esc(t);if(!ws.length)return s;
   const k=kana(t);const marks=new Array(t.length).fill(false);
   ws.forEach(w=>iikae(w).forEach(a=>{if(!a)return;let i=k.indexOf(a);while(i>=0){for(let j=i;j<i+a.length;j++)marks[j]=true;i=k.indexOf(a,i+a.length);}}));
   if(k.length!==t.length)return s;let out='',on=false;for(let i=0;i<t.length;i++){if(marks[i]&&!on){out+='<mark>';on=true;}if(!marks[i]&&on){out+='</mark>';on=false;}out+=esc(t[i]);}if(on)out+='</mark>';return out;}
-function open_(r){
-  const ws=words();
-  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${esc(r.name)}</h2><div class="sub">${SRCNAME[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
+const SRCNAME2={...SRCNAME,mine:'自分で足したレシピ'};
+let CUR=null;
+// orig=true のときは、自分用に直す前の元のレシピを見せる
+function open_(r,orig){
+  CUR=r;const ws=words();const v=orig?r.o:r;
+  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${esc(v.name)}</h2><div class="sub">${SRCNAME2[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
+  if(r.mine&&!orig)h+=`<div class="banner">自分用に直したレシピです（このブラウザにだけ保存）。<br><button data-a="orig">元のレシピを見る</button><button data-a="reset">元に戻す</button></div>`;
+  if(r.mine&&orig)h+=`<div class="banner">元のレシピを表示しています。<br><button data-a="back">自分用に直したものを見る</button></div>`;
+  if(r.src==='mine')h+=`<div class="banner">自分で足したレシピです（このブラウザにだけ保存）。</div>`;
   if(r.title)h+=`<div class="sub">${esc(r.title)}</div>`;
-  // 元にした動画のURL（印刷にも出る）
   if(r.url)h+=`<div class="moto"><b>元にした動画</b><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div>`;
   else if(r.src==='own')h+=`<div class="moto"><b>元にした動画</b><span>なし（わが家で組んだレシピです）</span></div>`;
-  else h+=`<div class="moto"><b>元にした動画</b><span>URLが記録されていません</span></div>`;
-  if(r.vid)h+=`<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(r.vid)}" loading="lazy" allowfullscreen title="${esc(r.name)}"></iframe></div>`;
-  h+=`<h3>材料</h3><div class="txt">${hl(r.ing,ws)||'（記載なし）'}</div>`;
-  if(r.how)h+=`<h3>作り方</h3><div class="txt">${esc(r.how)}</div>`;
-  if(r.wine)h+=`<h3>合うお酒</h3><div class="txt">${esc(r.wine)}</div>`;
-  if(r.note)h+=`<h3>備考</h3><div class="txt">${esc(r.note)}</div>`;
+  else if(r.src!=='mine')h+=`<div class="moto"><b>元にした動画</b><span>URLが記録されていません</span></div>`;
+  if(r.vid)h+=`<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(r.vid)}" loading="lazy" allowfullscreen title="${esc(v.name)}"></iframe></div>`;
+  h+=`<h3>材料</h3><div class="txt">${hl(v.ing,ws)||'（記載なし）'}</div>`;
+  if(v.how)h+=`<h3>作り方</h3><div class="txt">${esc(v.how)}</div>`;
+  if(v.wine)h+=`<h3>合うお酒</h3><div class="txt">${esc(v.wine)}</div>`;
+  if(v.note)h+=`<h3>備考</h3><div class="txt">${esc(v.note)}</div>`;
   h+='<div class="btns">';
+  if(HOZON&&!orig)h+=`<button data-a="edit">${r.src==='mine'?'書き直す':'自分用に直す'}</button>`;
   if(r.url)h+=`<a href="${esc(r.url)}" target="_blank" rel="noopener">元の動画を開く</a>`;
-  if(r.print)h+=`<a href="../${esc(r.print)}">印刷用のページへ</a>`;
+  if(r.print&&!r.mine)h+=`<a href="../${esc(r.print)}">印刷用のページへ</a>`;
   else h+='<button class="pr">このレシピを印刷する</button>';
   h+='<button class="cl">一覧に戻る</button></div>';
-  if(r.src!=='own')h+='<div class="chui">公開動画への索引です。制作者の自己責任において運営しています。</div>';
-  $('shosai').innerHTML=h;$('bg').classList.add('on');document.body.style.overflow='hidden';history.replaceState(null,'','#'+r.id);
+  if(r.src==='mikuni'||r.src==='archive')h+='<div class="chui">公開動画への索引です。制作者の自己責任において運営しています。</div>';
+  show(h);if(!String(r.id).startsWith('u'))history.replaceState(null,'','#'+r.id);
 }
-function close_(){$('bg').classList.remove('on');$('shosai').innerHTML='';document.body.style.overflow='';history.replaceState(null,'',location.pathname);}
+function show(h){$('shosai').innerHTML=h;$('bg').classList.add('on');document.body.style.overflow='hidden';$('bg').scrollTop=0;}
+// 書き換えの画面。r が無いときは新しく足す
+function edit_(r){
+  CUR=r||null;const v=r||{name:'',ing:'',how:'',wine:'',note:'',cat:'japanese'};
+  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${r?(r.src==='mine'?'書き直す':'自分用に直す'):'自分のレシピを足す'}</h2>`;
+  h+=`<div class="sub">${r&&r.src!=='mine'?'元のレシピはそのまま残ります。いつでも「元に戻す」で戻せます。':'このブラウザにだけ保存されます。'}</div><div class="henshu">`;
+  h+=`<label>料理の名前</label><input id="eName" value="${esc(v.name)}">`;
+  if(!r||r.src==='mine')h+=`<label>分類</label><select id="eCat">${CATS.slice(1).map(([k,n])=>`<option value="${k}"${k===v.cat?' selected':''}>${n}</option>`).join('')}</select>`;
+  h+=`<label>材料</label><textarea id="eIng">${esc(v.ing)}</textarea>`;
+  h+=`<label>作り方</label><textarea id="eHow" style="min-height:200px">${esc(v.how)}</textarea>`;
+  h+=`<label>合うお酒</label><textarea id="eWine" style="min-height:60px">${esc(v.wine)}</textarea>`;
+  h+=`<label>備考（気づいたこと・好みの加減など）</label><textarea id="eNote" style="min-height:90px">${esc(v.note)}</textarea>`;
+  h+=`<div class="kotei"><button class="hozon" data-a="save">保存する</button><button data-a="cancel">やめる</button>${r&&r.src==='mine'?'<button class="kesu" data-a="del">このレシピを消す</button>':''}</div></div>`;
+  show(h);
+}
+function saveEdit(){
+  const val={name:$('eName').value.trim(),ing:$('eIng').value,how:$('eHow').value,wine:$('eWine').value,note:$('eNote').value,t:Date.now()};
+  if(!val.name){alertMsg('料理の名前を入れてください。');return;}
+  let id;
+  if(!CUR){id='u'+Date.now();MINE.added.push({id,cat:$('eCat').value,...val});}
+  else if(CUR.src==='mine'){id=CUR.id;const a=MINE.added.find(x=>x.id===id);Object.assign(a,val,{cat:$('eCat').value});}
+  else{id=CUR.id;const same=FIELDS.every(f=>(val[f]||'')===(CUR.o[f]||''));if(same)delete MINE.edits[id];else MINE.edits[id]=val;}
+  if(!saveMine())return;
+  applyMine();render();const r=DATA.find(x=>x.id===id);msg('保存しました。');if(r)open_(r);else close_();
+}
+function alertMsg(t){let e=document.querySelector('.henshu .msg2');if(!e){e=document.createElement('div');e.className='msg2';e.style.cssText='color:#8b2e2e;margin-top:8px;';document.querySelector('.henshu .kotei').before(e);}e.textContent=t;}
+function close_(){$('bg').classList.remove('on');$('shosai').innerHTML='';document.body.style.overflow='';CUR=null;history.replaceState(null,'',location.pathname);}
+
+// 書き出し・読み込み
+function today(){const d=new Date();return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
+$('mExp').addEventListener('click',()=>{
+  const n=Object.keys(MINE.edits).length+MINE.added.length;if(!n){msg('まだ書き出すものがありません。');return;}
+  const out={...MINE,names:{}};Object.keys(MINE.edits).forEach(id=>{const r=BASE.find(x=>x.id===id);if(r)out.names[id]=r.o.name;});
+  const b=new Blob([JSON.stringify(out,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`recipe-cho-jibunyou-${today()}.json`;document.body.appendChild(a);a.click();a.remove();
+  msg(`${n} 件を書き出しました。ダウンロードのフォルダに入っています。`);
+});
+$('mImp').addEventListener('click',()=>$('mFile').click());
+$('mFile').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const rd=new FileReader();
+  rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!x||!x.edits||!Array.isArray(x.added))throw 0;
+      let n=0;for(const id in x.edits){const cur=MINE.edits[id];if(BASE.some(r=>r.id===id)&&(!cur||(x.edits[id].t||0)>=(cur.t||0))){MINE.edits[id]=x.edits[id];n++;}}
+      x.added.forEach(a=>{const i=MINE.added.findIndex(y=>y.id===a.id);if(i<0){MINE.added.push(a);n++;}else if((a.t||0)>=(MINE.added[i].t||0)){MINE.added[i]=a;n++;}});
+      if(saveMine()){applyMine();render();msg(`${n} 件を読み込みました。`);}
+    }catch(err){msg('このファイルは読み込めませんでした。レシピ帖で書き出したファイルを選んでください。');}
+    e.target.value='';};
+  rd.readAsText(f,'utf-8');
+});
+$('mAdd').addEventListener('click',()=>{if(!HOZON){msg('このブラウザでは保存できません。');return;}edit_(null);});
+
 let t;$('zairyo').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{shown=60;render();},200);});
 document.querySelectorAll('input[name=mode],#mei,#talk,.src').forEach(e=>e.addEventListener('change',()=>{shown=60;render();}));
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.k;shown=60;render();});
 document.querySelector('.rei').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;const v=$('zairyo').value.trim();$('zairyo').value=(v?v+' ':'')+e.target.textContent;shown=60;render();});
 $('more').addEventListener('click',()=>{shown+=60;render();});
 $('list').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const r=DATA.find(x=>x.id===c.dataset.id);if(r)open_(r);});
-$('bg').addEventListener('click',e=>{if(e.target.id==='bg'||e.target.closest('.tojiru,.cl'))close_();if(e.target.closest('.pr')){document.body.classList.add('insatsu');window.print();document.body.classList.remove('insatsu');}});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')close_();});
+$('bg').addEventListener('click',e=>{
+  if(e.target.id==='bg'||e.target.closest('.tojiru,.cl')){close_();return;}
+  if(e.target.closest('.pr')){document.body.classList.add('insatsu');window.print();document.body.classList.remove('insatsu');return;}
+  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
+  if(a==='edit')edit_(CUR);
+  else if(a==='orig')open_(CUR,true);
+  else if(a==='back')open_(CUR);
+  else if(a==='reset'){const id=CUR.id;delete MINE.edits[id];if(saveMine()){applyMine();render();msg('元のレシピに戻しました。');open_(DATA.find(x=>x.id===id));}}
+  else if(a==='save')saveEdit();
+  else if(a==='cancel'){CUR?open_(CUR):close_();}
+  else if(a==='del'){const id=CUR.id;if(b.dataset.ok!=='1'){b.dataset.ok='1';b.textContent='もう一度押すと消えます';return;}MINE.added=MINE.added.filter(x=>x.id!==id);if(saveMine()){applyMine();render();msg('消しました。');close_();}}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('.henshu'))close_();});
 </script>
 </body>
 </html>
