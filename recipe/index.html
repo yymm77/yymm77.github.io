@@ -54,6 +54,9 @@
   .shosai h3{font-size:16px;color:var(--kon);border-left:5px solid var(--kin);padding-left:10px;margin:20px 0 8px;}
   .shosai .txt{white-space:pre-wrap;background:#fff;border:1px solid #e2d9c3;padding:10px 12px;font-size:15px;line-height:1.85;}
   .shosai .txt mark{background:#f6e6a8;}
+  .moto{background:#fff;border:1px solid var(--kin);padding:8px 12px;margin:6px 0 10px;font-size:14px;line-height:1.7;word-break:break-all;}
+  .moto b{display:inline-block;color:var(--kon);margin-right:10px;font-size:13px;}
+  .moto span{color:var(--kogecha);}
   .video{position:relative;padding-top:56.25%;background:#000;margin:8px 0 4px;}
   .video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
   .btns{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
@@ -70,6 +73,8 @@
     .shosai{max-width:none;padding:0;}
     .tojiru,.btns,.video{display:none !important;}
     .shosai .txt{border:0;padding:0 0 0 4px;}
+    .moto{border:0;padding:0;}
+    .moto a{color:#000;text-decoration:none;}
   }
 </style>
 </head>
@@ -184,6 +189,10 @@ function open_(r){
   const ws=words();
   let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${esc(r.name)}</h2><div class="sub">${SRCNAME[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
   if(r.title)h+=`<div class="sub">${esc(r.title)}</div>`;
+  // 元にした動画のURL（印刷にも出る）
+  if(r.url)h+=`<div class="moto"><b>元にした動画</b><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div>`;
+  else if(r.src==='own')h+=`<div class="moto"><b>元にした動画</b><span>なし（わが家で組んだレシピです）</span></div>`;
+  else h+=`<div class="moto"><b>元にした動画</b><span>URLが記録されていません</span></div>`;
   if(r.vid)h+=`<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(r.vid)}" loading="lazy" allowfullscreen title="${esc(r.name)}"></iframe></div>`;
   h+=`<h3>材料</h3><div class="txt">${hl(r.ing,ws)||'（記載なし）'}</div>`;
   if(r.how)h+=`<h3>作り方</h3><div class="txt">${esc(r.how)}</div>`;
