@@ -34,45 +34,73 @@
   .nashi{background:#fff;border:1px dashed #c9bfa6;padding:22px;text-align:center;color:var(--kogecha);line-height:2;}
   .foot{margin-top:40px;border-top:1px solid var(--kin);padding-top:14px;font-size:13.5px;color:var(--kogecha);}
   .shomei{margin-top:8px;}
+  .lang{float:right;font-size:14px;}
+  .lang a{cursor:pointer;margin-left:6px;text-decoration:none;color:var(--kogecha);}
+  .lang a.on{color:var(--kon);font-weight:bold;border-bottom:2px solid var(--kin);}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">レシピ帖</a> ／ みんなのレシピ広場</div>
-  <h1>みんなのレシピ広場</h1>
-  <p class="lead">レシピ帖を使う人たちが、自分の好みに育てたレシピを持ち寄って見せ合う広場です。</p>
+  <div class="pan"><span class="lang"><a data-lang="ja">日本語</a> ｜ <a data-lang="en">English</a></span><a href="../../" data-i18n="home">おてんとうさまの下で</a> ／ <a href="../" data-i18n="cho">レシピ帖</a> ／ <span data-i18n="title">みんなのレシピ広場</span></div>
+  <h1 data-i18n="title">みんなのレシピ広場</h1>
+  <p class="lead" data-i18n="lead">レシピ帖を使う人たちが、自分の好みに育てたレシピを持ち寄って見せ合う広場です。</p>
   <hr class="rule">
-  <div class="annai">
+  <div class="annai" data-i18n="annai">
     <b>広場に出すには</b>　<a href="../">レシピ帖</a>でレシピを「自分用に直す」か「自分のレシピを足す」で書き、そのレシピを開いて「<b>広場に出す</b>」を押してください。ペンネームとひとことを添えて、メールで送れます。届いたレシピは、管理人（三原）が目を通してから、ここに載せます。<br>
     <b>気に入ったレシピは</b>　「自分の帳面に取り込む」を押すと、あなたのレシピ帖に入ります。そこからさらに、自分の好みに直していけます。
   </div>
-  <div class="kekka" id="kekka">読み込んでいます…</div>
+  <div class="kekka" id="kekka" data-i18n="loading">読み込んでいます…</div>
   <div id="list"></div>
   <div class="foot">
-    広場のレシピは、それぞれの投稿者が自分で作ったり直したりしたものです。ペンネームのほかに、投稿者のメールアドレスなどは載せません。<br>
-    <a href="../">レシピ帖へ戻る</a>　／　<a href="../../">おてんとうさまの下で</a>
+    <span data-i18n="foot">広場のレシピは、それぞれの投稿者が自分で作ったり直したりしたものです。ペンネームのほかに、投稿者のメールアドレスなどは載せません。</span><br>
+    <a href="../" data-i18n="back">レシピ帖へ戻る</a>　／　<a href="../../" data-i18n="home">おてんとうさまの下で</a>
     <div class="shomei">生かされて今を存在する</div>
   </div>
 </div>
 <script>
-const CATNAME={french:'フレンチ',japanese:'和食',chinese:'中華',italian:'イタリアン',sweets:'スイーツ',sozai:'素材・下ごしらえ',other:'その他'};
+const I18N={ja:{doctitle:'みんなのレシピ広場 ｜ レシピ帖 ｜ おてんとうさまの下で',home:'おてんとうさまの下で',cho:'レシピ帖',title:'みんなのレシピ広場',
+ lead:'レシピ帖を使う人たちが、自分の好みに育てたレシピを持ち寄って見せ合う広場です。',annai:`<b>広場に出すには</b>　<a href="../">レシピ帖</a>でレシピを「自分用に直す」か「自分のレシピを足す」で書き、そのレシピを開いて「<b>広場に出す</b>」を押してください。ペンネームとひとことを添えて、メールで送れます。届いたレシピは、管理人（三原）が目を通してから、ここに載せます。<br>
+    <b>気に入ったレシピは</b>　「自分の帳面に取り込む」を押すと、あなたのレシピ帖に入ります。そこからさらに、自分の好みに直していけます。`,loading:'読み込んでいます…',
+ foot:'広場のレシピは、それぞれの投稿者が自分で作ったり直したりしたものです。ペンネームのほかに、投稿者のメールアドレスなどは載せません。',back:'レシピ帖へ戻る',
+ count:'いま {0} 品が並んでいます。',empty:'広場は、まだ開いたばかりです。<br>最初の一品を、お待ちしています。',fail:'読み込めませんでした。時間をおいて開き直してください。',
+ by:'{0}さん',base:'元にしたレシピ：',base_link:'レシピ帖で見る',more:'材料と作り方を見る',h_ing:'材料',h_how:'作り方',h_wine:'合うお酒',h_note:'備考',take:'自分の帳面に取り込む',
+ already:'すでにあなたの帳面に入っています。',taken:'あなたの帳面に取り込みました。<a href="../">レシピ帖</a>の「自分で足したもの」に入っています。',nosave:'このブラウザでは保存できませんでした。',
+ from:'（{0}さんが広場に出したレシピから取り込み）',
+ french:'フレンチ',japanese:'和食',chinese:'中華',italian:'イタリアン',sweets:'スイーツ',sozai:'素材・下ごしらえ',other:'その他'},
+en:{doctitle:'Recipe Square | Recipe Notebook | Under and With the Sun',home:'Under and With the Sun',cho:'Recipe Notebook',title:'Recipe Square',
+ lead:'A square where people who use the Recipe Notebook bring the recipes they have grown to their own taste, and show them to each other.',
+ annai:'<b>To share a recipe</b>　In the <a href="../">Recipe Notebook</a>, write a recipe with “Make it your own” or “Add your own recipe”, open it, and press “<b>Share on the Square</b>”. Add a pen name and a word about it, and send it by email. The keeper (Mihara) reads each recipe before putting it here.<br><b>If you like a recipe</b>　Press “Add to my notebook”, and it goes into your own Recipe Notebook, where you can keep changing it to your taste.',
+ loading:'Loading…',foot:'Each recipe on the Square was made or adapted by the person who shared it. Only pen names are shown, never email addresses.',back:'Back to the Recipe Notebook',
+ count:'{0} dish{1} on the Square now.',empty:'The Square has only just opened.<br>We are waiting for the first dish.',fail:'Could not load. Please try again later.',
+ by:'by {0}',base:'Based on: ',base_link:'see in the Recipe Notebook',more:'Show ingredients and method',h_ing:'Ingredients',h_how:'Method',h_wine:'Drink pairing',h_note:'Notes',take:'Add to my notebook',
+ already:'This is already in your notebook.',taken:'Added to your notebook. You will find it under “Added by you” in the <a href="../">Recipe Notebook</a>.',nosave:'Could not save in this browser.',
+ from:'(Taken from the recipe {0} shared on the Square)',
+ french:'French',japanese:'Japanese',chinese:'Chinese',italian:'Italian',sweets:'Sweets',sozai:'Basics & prep',other:'Other'}};
+let L=(()=>{try{const q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='en')return q;const s=localStorage.getItem('recipe-cho-lang');if(s)return s;}catch(e){}return (navigator.language||'ja').toLowerCase().startsWith('ja')?'ja':'en';})();
+function t(k,...a){let x=I18N[L][k]!==undefined?I18N[L][k]:I18N.ja[k];a.forEach((v,i)=>x=x.split('{'+i+'}').join(v));return x;}
+function applyLang(){document.documentElement.lang=L;document.title=t('doctitle');document.querySelectorAll('[data-i18n]').forEach(e=>e.innerHTML=t(e.dataset.i18n));
+  document.querySelectorAll('.lang a').forEach(a=>a.classList.toggle('on',a.dataset.lang===L));draw();}
+document.querySelector('.lang').addEventListener('click',e=>{const a=e.target.closest('a[data-lang]');if(!a)return;L=a.dataset.lang;try{localStorage.setItem('recipe-cho-lang',L);}catch(err){}applyLang();});
+
 const KEY='recipe-cho-jibun-v1';
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-let ITEMS=[];
+let ITEMS=null;
+function draw(){if(!ITEMS)return;
+  document.getElementById('kekka').textContent=ITEMS.length?t('count',ITEMS.length,ITEMS.length===1?'':'es'):'';
+  document.getElementById('list').innerHTML=ITEMS.length?ITEMS.map(item).join(''):`<div class="nashi">${t('empty')}</div>`;}
 fetch('../data/hiroba.json').then(r=>r.json()).then(j=>{
-  ITEMS=(j.items||[]).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));
-  document.getElementById('kekka').textContent=ITEMS.length?`いま ${ITEMS.length} 品が並んでいます。`:'';
-  document.getElementById('list').innerHTML=ITEMS.length?ITEMS.map(item).join(''):'<div class="nashi">広場は、まだ開いたばかりです。<br>最初の一品を、お待ちしています。</div>';
-}).catch(()=>{document.getElementById('kekka').textContent='読み込めませんでした。時間をおいて開き直してください。';});
+  ITEMS=(j.items||[]).slice().sort((a,b)=>(b.date||'').localeCompare(a.date||''));draw();
+}).catch(()=>{document.getElementById('kekka').textContent=t('fail');});
+applyLang();
 function item(x){
-  let h=`<div class="item" id="${esc(x.id)}"><h2>${esc(x.name)}</h2><div class="meta">${esc(x.pen)}さん　／　${esc(x.date)}　／　${CATNAME[x.cat]||''}</div>`;
+  let h=`<div class="item" id="${esc(x.id)}"><h2>${esc(x.name)}</h2><div class="meta">${t('by',esc(x.pen))}　／　${esc(x.date)}　／　${t(x.cat||'other')}</div>`;
   if(x.hitokoto)h+=`<div class="hito">${esc(x.hitokoto)}</div>`;
-  if(x.base_id)h+=`<div class="moto">元にしたレシピ：<a href="../#${esc(x.base_id)}">${esc(x.base_name||'レシピ帖で見る')}</a></div>`;
-  h+=`<details><summary>材料と作り方を見る</summary><h3>材料</h3><div class="txt">${esc(x.ing)}</div>`;
-  if(x.how)h+=`<h3>作り方</h3><div class="txt">${esc(x.how)}</div>`;
-  if(x.wine)h+=`<h3>合うお酒</h3><div class="txt">${esc(x.wine)}</div>`;
-  if(x.note)h+=`<h3>備考</h3><div class="txt">${esc(x.note)}</div>`;
-  h+=`</details><button data-id="${esc(x.id)}">自分の帳面に取り込む</button><div class="msg"></div></div>`;
+  if(x.base_id)h+=`<div class="moto">${t('base')}<a href="../#${esc(x.base_id)}">${esc(x.base_name||t('base_link'))}</a></div>`;
+  h+=`<details><summary>${t('more')}</summary><h3>${t('h_ing')}</h3><div class="txt">${esc(x.ing)}</div>`;
+  if(x.how)h+=`<h3>${t('h_how')}</h3><div class="txt">${esc(x.how)}</div>`;
+  if(x.wine)h+=`<h3>${t('h_wine')}</h3><div class="txt">${esc(x.wine)}</div>`;
+  if(x.note)h+=`<h3>${t('h_note')}</h3><div class="txt">${esc(x.note)}</div>`;
+  h+=`</details><button data-id="${esc(x.id)}">${t('take')}</button><div class="msg"></div></div>`;
   return h;
 }
 // 取り込むと、レシピ帖の「自分で足したもの」に入る
@@ -81,11 +109,11 @@ document.getElementById('list').addEventListener('click',e=>{
   try{
     let mine=JSON.parse(localStorage.getItem(KEY)||'null');if(!mine||!mine.edits||!mine.added)mine={v:1,edits:{},added:[]};
     const id='u-'+x.id;
-    if(mine.added.some(a=>a.id===id)){m.textContent='すでにあなたの帳面に入っています。';return;}
-    mine.added.push({id,cat:x.cat||'other',name:x.name,ing:x.ing||'',how:x.how||'',wine:x.wine||'',note:((x.note||'')+`\n\n（${x.pen}さんが広場に出したレシピから取り込み）`).trim(),t:Date.now()});
+    if(mine.added.some(a=>a.id===id)){m.textContent=t('already');return;}
+    mine.added.push({id,cat:x.cat||'other',name:x.name,ing:x.ing||'',how:x.how||'',wine:x.wine||'',note:((x.note||'')+'\n\n'+t('from',x.pen)).trim(),t:Date.now()});
     localStorage.setItem(KEY,JSON.stringify(mine));
-    m.innerHTML='あなたの帳面に取り込みました。<a href="../">レシピ帖</a>の「自分で足したもの」に入っています。';
-  }catch(err){m.textContent='このブラウザでは保存できませんでした。';}
+    m.innerHTML=t('taken');
+  }catch(err){m.textContent=t('nosave');}
 });
 </script>
 </body>

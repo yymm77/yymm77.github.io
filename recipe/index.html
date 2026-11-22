@@ -81,6 +81,11 @@
   .toko .chk{display:block;font-weight:normal;color:var(--sumi);font-size:14px;margin:8px 0 0;}
   .toko .chk input{width:auto;margin-right:6px;}
   .toko .mail{background:#fff;border:1px solid var(--kin);padding:8px 12px;margin-top:10px;font-size:14px;word-break:break-all;}
+  .lang{float:right;font-size:14px;}
+  .lang a{cursor:pointer;margin-left:6px;text-decoration:none;border-bottom:0;color:var(--kogecha);}
+  .lang a.on{color:var(--kon);font-weight:bold;border-bottom:2px solid var(--kin);}
+  .latin{display:block;font-size:12.5px;font-style:italic;color:var(--kogecha);font-weight:normal;}
+  .jpnote{font-size:13px;color:var(--shu);margin:4px 0 0;}
   .foot{margin-top:40px;border-top:1px solid var(--kin);padding-top:14px;font-size:13.5px;color:var(--kogecha);}
   .shomei{margin-top:8px;}
   @media (max-width:520px){h1{font-size:23px;} .wrap{padding:16px 12px 48px;} .shosai{padding:18px 14px;}}
@@ -99,51 +104,50 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="pan"><a href="../">おてんとうさまの下で</a> ／ レシピ帖</div>
-  <h1>レシピ帖</h1>
-  <p class="lead">手元にある材料を入れると、作れるレシピが出てきます。</p>
+  <div class="pan"><span class="lang"><a data-lang="ja">日本語</a> ｜ <a data-lang="en">English</a></span><a href="../" data-i18n="home">おてんとうさまの下で</a> ／ <span data-i18n="title">レシピ帖</span></div>
+  <h1 data-i18n="title">レシピ帖</h1>
+  <p class="lead" data-i18n="lead">手元にある材料を入れると、作れるレシピが出てきます。</p>
   <hr class="rule">
 
   <div class="kensaku">
-    <label for="zairyo">材料を入れてください</label>
-    <input type="text" id="zairyo" placeholder="例：鮭　かぼちゃ　玉ねぎ" autocomplete="off">
-    <p class="hint">材料はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。</p>
+    <label for="zairyo" data-i18n="q_label">材料を入れてください</label>
+    <input type="text" id="zairyo" placeholder="例：鮭　かぼちゃ　玉ねぎ" data-i18n-ph="q_ph" autocomplete="off">
+    <p class="hint" data-i18n="q_hint">材料はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。</p>
+    <p class="jpnote" data-i18n="jpnote"></p>
     <div class="opts">
-      <label><input type="radio" name="mode" value="and" checked> 入れた材料を全部使うもの</label>
-      <label><input type="radio" name="mode" value="or"> どれか一つでも使うもの</label>
-      <label><input type="checkbox" id="mei"> 料理の名前でも探す</label>
+      <label><input type="radio" name="mode" value="and" checked> <span data-i18n="m_and">入れた材料を全部使うもの</span></label>
+      <label><input type="radio" name="mode" value="or"> <span data-i18n="m_or">どれか一つでも使うもの</span></label>
+      <label><input type="checkbox" id="mei"> <span data-i18n="m_name">料理の名前でも探す</span></label>
     </div>
-    <div class="rei">よく使う材料：
-      <button>鶏肉</button><button>豚肉</button><button>牛肉</button><button>鮭</button><button>卵</button><button>じゃがいも</button><button>玉ねぎ</button><button>キャベツ</button><button>トマト</button><button>きのこ</button><button>かぼちゃ</button><button>りんご</button>
-    </div>
+    <div class="rei"><span data-i18n="rei">よく使う材料：</span><span id="reiBtns"></span></div>
   </div>
 
   <div class="jibun">
-    <span class="t">自分用の帳面</span><span id="mineCount"></span><br>
-    <button id="mAdd">自分のレシピを足す</button><button id="mExp">書き出す</button><button id="mImp">読み込む</button>
+    <span class="t" data-i18n="j_title">自分用の帳面</span><span id="mineCount"></span><br>
+    <button id="mAdd" data-i18n="e_add">自分のレシピを足す</button><button id="mExp" data-i18n="exp">書き出す</button><button id="mImp" data-i18n="imp">読み込む</button>
     <input type="file" id="mFile" accept=".json,application/json" hidden>
-    <div class="setsu">レシピを開いて「自分用に直す」を押すと、材料や作り方を好みに書き換えられます。直したものや足したものは、<b>このパソコンのこのブラウザにだけ</b>保存され、ほかの人には見えません。ブラウザのデータを消すと消えるので、ときどき「書き出す」でファイルに残してください。別のパソコンや家族には、そのファイルを「読み込む」で渡せます。</div>
+    <div class="setsu" data-i18n="j_setsu">レシピを開いて「自分用に直す」を押すと、材料や作り方を好みに書き換えられます。直したものや足したものは、<b>このパソコンのこのブラウザにだけ</b>保存され、ほかの人には見えません。ブラウザのデータを消すと消えるので、ときどき「書き出す」でファイルに残してください。別のパソコンや家族には、そのファイルを「読み込む」で渡せます。</div>
     <div class="msg" id="mMsg"></div>
-    <a class="hiroba-link" href="hiroba/">▶ みんなのレシピ広場を見る（自慢のレシピを見せ合う場所）</a>
+    <a class="hiroba-link" href="hiroba/" data-i18n="to_hiroba">▶ みんなのレシピ広場を見る（自慢のレシピを見せ合う場所）</a>
   </div>
 
   <div class="tabs" id="tabs"></div>
   <div class="opts" style="margin-top:4px;">
-    <label><input type="checkbox" class="src" value="mikuni" checked> 三國シェフ</label>
-    <label><input type="checkbox" class="src" value="archive" checked> ほかの料理動画</label>
-    <label><input type="checkbox" class="src" value="own" checked> わが家のレシピ</label>
-    <label><input type="checkbox" class="src" value="mine" checked> 自分で足したもの</label>
-    <label><input type="checkbox" class="src" value="hiroba" checked> 広場のレシピ</label>
-    <label><input type="checkbox" id="talk"> シェフのお話・動画日記も出す</label>
+    <label><input type="checkbox" class="src" value="mikuni" checked> <span data-i18n="src_mikuni">三國シェフ</span></label>
+    <label><input type="checkbox" class="src" value="archive" checked> <span data-i18n="f_archive">ほかの料理動画</span></label>
+    <label><input type="checkbox" class="src" value="own" checked> <span data-i18n="f_own">わが家のレシピ</span></label>
+    <label><input type="checkbox" class="src" value="mine" checked> <span data-i18n="f_mine">自分で足したもの</span></label>
+    <label><input type="checkbox" class="src" value="hiroba" checked> <span data-i18n="f_hiroba">広場のレシピ</span></label>
+    <label><input type="checkbox" id="talk"> <span data-i18n="f_talk">シェフのお話・動画日記も出す</span></label>
   </div>
-  <div class="kekka" id="kekka">読み込んでいます…</div>
+  <div class="kekka" id="kekka" data-i18n="loading">読み込んでいます…</div>
   <div class="list" id="list"></div>
-  <button class="more" id="more" style="display:none">もっと見る</button>
+  <button class="more" id="more" style="display:none" data-i18n="more">もっと見る</button>
 
   <div class="foot">
-    三國清三シェフのレシピは、YouTubeで公開されている動画への索引です。制作者の自己責任において運営しています。料理の詳しい手元は、各レシピの元の動画でご覧ください。<br>
-    分類（フレンチ・和食など）は料理の名前から自動で振り分けたもので、ずれているものがあります。<br>
-    <a href="../print/">印刷物の一覧へ</a>　／　<a href="../">おてんとうさまの下で</a>
+    <span data-i18n="foot1">三國清三シェフのレシピは、YouTubeで公開されている動画への索引です。制作者の自己責任において運営しています。料理の詳しい手元は、各レシピの元の動画でご覧ください。</span><br>
+    <span data-i18n="foot2">分類（フレンチ・和食など）は料理の名前から自動で振り分けたもので、ずれているものがあります。</span><br>
+    <a href="../print/" data-i18n="to_print">印刷物の一覧へ</a>　／　<a href="../" data-i18n="home">おてんとうさまの下で</a>
     <div class="shomei">生かされて今を存在する</div>
   </div>
 </div>
@@ -151,19 +155,116 @@
 <div class="bg" id="bg"><div class="shosai" id="shosai"></div></div>
 
 <script>
-const CATS=[['all','すべて'],['french','フレンチ'],['japanese','和食'],['chinese','中華'],['italian','イタリアン'],['sweets','スイーツ'],['sozai','素材・下ごしらえ'],['other','その他']];
-const CATNAME=Object.fromEntries(CATS);
-const SRCNAME={mikuni:'三國シェフ',archive:'料理動画',own:'わが家'};
+
+// ---- 日本語と英語の言葉 ----
+const I18N={
+ja:{doctitle:'レシピ帖 ｜ おてんとうさまの下で',home:'おてんとうさまの下で',title:'レシピ帖',lead:'手元にある材料を入れると、作れるレシピが出てきます。',
+ q_label:'材料を入れてください',q_ph:'例：鮭　かぼちゃ　玉ねぎ',q_hint:'材料はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。',jpnote:'',
+ m_and:'入れた材料を全部使うもの',m_or:'どれか一つでも使うもの',m_name:'料理の名前でも探す',rei:'よく使う材料：',
+ j_title:'自分用の帳面',e_add:'自分のレシピを足す',exp:'書き出す',imp:'読み込む',
+ j_setsu:'レシピを開いて「自分用に直す」を押すと、材料や作り方を好みに書き換えられます。直したものや足したものは、<b>このパソコンのこのブラウザにだけ</b>保存され、ほかの人には見えません。ブラウザのデータを消すと消えるので、ときどき「書き出す」でファイルに残してください。別のパソコンや家族には、そのファイルを「読み込む」で渡せます。',
+ to_hiroba:'▶ みんなのレシピ広場を見る（自慢のレシピを見せ合う場所）',
+ f_archive:'ほかの料理動画',f_own:'わが家のレシピ',f_mine:'自分で足したもの',f_hiroba:'広場のレシピ',f_talk:'シェフのお話・動画日記も出す',
+ loading:'読み込んでいます…',more:'もっと見る',to_print:'印刷物の一覧へ',
+ foot1:'三國清三シェフのレシピは、YouTubeで公開されている動画への索引です。制作者の自己責任において運営しています。料理の詳しい手元は、各レシピの元の動画でご覧ください。',
+ foot2:'分類（フレンチ・和食など）は料理の名前から自動で振り分けたもので、ずれているものがあります。',
+ all:'すべて',french:'フレンチ',japanese:'和食',chinese:'中華',italian:'イタリアン',sweets:'スイーツ',sozai:'素材・下ごしらえ',other:'その他',
+ src_mikuni:'三國シェフ',src_archive:'料理動画',src_own:'わが家',src_mine:'自分で足したレシピ',src_hiroba:'みんなのレシピ広場',
+ cnt_mine:'直したレシピ {0} 件・足したレシピ {1} 件',none_mine:'まだ書き込みはありません',nosave:'（このブラウザでは保存できません）',
+ savefail:'このブラウザでは保存できませんでした。プライベートモードでは保存できないことがあります。',loadfail:'データを読み込めませんでした。時間をおいて開き直してください。',
+ found:'「{0}」で {1} 件見つかりました。',alln:'全 {0} 件。材料を入れると絞り込みます。',updated:'（{0} 更新）',
+ nashi:'見つかりませんでした。材料を減らすか、「どれか一つでも使うもの」に切り替えてみてください。',
+ b_mikuni:'三國',b_own:'わが家',b_mine:'自分で足した',b_hiroba:'広場：{0}',b_video:'料理動画',b_edited:'自分用に直した',b_new:'新着',uses:'使う材料：{0}',
+ close:'閉じる',bn_edited:'自分用に直したレシピです（このブラウザにだけ保存）。',see_orig:'元のレシピを見る',reset:'元に戻す',
+ bn_orig:'元のレシピを表示しています。',back:'自分用に直したものを見る',bn_mine:'自分で足したレシピです（このブラウザにだけ保存）。',
+ bn_hiroba:'{0}さんが広場に出したレシピです（{1}）。',base_recipe:'元にしたレシピ',src_video:'元にした動画',no_video_own:'なし（わが家で組んだレシピです）',no_url:'URLが記録されていません',
+ h_ing:'材料',h_how:'作り方',h_wine:'合うお酒',h_note:'備考',no_ing:'（記載なし）',
+ rewrite:'書き直す',edit:'自分用に直す',toko:'広場に出す',open_video:'元の動画を開く',print_page:'印刷用のページへ',print:'このレシピを印刷する',back_list:'一覧に戻る',
+ chui:'公開動画への索引です。制作者の自己責任において運営しています。',
+ e_sub_edit:'元のレシピはそのまま残ります。いつでも「元に戻す」で戻せます。',e_sub_new:'このブラウザにだけ保存されます。',
+ f_name:'料理の名前',f_cat:'分類',f_notes:'備考（気づいたこと・好みの加減など）',save:'保存する',cancel:'やめる',del:'このレシピを消す',del2:'もう一度押すと消えます',
+ need_name:'料理の名前を入れてください。',saved:'保存しました。',restored:'元のレシピに戻しました。',deleted:'消しました。',
+ exp_none:'まだ書き出すものがありません。',exp_done:'{0} 件を書き出しました。ダウンロードのフォルダに入っています。',imp_done:'{0} 件を読み込みました。',
+ imp_fail:'このファイルは読み込めませんでした。レシピ帖で書き出したファイルを選んでください。',nosave_add:'このブラウザでは保存できません。',
+ t_sub:'「{0}」を、みんなのレシピ広場に出します。',t_pen:'ペンネーム（広場に載る名前）',t_pen_ph:'例：多摩のおばあちゃん',
+ t_hito:'ひとこと（自慢のところ、工夫したところ）',t_hito_ph:'例：味噌を白味噌に替えたら、子どもがおかわりしました。',
+ t_ok1:'自分で作ったり、自分で直したりしたレシピです。本やほかのサイトの文章を、そのまま写していません。',t_ok2:'ペンネームとレシピの中身が、広場に載ることに同意します。',
+ t_info:'送ったレシピは、レシピ帖の管理人（三原）が目を通してから広場に載せます。すべてを載せるとは限りません。メールアドレスは広場には載りません。',
+ t_send:'メールで送る',t_copy:'文面をコピーする',t_need_pen:'ペンネームを入れてください。',t_need_ok:'二つの確認に印を付けてください。',
+ t_sent:'メールの画面が開きます。開かないときは「文面をコピーする」を押し、<b>{0}</b> あてに、ご自分のメールで送ってください。',
+ t_copied:'文面をコピーしました。ご自分のメールに貼りつけて、<b>{0}</b> あてに送ってください。件名は「{1}」としてください。',
+ t_copy_fb:'下の文面をすべて選んでコピーし、<b>{0}</b> あてに送ってください。',subj_label:'件名',
+ rei_words:['鶏肉','豚肉','牛肉','鮭','卵','じゃがいも','玉ねぎ','キャベツ','トマト','きのこ','かぼちゃ','りんご']},
+en:{doctitle:'Recipe Notebook | Under and With the Sun',home:'Under and With the Sun',title:'Recipe Notebook',lead:'Type in what you have in your kitchen, and see what you can cook.',
+ q_label:'What ingredients do you have?',q_ph:'e.g. salmon pumpkin onion',q_hint:'Separate ingredients with spaces or commas. You can type them in English or in Japanese.',
+ jpnote:'The recipes themselves are written in Japanese. Your browser’s translate feature (for example, right-click → Translate) can help you read them.',
+ m_and:'Use all of these ingredients',m_or:'Use any of them',m_name:'Also search dish names',rei:'Common ingredients: ',
+ j_title:'Your own notebook',e_add:'Add your own recipe',exp:'Export',imp:'Import',
+ j_setsu:'Open a recipe and press “Make it your own” to change the ingredients or method to your taste. Your changes and the recipes you add are saved <b>only in this browser on this computer</b>, and nobody else can see them. Clearing your browser data erases them, so use “Export” now and then to keep a file. You can pass that file to another computer or to your family with “Import”.',
+ to_hiroba:'▶ Visit the Recipe Square (where people share the recipes they are proud of)',
+ f_archive:'Other cooking videos',f_own:'Our kitchen',f_mine:'Added by you',f_hiroba:'From the Square',f_talk:'Also show the chef’s talks and video diaries',
+ loading:'Loading…',more:'Show more',to_print:'Printable pages',
+ foot1:'Chef Kiyomi Mikuni’s recipes here are an index to videos he has made public on YouTube. This notebook is run independently, at the maker’s own responsibility. Please watch the original videos for the chef’s own hands at work.',
+ foot2:'The categories (French, Japanese and so on) were sorted automatically from the dish names, and some are off.',
+ all:'All',french:'French',japanese:'Japanese',chinese:'Chinese',italian:'Italian',sweets:'Sweets',sozai:'Basics & prep',other:'Other',
+ src_mikuni:'Chef Mikuni',src_archive:'Cooking video',src_own:'Our kitchen',src_mine:'Added by you',src_hiroba:'Recipe Square',
+ cnt_mine:'{0} edited · {1} added',none_mine:'Nothing saved yet',nosave:'(This browser cannot save)',
+ savefail:'Could not save in this browser. Private browsing sometimes blocks saving.',loadfail:'Could not load the recipes. Please try again later.',
+ found:'{1} recipe{2} found for “{0}”.',alln:'{0} recipe{1}. Type ingredients to narrow them down.',updated:' (updated {0})',
+ nashi:'Nothing found. Try fewer ingredients, or switch to “Use any of them”.',
+ b_mikuni:'Mikuni',b_own:'Our kitchen',b_mine:'Added by you',b_hiroba:'Square: {0}',b_video:'Video',b_edited:'Your version',b_new:'New',uses:'Uses: {0}',
+ close:'Close',bn_edited:'This is your own version (saved only in this browser).',see_orig:'See the original',reset:'Restore the original',
+ bn_orig:'Showing the original recipe.',back:'See your version',bn_mine:'A recipe you added (saved only in this browser).',
+ bn_hiroba:'Shared on the Recipe Square by {0} ({1}).',base_recipe:'Based on',src_video:'Source video',no_video_own:'None (a recipe from our own kitchen)',no_url:'No URL recorded',
+ h_ing:'Ingredients',h_how:'Method',h_wine:'Drink pairing',h_note:'Notes',no_ing:'(none)',
+ rewrite:'Edit',edit:'Make it your own',toko:'Share on the Square',open_video:'Open the source video',print_page:'Printable page',print:'Print this recipe',back_list:'Back to the list',
+ chui:'An index to publicly available videos, run independently at the maker’s own responsibility.',
+ e_sub_edit:'The original stays as it is. You can restore it at any time.',e_sub_new:'Saved only in this browser.',
+ f_name:'Dish name',f_cat:'Category',f_notes:'Notes (what you noticed, how you adjusted it)',save:'Save',cancel:'Cancel',del:'Delete this recipe',del2:'Press again to delete',
+ need_name:'Please enter a dish name.',saved:'Saved.',restored:'The original has been restored.',deleted:'Deleted.',
+ exp_none:'Nothing to export yet.',exp_done:'Exported {0} items. The file is in your Downloads folder.',imp_done:'Imported {0} items.',
+ imp_fail:'This file could not be read. Please choose a file exported from the Recipe Notebook.',nosave_add:'This browser cannot save.',
+ t_sub:'Share “{0}” on the Recipe Square.',t_pen:'Pen name (shown on the Square)',t_pen_ph:'e.g. Grandma in Tama',
+ t_hito:'A word about it (what you are proud of, what you changed)',t_hito_ph:'e.g. I switched to white miso, and the kids asked for seconds.',
+ t_ok1:'I made or adapted this recipe myself. I have not copied text from books or other websites.',t_ok2:'I agree that my pen name and this recipe will be shown on the Square.',
+ t_info:'The keeper of the Recipe Notebook (Mihara) reads each recipe before putting it on the Square, and not every recipe will be shown. Your email address is never shown on the Square. Japanese or English is fine.',
+ t_send:'Send by email',t_copy:'Copy the text',t_need_pen:'Please enter a pen name.',t_need_ok:'Please tick both boxes.',
+ t_sent:'Your email app will open. If it does not, press “Copy the text” and send it to <b>{0}</b> from your own email.',
+ t_copied:'Copied. Paste it into your email and send it to <b>{0}</b>, with the subject “{1}”.',
+ t_copy_fb:'Select all the text below, copy it, and send it to <b>{0}</b>.',subj_label:'Subject',
+ rei_words:['chicken','pork','beef','salmon','egg','potato','onion','cabbage','tomato','mushroom','pumpkin','apple']}
+};
+let L=(()=>{try{const q=new URLSearchParams(location.search).get('lang');if(q==='ja'||q==='en')return q;const s=localStorage.getItem('recipe-cho-lang');if(s)return s;}catch(e){}
+  return (navigator.language||'ja').toLowerCase().startsWith('ja')?'ja':'en';})();
+function t(k,...a){let x=(I18N[L]&&I18N[L][k]!==undefined)?I18N[L][k]:I18N.ja[k];if(typeof x==='string')a.forEach((v,i)=>x=x.split('{'+i+'}').join(v));return x;}
+function applyLang(){
+  document.documentElement.lang=L;document.title=t('doctitle');
+  document.querySelectorAll('[data-i18n]').forEach(e=>e.innerHTML=t(e.dataset.i18n));
+  document.querySelectorAll('[data-i18n-ph]').forEach(e=>e.placeholder=t(e.dataset.i18nPh));
+  document.querySelectorAll('.lang a').forEach(a=>a.classList.toggle('on',a.dataset.lang===L));
+  document.getElementById('reiBtns').innerHTML=t('rei_words').map(w=>`<button>${w}</button>`).join('');
+}
+document.querySelector('.lang').addEventListener('click',e=>{const a=e.target.closest('a[data-lang]');if(!a)return;L=a.dataset.lang;try{localStorage.setItem('recipe-cho-lang',L);}catch(err){}
+  const u=new URL(location.href);u.searchParams.set('lang',L);history.replaceState(null,'',u.pathname+u.search+u.hash);
+  applyLang();if(BASE.length){applyMine();render();if($('bg').classList.contains('on')&&CUR&&!document.querySelector('.henshu'))open_(CUR);}});
+// 英語の題（三國シェフのレシピには、材料の最初の行にフランス語や英語の題があることが多い）
+function latin(r){if(r.src!=='mikuni'&&r.src!=='archive')return '';const f=(r.o.ing||'').split('\n').map(x=>x.trim()).find(Boolean)||'';
+  return /^[\x20-\x7EÀ-ɏ’]+$/.test(f)&&/[A-Za-z]{3}/.test(f)&&f.length<90?f:'';}
+
+const CATS=['all','french','japanese','chinese','italian','sweets','sozai','other'];
+const CATNAME=new Proxy({},{get:(o,k)=>t(k)});
 // 同じ材料の別の書き方（ひらがな・カタカナはまとめて扱うので、漢字やほかの言い方だけ）
 const DOUGI=[
- ['たまねぎ','玉ねぎ','玉葱','オニオン'],['にんじん','人参','キャロット'],['じゃがいも','馬鈴薯','ポテト','ジャガ芋'],['さけ','鮭','サーモン','しゃけ'],
- ['ぶた','豚','ポーク'],['とり','鶏','チキン'],['ぎゅう','牛','ビーフ'],['たまご','卵','玉子','エッグ'],['しょうが','生姜','ジンジャー'],
- ['にんにく','大蒜','ガーリック'],['なす','茄子'],['かぼちゃ','南瓜','パンプキン'],['しいたけ','椎茸'],['えび','海老','蝦'],['ほたて','帆立'],
- ['たら','鱈'],['さば','鯖'],['いわし','鰯'],['あじ','鯵'],['ぶり','鰤'],['たい','鯛'],['まぐろ','鮪'],['かつお','鰹'],['いか','烏賊'],['たこ','蛸'],
- ['きゅうり','胡瓜'],['だいこん','大根'],['ぎゅうにゅう','牛乳','ミルク'],['いちご','苺'],['りんご','林檎','アップル'],['ねぎ','葱'],['きのこ','茸'],
- ['とうもろこし','コーン'],['くり','栗'],['もも','桃'],['こめ','米','ライス'],['さとう','砂糖'],['しお','塩'],['こしょう','胡椒'],['みそ','味噌'],['しょうゆ','醤油'],
- ['こむぎこ','小麦粉'],['なまくりーむ','生クリーム'],['ばたー','バター'],['ちーず','チーズ'],['ほうれんそう','ほうれん草'],['きゃべつ','キャベツ'],['はくさい','白菜'],
- ['さつまいも','薩摩芋'],['さといも','里芋'],['ごぼう','牛蒡'],['れんこん','蓮根'],['のり','海苔'],['こんぶ','昆布'],['あさり','浅蜊'],['かき','牡蠣']
+ ['たまねぎ','玉ねぎ','玉葱','オニオン','onion','onions'],['にんじん','人参','キャロット','carrot','carrots'],['じゃがいも','馬鈴薯','ポテト','ジャガ芋','potato','potatoes'],['さけ','鮭','サーモン','しゃけ','salmon'],
+ ['ぶた','豚','ポーク','pork'],['とり','鶏','チキン','chicken'],['ぎゅう','牛','ビーフ','beef'],['たまご','卵','玉子','エッグ','egg','eggs'],['しょうが','生姜','ジンジャー','ginger'],
+ ['にんにく','大蒜','ガーリック','garlic'],['なす','茄子','eggplant','aubergine'],['かぼちゃ','南瓜','パンプキン','pumpkin','squash'],['しいたけ','椎茸','shiitake'],['えび','海老','蝦','shrimp','prawn','prawns'],['ほたて','帆立','scallop','scallops'],
+ ['たら','鱈','cod'],['さば','鯖','mackerel'],['いわし','鰯','sardine','sardines'],['あじ','鯵','horse mackerel'],['ぶり','鰤','yellowtail'],['たい','鯛','sea bream'],['まぐろ','鮪','tuna'],['かつお','鰹','bonito'],['いか','烏賊','squid'],['たこ','蛸','octopus'],
+ ['きゅうり','胡瓜','cucumber'],['だいこん','大根','daikon','radish'],['ぎゅうにゅう','牛乳','ミルク','milk'],['いちご','苺','strawberry','strawberries'],['りんご','林檎','アップル','apple','apples'],['ねぎ','葱','leek','green onion','scallion'],['きのこ','茸','mushroom','mushrooms'],
+ ['とうもろこし','コーン','corn'],['くり','栗','chestnut','chestnuts'],['もも','桃','peach'],['こめ','米','ライス','rice'],['さとう','砂糖','sugar'],['しお','塩','salt'],['こしょう','胡椒','pepper'],['みそ','味噌','miso'],['しょうゆ','醤油','soy sauce'],
+ ['こむぎこ','小麦粉','flour'],['なまくりーむ','生クリーム','cream'],['ばたー','バター','butter'],['ちーず','チーズ','cheese'],['ほうれんそう','ほうれん草','spinach'],['きゃべつ','キャベツ','cabbage'],['はくさい','白菜','napa cabbage','chinese cabbage'],
+ ['さつまいも','薩摩芋','sweet potato'],['さといも','里芋','taro'],['ごぼう','牛蒡','burdock'],['れんこん','蓮根','lotus root'],['のり','海苔','nori','seaweed'],['こんぶ','昆布','kombu','kelp'],['とまと','トマト','tomato','tomatoes'],['れもん','レモン','lemon'],['ちょこれーと','チョコ','chocolate'],['べーこん','ベーコン','bacon'],['かも','鴨','duck'],['らむ','ラム','lamb'],
+ ['ぶろっこりー','ブロッコリー','broccoli'],['あすぱら','アスパラ','asparagus'],['とうふ','豆腐','tofu'],['ぴーまん','ピーマン','green pepper'],['ぱぷりか','パプリカ','bell pepper','paprika'],['せろり','セロリ','celery'],
+ ['ずっきーに','ズッキーニ','zucchini','courgette'],['あぼかど','アボカド','avocado'],['ばなな','バナナ','banana'],['おれんじ','オレンジ','orange'],['はちみつ','蜂蜜','honey'],['わいん','ワイン','wine'],['ぱすた','パスタ','pasta'],['ぱん','パン','bread'],['あさり','浅蜊','clam','clams'],['かき','牡蠣','oyster','oysters']
 ];
 const kana=s=>s.normalize('NFKC').replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60)).toLowerCase();
 const DMAP={};DOUGI.forEach(g=>{const k=g.map(kana);k.forEach(x=>DMAP[x]=k);});
@@ -183,7 +284,7 @@ const FIELDS=['name','ing','how','wine','note'];
 const KEY='recipe-cho-jibun-v1';
 let MINE={v:1,edits:{},added:[]},HOZON=true;
 function loadMine(){try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&x.edits&&x.added)MINE=x;}catch(e){HOZON=false;}}
-function saveMine(){try{localStorage.setItem(KEY,JSON.stringify(MINE));return true;}catch(e){HOZON=false;msg('このブラウザでは保存できませんでした。プライベートモードでは保存できないことがあります。');return false;}}
+function saveMine(){try{localStorage.setItem(KEY,JSON.stringify(MINE));return true;}catch(e){HOZON=false;msg(t('savefail'));return false;}}
 function msg(t){$('mMsg').textContent=t||'';}
 function prep(r){r._i=kana((r.ing||'')+' '+(r.how||''));r._n=kana((r.name||'')+' '+(r.title||''));}
 function applyMine(){
@@ -191,7 +292,7 @@ function applyMine(){
   const add=MINE.added.map(a=>{const r={id:a.id,src:'mine',no:null,title:'',cat:a.cat||'other',sub:null,url:a.url||'',vid:'',print:'',name:a.name,ing:a.ing,how:a.how,wine:a.wine,note:a.note,t:a.t};prep(r);return r;});
   DATA=add.concat(BASE);
   const n=Object.keys(MINE.edits).length,m=MINE.added.length;
-  $('mineCount').textContent=HOZON?(n||m?`直したレシピ ${n} 件・足したレシピ ${m} 件`:'まだ書き込みはありません'):'（このブラウザでは保存できません）';
+  $('mineCount').textContent=HOZON?(n||m?t('cnt_mine',n,m):t('none_mine')):t('nosave');
 }
 
 let HIROBA=[];
@@ -201,9 +302,12 @@ Promise.all([fetch('data/recipes.json').then(r=>r.json()),fetch('data/hiroba.jso
   loadMine();applyMine();
   if(j.updated){$('kekka').dataset.up=j.updated;}
   const h=location.hash.slice(1);render();if(h){const r=DATA.find(x=>x.id===h);if(r)open_(r);}
-}).catch(()=>{$('kekka').textContent='データを読み込めませんでした。時間をおいて開き直してください。';});
+}).catch(()=>{$('kekka').textContent=t('loadfail');});
 
-function words(){return $('zairyo').value.split(/[\s、,，・/]+/).map(s=>s.trim()).filter(Boolean);}
+// 「sweet potato」のような二語の材料名は、ひとかたまりとして扱う
+const MULTI=Object.keys(DMAP).filter(x=>x.includes(' ')).sort((a,b)=>b.length-a.length);
+function words(){let v=$('zairyo').value.normalize('NFKC').toLowerCase();MULTI.forEach(m=>{v=v.split(m).join(m.replace(/ /g,'_'));});
+  return v.split(/[\s、,，・/]+/).map(s=>s.trim().replace(/_/g,' ')).filter(Boolean);}
 function match(r,ws,mode,mei){
   if(!ws.length)return [];
   const hits=[];
@@ -218,76 +322,78 @@ function render(){
   for(const r of base){if(ws.length){const h=match(r,ws,mode,mei);if(!h)continue;scored.push([r,h]);}else scored.push([r,[]]);}
   if(ws.length)scored.sort((a,b)=>b[1].length-a[1].length);
   const cnt={all:scored.length};scored.forEach(([r])=>cnt[r.cat]=(cnt[r.cat]||0)+1);
-  $('tabs').innerHTML=CATS.map(([k,v])=>`<button data-k="${k}" class="${k===cat?'on':''}">${v}<span class="n">${cnt[k]||0}</span></button>`).join('');
+  $('tabs').innerHTML=CATS.map(k=>`<button data-k="${k}" class="${k===cat?'on':''}">${t(k)}<span class="n">${cnt[k]||0}</span></button>`).join('');
   lastList=scored.filter(([r])=>cat==='all'||r.cat===cat);
   const up=$('kekka').dataset.up;
-  $('kekka').textContent=(ws.length?`「${ws.join('・')}」で ${lastList.length} 件見つかりました。`:`全 ${lastList.length} 件。材料を入れると絞り込みます。`)+(up?`（${up} 更新）`:'');
-  $('list').innerHTML=lastList.length?lastList.slice(0,shown).map(([r,h])=>card(r,h)).join(''):'<div class="nashi">見つかりませんでした。材料を減らすか、「どれか一つでも使うもの」に切り替えてみてください。</div>';
+  $('kekka').textContent=(ws.length?t('found',ws.join(L==='ja'?'・':', '),lastList.length,lastList.length===1?'':'s'):t('alln',lastList.length,lastList.length===1?'':'s'))+(up?t('updated',up):'');
+  $('list').innerHTML=lastList.length?lastList.slice(0,shown).map(([r,h])=>card(r,h)).join(''):`<div class="nashi">${t('nashi')}</div>`;
   $('more').style.display=lastList.length>shown?'block':'none';
 }
 const esc=s=>(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function card(r,h){
-  const b=r.src==='mikuni'?`<span class="badge mk">三國${r.no?' #'+r.no:''}</span>`:r.src==='own'?'<span class="badge own">わが家</span>':r.src==='mine'?'<span class="badge jb">自分で足した</span>':r.src==='hiroba'?`<span class="badge hb">広場：${esc(r.pen)}</span>`:'<span class="badge">料理動画</span>';
-  return `<div class="card" data-id="${r.id}"><div class="nm">${esc(r.name)}</div><div class="meta">${b}${r.mine?'<span class="badge jb">自分用に直した</span>':''}${r.new?'<span class="badge new">新着</span>':''}${CATNAME[r.cat]}${r.wine?'　🍷':''}</div>${h.length?`<div class="hit">使う材料：${esc(h.join('・'))}</div>`:''}</div>`;
+  const b=r.src==='mikuni'?`<span class="badge mk">${t('b_mikuni')}${r.no?' #'+r.no:''}</span>`:r.src==='own'?`<span class="badge own">${t('b_own')}</span>`:r.src==='mine'?`<span class="badge jb">${t('b_mine')}</span>`:r.src==='hiroba'?`<span class="badge hb">${t('b_hiroba',esc(r.pen))}</span>`:`<span class="badge">${t('b_video')}</span>`;
+  const la=L==='en'?latin(r):'';
+  return `<div class="card" data-id="${r.id}"><div class="nm">${esc(r.name)}${la?`<span class="latin">${esc(la)}</span>`:''}</div><div class="meta">${b}${r.mine?`<span class="badge jb">${t('b_edited')}</span>`:''}${r.new?`<span class="badge new">${t('b_new')}</span>`:''}${CATNAME[r.cat]}${r.wine?'　🍷':''}</div>${h.length?`<div class="hit">${t('uses',esc(h.join(L==='ja'?'・':', ')))}</div>`:''}</div>`;
 }
 function hl(t,ws){t=t||'';let s=esc(t);if(!ws.length)return s;
   const k=kana(t);const marks=new Array(t.length).fill(false);
   ws.forEach(w=>iikae(w).forEach(a=>{if(!a)return;let i=k.indexOf(a);while(i>=0){for(let j=i;j<i+a.length;j++)marks[j]=true;i=k.indexOf(a,i+a.length);}}));
   if(k.length!==t.length)return s;let out='',on=false;for(let i=0;i<t.length;i++){if(marks[i]&&!on){out+='<mark>';on=true;}if(!marks[i]&&on){out+='</mark>';on=false;}out+=esc(t[i]);}if(on)out+='</mark>';return out;}
-const SRCNAME2={...SRCNAME,mine:'自分で足したレシピ',hiroba:'みんなのレシピ広場'};
+const SRCNAME2=new Proxy({},{get:(o,k)=>t('src_'+k)});
 let CUR=null;
 // orig=true のときは、自分用に直す前の元のレシピを見せる
 function open_(r,orig){
   CUR=r;const ws=words();const v=orig?r.o:r;
-  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${esc(v.name)}</h2><div class="sub">${SRCNAME2[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
-  if(r.mine&&!orig)h+=`<div class="banner">自分用に直したレシピです（このブラウザにだけ保存）。<br><button data-a="orig">元のレシピを見る</button><button data-a="reset">元に戻す</button></div>`;
-  if(r.mine&&orig)h+=`<div class="banner">元のレシピを表示しています。<br><button data-a="back">自分用に直したものを見る</button></div>`;
-  if(r.src==='mine')h+=`<div class="banner">自分で足したレシピです（このブラウザにだけ保存）。</div>`;
-  if(r.src==='hiroba'){h+=`<div class="banner">${esc(r.pen)}さんが広場に出したレシピです（${esc(r.date)}）。${r.hitokoto?'<br>「'+esc(r.hitokoto)+'」':''}</div>`;
-    if(r.base_id){const bb=BASE.find(x=>x.id===r.base_id);if(bb)h+=`<div class="moto"><b>元にしたレシピ</b><a href="#${esc(bb.id)}" data-a="goto" data-id="${esc(bb.id)}">${esc(bb.o.name)}</a></div>`;}}
+  const la=L==='en'?latin(r):'';
+  let h=`<button class="tojiru" aria-label="${t('close')}">×</button><h2>${esc(v.name)}${la?`<span class="latin">${esc(la)}</span>`:''}</h2><div class="sub">${SRCNAME2[r.src]}${r.no?'　#'+r.no:''}　／　${CATNAME[r.cat]}</div>`;
+  if(r.mine&&!orig)h+=`<div class="banner">${t('bn_edited')}<br><button data-a="orig">${t('see_orig')}</button><button data-a="reset">${t('reset')}</button></div>`;
+  if(r.mine&&orig)h+=`<div class="banner">${t('bn_orig')}<br><button data-a="back">${t('back')}</button></div>`;
+  if(r.src==='mine')h+=`<div class="banner">${t('bn_mine')}</div>`;
+  if(r.src==='hiroba'){h+=`<div class="banner">${t('bn_hiroba',esc(r.pen),esc(r.date))}${r.hitokoto?'<br>「'+esc(r.hitokoto)+'」':''}</div>`;
+    if(r.base_id){const bb=BASE.find(x=>x.id===r.base_id);if(bb)h+=`<div class="moto"><b>${t('base_recipe')}</b><a href="#${esc(bb.id)}" data-a="goto" data-id="${esc(bb.id)}">${esc(bb.o.name)}</a></div>`;}}
   if(r.title)h+=`<div class="sub">${esc(r.title)}</div>`;
-  if(r.url)h+=`<div class="moto"><b>元にした動画</b><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div>`;
-  else if(r.src==='own')h+=`<div class="moto"><b>元にした動画</b><span>なし（わが家で組んだレシピです）</span></div>`;
-  else if(r.src!=='mine'&&r.src!=='hiroba')h+=`<div class="moto"><b>元にした動画</b><span>URLが記録されていません</span></div>`;
+  if(r.url)h+=`<div class="moto"><b>${t('src_video')}</b><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.url)}</a></div>`;
+  else if(r.src==='own')h+=`<div class="moto"><b>${t('src_video')}</b><span>${t('no_video_own')}</span></div>`;
+  else if(r.src!=='mine'&&r.src!=='hiroba')h+=`<div class="moto"><b>${t('src_video')}</b><span>${t('no_url')}</span></div>`;
   if(r.vid)h+=`<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(r.vid)}" loading="lazy" allowfullscreen title="${esc(v.name)}"></iframe></div>`;
-  h+=`<h3>材料</h3><div class="txt">${hl(v.ing,ws)||'（記載なし）'}</div>`;
-  if(v.how)h+=`<h3>作り方</h3><div class="txt">${esc(v.how)}</div>`;
-  if(v.wine)h+=`<h3>合うお酒</h3><div class="txt">${esc(v.wine)}</div>`;
-  if(v.note)h+=`<h3>備考</h3><div class="txt">${esc(v.note)}</div>`;
+  h+=`<h3>${t('h_ing')}</h3><div class="txt">${hl(v.ing,ws)||t('no_ing')}</div>`;
+  if(v.how)h+=`<h3>${t('h_how')}</h3><div class="txt">${esc(v.how)}</div>`;
+  if(v.wine)h+=`<h3>${t('h_wine')}</h3><div class="txt">${esc(v.wine)}</div>`;
+  if(v.note)h+=`<h3>${t('h_note')}</h3><div class="txt">${esc(v.note)}</div>`;
   h+='<div class="btns">';
-  if(HOZON&&!orig)h+=`<button data-a="edit">${r.src==='mine'?'書き直す':'自分用に直す'}</button>`;
-  if(!orig&&(r.mine||r.src==='mine'))h+=`<button data-a="toko">広場に出す</button>`;
-  if(r.url)h+=`<a href="${esc(r.url)}" target="_blank" rel="noopener">元の動画を開く</a>`;
-  if(r.print&&!r.mine)h+=`<a href="../${esc(r.print)}">印刷用のページへ</a>`;
-  else h+='<button class="pr">このレシピを印刷する</button>';
-  h+='<button class="cl">一覧に戻る</button></div>';
-  if(r.src==='mikuni'||r.src==='archive')h+='<div class="chui">公開動画への索引です。制作者の自己責任において運営しています。</div>';
+  if(HOZON&&!orig)h+=`<button data-a="edit">${r.src==='mine'?t('rewrite'):t('edit')}</button>`;
+  if(!orig&&(r.mine||r.src==='mine'))h+=`<button data-a="toko">${t('toko')}</button>`;
+  if(r.url)h+=`<a href="${esc(r.url)}" target="_blank" rel="noopener">${t('open_video')}</a>`;
+  if(r.print&&!r.mine)h+=`<a href="../${esc(r.print)}">${t('print_page')}</a>`;
+  else h+=`<button class="pr">${t('print')}</button>`;
+  h+=`<button class="cl">${t('back_list')}</button></div>`;
+  if(r.src==='mikuni'||r.src==='archive')h+=`<div class="chui">${t('chui')}</div>`;
   show(h);if(!String(r.id).startsWith('u'))history.replaceState(null,'','#'+r.id);
 }
 function show(h){$('shosai').innerHTML=h;$('bg').classList.add('on');document.body.style.overflow='hidden';$('bg').scrollTop=0;}
 // 書き換えの画面。r が無いときは新しく足す
 function edit_(r){
   CUR=r||null;const v=r||{name:'',ing:'',how:'',wine:'',note:'',cat:'japanese'};
-  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>${r?(r.src==='mine'?'書き直す':'自分用に直す'):'自分のレシピを足す'}</h2>`;
-  h+=`<div class="sub">${r&&r.src!=='mine'?'元のレシピはそのまま残ります。いつでも「元に戻す」で戻せます。':'このブラウザにだけ保存されます。'}</div><div class="henshu">`;
-  h+=`<label>料理の名前</label><input id="eName" value="${esc(v.name)}">`;
-  if(!r||r.src==='mine')h+=`<label>分類</label><select id="eCat">${CATS.slice(1).map(([k,n])=>`<option value="${k}"${k===v.cat?' selected':''}>${n}</option>`).join('')}</select>`;
-  h+=`<label>材料</label><textarea id="eIng">${esc(v.ing)}</textarea>`;
-  h+=`<label>作り方</label><textarea id="eHow" style="min-height:200px">${esc(v.how)}</textarea>`;
-  h+=`<label>合うお酒</label><textarea id="eWine" style="min-height:60px">${esc(v.wine)}</textarea>`;
-  h+=`<label>備考（気づいたこと・好みの加減など）</label><textarea id="eNote" style="min-height:90px">${esc(v.note)}</textarea>`;
-  h+=`<div class="kotei"><button class="hozon" data-a="save">保存する</button><button data-a="cancel">やめる</button>${r&&r.src==='mine'?'<button class="kesu" data-a="del">このレシピを消す</button>':''}</div></div>`;
+  let h=`<button class="tojiru" aria-label="${t('close')}">×</button><h2>${r?(r.src==='mine'?t('rewrite'):t('edit')):t('e_add')}</h2>`;
+  h+=`<div class="sub">${r&&r.src!=='mine'?t('e_sub_edit'):t('e_sub_new')}</div><div class="henshu">`;
+  h+=`<label>${t('f_name')}</label><input id="eName" value="${esc(v.name)}">`;
+  if(!r||r.src==='mine')h+=`<label>${t('f_cat')}</label><select id="eCat">${CATS.slice(1).map(k=>`<option value="${k}"${k===v.cat?' selected':''}>${t(k)}</option>`).join('')}</select>`;
+  h+=`<label>${t('h_ing')}</label><textarea id="eIng">${esc(v.ing)}</textarea>`;
+  h+=`<label>${t('h_how')}</label><textarea id="eHow" style="min-height:200px">${esc(v.how)}</textarea>`;
+  h+=`<label>${t('h_wine')}</label><textarea id="eWine" style="min-height:60px">${esc(v.wine)}</textarea>`;
+  h+=`<label>${t('f_notes')}</label><textarea id="eNote" style="min-height:90px">${esc(v.note)}</textarea>`;
+  h+=`<div class="kotei"><button class="hozon" data-a="save">${t('save')}</button><button data-a="cancel">${t('cancel')}</button>${r&&r.src==='mine'?`<button class="kesu" data-a="del">${t('del')}</button>`:''}</div></div>`;
   show(h);
 }
 function saveEdit(){
   const val={name:$('eName').value.trim(),ing:$('eIng').value,how:$('eHow').value,wine:$('eWine').value,note:$('eNote').value,t:Date.now()};
-  if(!val.name){alertMsg('料理の名前を入れてください。');return;}
+  if(!val.name){alertMsg(t('need_name'));return;}
   let id;
   if(!CUR){id='u'+Date.now();MINE.added.push({id,cat:$('eCat').value,...val});}
   else if(CUR.src==='mine'){id=CUR.id;const a=MINE.added.find(x=>x.id===id);Object.assign(a,val,{cat:$('eCat').value});}
   else{id=CUR.id;const same=FIELDS.every(f=>(val[f]||'')===(CUR.o[f]||''));if(same)delete MINE.edits[id];else MINE.edits[id]=val;}
   if(!saveMine())return;
-  applyMine();render();const r=DATA.find(x=>x.id===id);msg('保存しました。');if(r)open_(r);else close_();
+  applyMine();render();const r=DATA.find(x=>x.id===id);msg(t('saved'));if(r)open_(r);else close_();
 }
 function alertMsg(t){let e=document.querySelector('.henshu .msg2');if(!e){e=document.createElement('div');e.className='msg2';e.style.cssText='color:#8b2e2e;margin-top:8px;';document.querySelector('.henshu .kotei').before(e);}e.textContent=t;}
 function close_(){$('bg').classList.remove('on');$('shosai').innerHTML='';document.body.style.overflow='';CUR=null;history.replaceState(null,'',location.pathname);}
@@ -297,48 +403,48 @@ function close_(){$('bg').classList.remove('on');$('shosai').innerHTML='';docume
 const TOKO_ADDR='seimei.kagaku.maki@gmail.com';
 function toko_(r){
   CUR=r;let pen='';try{pen=localStorage.getItem('recipe-cho-pen')||'';}catch(e){}
-  let h=`<button class="tojiru" aria-label="閉じる">×</button><h2>広場に出す</h2><div class="sub">「${esc(r.name)}」を、みんなのレシピ広場に出します。</div>`;
-  h+=`<div class="henshu toko"><label>ペンネーム（広場に載る名前）</label><input id="tPen" value="${esc(pen)}" placeholder="例：多摩のおばあちゃん">`;
-  h+=`<label>ひとこと（自慢のところ、工夫したところ）</label><textarea id="tHito" style="min-height:80px" placeholder="例：味噌を白味噌に替えたら、子どもがおかわりしました。"></textarea>`;
-  h+=`<label class="chk"><input type="checkbox" id="tOk1">自分で作ったり、自分で直したりしたレシピです。本やほかのサイトの文章を、そのまま写していません。</label>`;
-  h+=`<label class="chk"><input type="checkbox" id="tOk2">ペンネームとレシピの中身が、広場に載ることに同意します。</label>`;
-  h+=`<div class="sub" style="margin-top:12px">送ったレシピは、レシピ帖の管理人（三原）が目を通してから広場に載せます。すべてを載せるとは限りません。メールアドレスは広場には載りません。</div>`;
-  h+=`<div class="kotei"><button class="hozon" data-a="tsend">メールで送る</button><button data-a="tcopy">文面をコピーする</button><button data-a="cancel">やめる</button></div><div id="tOut"></div></div>`;
+  let h=`<button class="tojiru" aria-label="${t('close')}">×</button><h2>${t('toko')}</h2><div class="sub">${t('t_sub',esc(r.name))}</div>`;
+  h+=`<div class="henshu toko"><label>${t('t_pen')}</label><input id="tPen" value="${esc(pen)}" placeholder="${t('t_pen_ph')}">`;
+  h+=`<label>${t('t_hito')}</label><textarea id="tHito" style="min-height:80px" placeholder="${t('t_hito_ph')}"></textarea>`;
+  h+=`<label class="chk"><input type="checkbox" id="tOk1">${t('t_ok1')}</label>`;
+  h+=`<label class="chk"><input type="checkbox" id="tOk2">${t('t_ok2')}</label>`;
+  h+=`<div class="sub" style="margin-top:12px">${t('t_info')}</div>`;
+  h+=`<div class="kotei"><button class="hozon" data-a="tsend">${t('t_send')}</button><button data-a="tcopy">${t('t_copy')}</button><button data-a="cancel">${t('cancel')}</button></div><div id="tOut"></div></div>`;
   show(h);
 }
 function tokoText(){
   const r=CUR,pen=$('tPen').value.trim(),hito=$('tHito').value.trim();
   const base=r.src==='mine'?null:r;
   const j={v:1,pen,hitokoto:hito,name:r.name,cat:r.cat,base_id:base?base.id:'',base_name:base?base.o.name:'',url:base?base.url:'',ing:r.ing,how:r.how,wine:r.wine,note:r.note};
-  const t=['レシピ帖 広場への投稿','',`ペンネーム：${pen}`,`料理の名前：${r.name}`,`分類：${CATNAME[r.cat]}`,
+  const t2=['レシピ帖 広場への投稿','',`ペンネーム：${pen}`,`料理の名前：${r.name}`,`分類：${CATNAME[r.cat]}`,
     base?`元にしたレシピ：${base.o.name}（https://yymm77.github.io/recipe/#${base.id}）`:'元にしたレシピ：なし（自分で考えたレシピ）',
     `ひとこと：${hito}`,'','【材料】',r.ing||'','','【作り方】',r.how||'','','【合うお酒】',r.wine||'','','【備考】',r.note||'','',
     '---- ここから下は取り込み用です。消さずにそのまま送ってください ----','RECIPECHO:'+JSON.stringify(j)].join('\n');
-  return {subj:`【レシピ帖 広場】${r.name}（${pen}）`,t};
+  return {subj:`【レシピ帖 広場】${r.name}（${pen}）`,body:t2};
 }
 function tokoCheck(){
   const out=$('tOut');
-  if(!$('tPen').value.trim()){out.innerHTML='<div class="msg2" style="color:#8b2e2e;margin-top:8px">ペンネームを入れてください。</div>';return false;}
-  if(!$('tOk1').checked||!$('tOk2').checked){out.innerHTML='<div class="msg2" style="color:#8b2e2e;margin-top:8px">二つの確認に印を付けてください。</div>';return false;}
+  if(!$('tPen').value.trim()){out.innerHTML=`<div class="msg2" style="color:#8b2e2e;margin-top:8px">${t('t_need_pen')}</div>`;return false;}
+  if(!$('tOk1').checked||!$('tOk2').checked){out.innerHTML=`<div class="msg2" style="color:#8b2e2e;margin-top:8px">${t('t_need_ok')}</div>`;return false;}
   try{localStorage.setItem('recipe-cho-pen',$('tPen').value.trim());}catch(e){}
   return true;
 }
-function tokoSend(){if(!tokoCheck())return;const {subj,t}=tokoText();
-  location.href=`mailto:${TOKO_ADDR}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(t)}`;
-  $('tOut').innerHTML=`<div class="mail">メールの画面が開きます。開かないときは「文面をコピーする」を押し、<b>${TOKO_ADDR}</b> あてに、ご自分のメールで送ってください。</div>`;}
-function tokoCopy(){if(!tokoCheck())return;const {subj,t}=tokoText();const all=`件名：${subj}\n\n${t}`;
-  const done=()=>{$('tOut').innerHTML=`<div class="mail">文面をコピーしました。ご自分のメールに貼りつけて、<b>${TOKO_ADDR}</b> あてに送ってください。件名は「${esc(subj)}」としてください。</div>`;};
+function tokoSend(){if(!tokoCheck())return;const {subj,body}=tokoText();
+  location.href=`mailto:${TOKO_ADDR}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  $('tOut').innerHTML=`<div class="mail">${t('t_sent',TOKO_ADDR)}</div>`;}
+function tokoCopy(){if(!tokoCheck())return;const {subj,body}=tokoText();const all=`${t('subj_label')}：${subj}\n\n${body}`;
+  const done=()=>{$('tOut').innerHTML=`<div class="mail">${t('t_copied',TOKO_ADDR,esc(subj))}</div>`;};
   if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(all).then(done,()=>fallback(all));else fallback(all);
-  function fallback(x){$('tOut').innerHTML=`<div class="mail">下の文面をすべて選んでコピーし、<b>${TOKO_ADDR}</b> あてに送ってください。<textarea style="min-height:160px;margin-top:6px">${esc(x)}</textarea></div>`;}
+  function fallback(x){$('tOut').innerHTML=`<div class="mail">${t('t_copy_fb',TOKO_ADDR)}<textarea style="min-height:160px;margin-top:6px">${esc(x)}</textarea></div>`;}
 }
 
 // 書き出し・読み込み
 function today(){const d=new Date();return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');}
 $('mExp').addEventListener('click',()=>{
-  const n=Object.keys(MINE.edits).length+MINE.added.length;if(!n){msg('まだ書き出すものがありません。');return;}
+  const n=Object.keys(MINE.edits).length+MINE.added.length;if(!n){msg(t('exp_none'));return;}
   const out={...MINE,names:{}};Object.keys(MINE.edits).forEach(id=>{const r=BASE.find(x=>x.id===id);if(r)out.names[id]=r.o.name;});
   const b=new Blob([JSON.stringify(out,null,1)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`recipe-cho-jibunyou-${today()}.json`;document.body.appendChild(a);a.click();a.remove();
-  msg(`${n} 件を書き出しました。ダウンロードのフォルダに入っています。`);
+  msg(t('exp_done',n));
 });
 $('mImp').addEventListener('click',()=>$('mFile').click());
 $('mFile').addEventListener('change',e=>{
@@ -346,16 +452,17 @@ $('mFile').addEventListener('change',e=>{
   rd.onload=()=>{try{const x=JSON.parse(rd.result);if(!x||!x.edits||!Array.isArray(x.added))throw 0;
       let n=0;for(const id in x.edits){const cur=MINE.edits[id];if(BASE.some(r=>r.id===id)&&(!cur||(x.edits[id].t||0)>=(cur.t||0))){MINE.edits[id]=x.edits[id];n++;}}
       x.added.forEach(a=>{const i=MINE.added.findIndex(y=>y.id===a.id);if(i<0){MINE.added.push(a);n++;}else if((a.t||0)>=(MINE.added[i].t||0)){MINE.added[i]=a;n++;}});
-      if(saveMine()){applyMine();render();msg(`${n} 件を読み込みました。`);}
-    }catch(err){msg('このファイルは読み込めませんでした。レシピ帖で書き出したファイルを選んでください。');}
+      if(saveMine()){applyMine();render();msg(t('imp_done',n));}
+    }catch(err){msg(t('imp_fail'));}
     e.target.value='';};
   rd.readAsText(f,'utf-8');
 });
-$('mAdd').addEventListener('click',()=>{if(!HOZON){msg('このブラウザでは保存できません。');return;}edit_(null);});
+$('mAdd').addEventListener('click',()=>{if(!HOZON){msg(t('nosave_add'));return;}edit_(null);});
 
-let t;$('zairyo').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(()=>{shown=60;render();},200);});
+let tm;$('zairyo').addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{shown=60;render();},200);});
 document.querySelectorAll('input[name=mode],#mei,#talk,.src').forEach(e=>e.addEventListener('change',()=>{shown=60;render();}));
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.k;shown=60;render();});
+applyLang();
 document.querySelector('.rei').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;const v=$('zairyo').value.trim();$('zairyo').value=(v?v+' ':'')+e.target.textContent;shown=60;render();});
 $('more').addEventListener('click',()=>{shown+=60;render();});
 $('list').addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const r=DATA.find(x=>x.id===c.dataset.id);if(r)open_(r);});
@@ -366,14 +473,14 @@ $('bg').addEventListener('click',e=>{
   if(a==='edit')edit_(CUR);
   else if(a==='orig')open_(CUR,true);
   else if(a==='back')open_(CUR);
-  else if(a==='reset'){const id=CUR.id;delete MINE.edits[id];if(saveMine()){applyMine();render();msg('元のレシピに戻しました。');open_(DATA.find(x=>x.id===id));}}
+  else if(a==='reset'){const id=CUR.id;delete MINE.edits[id];if(saveMine()){applyMine();render();msg(t('restored'));open_(DATA.find(x=>x.id===id));}}
   else if(a==='save')saveEdit();
   else if(a==='toko')toko_(CUR);
   else if(a==='tsend')tokoSend();
   else if(a==='tcopy')tokoCopy();
   else if(a==='goto'){e.preventDefault();const r=DATA.find(x=>x.id===b.dataset.id);if(r)open_(r);}
   else if(a==='cancel'){CUR?open_(CUR):close_();}
-  else if(a==='del'){const id=CUR.id;if(b.dataset.ok!=='1'){b.dataset.ok='1';b.textContent='もう一度押すと消えます';return;}MINE.added=MINE.added.filter(x=>x.id!==id);if(saveMine()){applyMine();render();msg('消しました。');close_();}}
+  else if(a==='del'){const id=CUR.id;if(b.dataset.ok!=='1'){b.dataset.ok='1';b.textContent=t('del2');return;}MINE.added=MINE.added.filter(x=>x.id!==id);if(saveMine()){applyMine();render();msg(t('deleted'));close_();}}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!document.querySelector('.henshu'))close_();});
 </script>
