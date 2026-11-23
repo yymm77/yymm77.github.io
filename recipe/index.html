@@ -117,7 +117,6 @@
     <div class="opts">
       <label><input type="radio" name="mode" value="and" checked> <span data-i18n="m_and">入れた材料を全部使うもの</span></label>
       <label><input type="radio" name="mode" value="or"> <span data-i18n="m_or">どれか一つでも使うもの</span></label>
-      <label><input type="checkbox" id="mei"> <span data-i18n="m_name">料理の名前でも探す</span></label>
     </div>
     <div class="rei"><span data-i18n="rei">よく使う材料：</span><span id="reiBtns"></span></div>
   </div>
@@ -158,9 +157,9 @@
 
 // ---- 日本語と英語の言葉 ----
 const I18N={
-ja:{doctitle:'レシピ帖 ｜ おてんとうさまの下で',home:'おてんとうさまの下で',title:'レシピ帖',lead:'手元にある材料を入れると、作れるレシピが出てきます。',
- q_label:'材料を入れてください',q_ph:'例：鮭　かぼちゃ　玉ねぎ',q_hint:'材料はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。',jpnote:'',
- m_and:'入れた材料を全部使うもの',m_or:'どれか一つでも使うもの',m_name:'料理の名前でも探す',rei:'よく使う材料：',
+ja:{doctitle:'レシピ帖 ｜ おてんとうさまの下で',home:'おてんとうさまの下で',title:'レシピ帖',lead:'手元にある材料や、作りたい料理の名前を入れると、レシピが出てきます。',
+ q_label:'材料か、料理の名前を入れてください',q_ph:'例：鮭　かぼちゃ　／　豚汁　／　クッキー',q_hint:'材料でも、料理の名前（豚汁など）でも、種類（お菓子・中華など）でも探せます。言葉はスペースか「、」で区切ります。ひらがな・カタカナ・漢字のどれで入れても探します。',jpnote:'',
+ m_and:'入れた言葉に全部当てはまるもの',m_or:'どれか一つでも当てはまるもの',m_name:'料理の名前でも探す',rei:'よく使う材料：',
  j_title:'自分用の帳面',e_add:'自分のレシピを足す',exp:'書き出す',imp:'読み込む',
  j_setsu:'レシピを開いて「自分用に直す」を押すと、材料や作り方を好みに書き換えられます。直したものや足したものは、<b>このパソコンのこのブラウザにだけ</b>保存され、ほかの人には見えません。ブラウザのデータを消すと消えるので、ときどき「書き出す」でファイルに残してください。別のパソコンや家族には、そのファイルを「読み込む」で渡せます。',
  to_hiroba:'▶ みんなのレシピ広場を見る（自慢のレシピを見せ合う場所）',
@@ -173,8 +172,8 @@ ja:{doctitle:'レシピ帖 ｜ おてんとうさまの下で',home:'おてん�
  cnt_mine:'直したレシピ {0} 件・足したレシピ {1} 件',none_mine:'まだ書き込みはありません',nosave:'（このブラウザでは保存できません）',
  savefail:'このブラウザでは保存できませんでした。プライベートモードでは保存できないことがあります。',loadfail:'データを読み込めませんでした。時間をおいて開き直してください。',
  found:'「{0}」で {1} 件見つかりました。',alln:'全 {0} 件。材料を入れると絞り込みます。',updated:'（{0} 更新）',
- nashi:'見つかりませんでした。材料を減らすか、「どれか一つでも使うもの」に切り替えてみてください。',
- b_mikuni:'三國',b_own:'わが家',b_mine:'自分で足した',b_hiroba:'広場：{0}',b_video:'料理動画',b_edited:'自分用に直した',b_new:'新着',uses:'使う材料：{0}',
+ nashi:'見つかりませんでした。言葉を減らすか、「どれか一つでも当てはまるもの」に切り替えてみてください。',
+ b_mikuni:'三國',b_own:'わが家',b_mine:'自分で足した',b_hiroba:'広場：{0}',b_video:'料理動画',b_edited:'自分用に直した',b_new:'新着',uses:'当てはまる言葉：{0}',
  close:'閉じる',bn_edited:'自分用に直したレシピです（このブラウザにだけ保存）。',see_orig:'元のレシピを見る',reset:'元に戻す',
  bn_orig:'元のレシピを表示しています。',back:'自分用に直したものを見る',bn_mine:'自分で足したレシピです（このブラウザにだけ保存）。',
  bn_hiroba:'{0}さんが広場に出したレシピです（{1}）。',base_recipe:'元にしたレシピ',src_video:'元にした動画',no_video_own:'なし（わが家で組んだレシピです）',no_url:'URLが記録されていません',
@@ -195,10 +194,10 @@ ja:{doctitle:'レシピ帖 ｜ おてんとうさまの下で',home:'おてん�
  t_copied:'文面をコピーしました。ご自分のメールに貼りつけて、<b>{0}</b> あてに送ってください。件名は「{1}」としてください。',
  t_copy_fb:'下の文面をすべて選んでコピーし、<b>{0}</b> あてに送ってください。',subj_label:'件名',
  rei_words:['鶏肉','豚肉','牛肉','鮭','卵','じゃがいも','玉ねぎ','キャベツ','トマト','きのこ','かぼちゃ','りんご']},
-en:{doctitle:'Recipe Notebook | Under and With the Sun',home:'Under and With the Sun',title:'Recipe Notebook',lead:'Type in what you have in your kitchen, and see what you can cook.',
- q_label:'What ingredients do you have?',q_ph:'e.g. salmon pumpkin onion',q_hint:'Separate ingredients with spaces or commas. You can type them in English or in Japanese.',
+en:{doctitle:'Recipe Notebook | Under and With the Sun',home:'Under and With the Sun',title:'Recipe Notebook',lead:'Type in what you have in your kitchen, or the dish you want to make, and find a recipe.',
+ q_label:'Type ingredients, or the name of a dish',q_ph:'e.g. salmon pumpkin / tonjiru / cookie',q_hint:'Search by ingredients, by dish (tonjiru, curry…) or by kind (dessert, Chinese…). Separate words with spaces or commas, in English or in Japanese.',
  jpnote:'The recipes themselves are written in Japanese. Your browser’s translate feature (for example, right-click → Translate) can help you read them.',
- m_and:'Use all of these ingredients',m_or:'Use any of them',m_name:'Also search dish names',rei:'Common ingredients: ',
+ m_and:'Match all of the words',m_or:'Match any of them',m_name:'Also search dish names',rei:'Common ingredients: ',
  j_title:'Your own notebook',e_add:'Add your own recipe',exp:'Export',imp:'Import',
  j_setsu:'Open a recipe and press “Make it your own” to change the ingredients or method to your taste. Your changes and the recipes you add are saved <b>only in this browser on this computer</b>, and nobody else can see them. Clearing your browser data erases them, so use “Export” now and then to keep a file. You can pass that file to another computer or to your family with “Import”.',
  to_hiroba:'▶ Visit the Recipe Square (where people share the recipes they are proud of)',
@@ -211,8 +210,8 @@ en:{doctitle:'Recipe Notebook | Under and With the Sun',home:'Under and With the
  cnt_mine:'{0} edited · {1} added',none_mine:'Nothing saved yet',nosave:'(This browser cannot save)',
  savefail:'Could not save in this browser. Private browsing sometimes blocks saving.',loadfail:'Could not load the recipes. Please try again later.',
  found:'{1} recipe{2} found for “{0}”.',alln:'{0} recipe{1}. Type ingredients to narrow them down.',updated:' (updated {0})',
- nashi:'Nothing found. Try fewer ingredients, or switch to “Use any of them”.',
- b_mikuni:'Mikuni',b_own:'Our kitchen',b_mine:'Added by you',b_hiroba:'Square: {0}',b_video:'Video',b_edited:'Your version',b_new:'New',uses:'Uses: {0}',
+ nashi:'Nothing found. Try fewer words, or switch to “Match any of them”.',
+ b_mikuni:'Mikuni',b_own:'Our kitchen',b_mine:'Added by you',b_hiroba:'Square: {0}',b_video:'Video',b_edited:'Your version',b_new:'New',uses:'Matches: {0}',
  close:'Close',bn_edited:'This is your own version (saved only in this browser).',see_orig:'See the original',reset:'Restore the original',
  bn_orig:'Showing the original recipe.',back:'See your version',bn_mine:'A recipe you added (saved only in this browser).',
  bn_hiroba:'Shared on the Recipe Square by {0} ({1}).',base_recipe:'Based on',src_video:'Source video',no_video_own:'None (a recipe from our own kitchen)',no_url:'No URL recorded',
@@ -264,7 +263,7 @@ const DOUGI=[
  ['こむぎこ','小麦粉','flour'],['なまくりーむ','生クリーム','cream'],['ばたー','バター','butter'],['ちーず','チーズ','cheese'],['ほうれんそう','ほうれん草','spinach'],['きゃべつ','キャベツ','cabbage'],['はくさい','白菜','napa cabbage','chinese cabbage'],
  ['さつまいも','薩摩芋','sweet potato'],['さといも','里芋','taro'],['ごぼう','牛蒡','burdock'],['れんこん','蓮根','lotus root'],['のり','海苔','nori','seaweed'],['こんぶ','昆布','kombu','kelp'],['とまと','トマト','tomato','tomatoes'],['れもん','レモン','lemon'],['ちょこれーと','チョコ','chocolate'],['べーこん','ベーコン','bacon'],['かも','鴨','duck'],['らむ','ラム','lamb'],
  ['ぶろっこりー','ブロッコリー','broccoli'],['あすぱら','アスパラ','asparagus'],['とうふ','豆腐','tofu'],['ぴーまん','ピーマン','green pepper'],['ぱぷりか','パプリカ','bell pepper','paprika'],['せろり','セロリ','celery'],
- ['ずっきーに','ズッキーニ','zucchini','courgette'],['あぼかど','アボカド','avocado'],['ばなな','バナナ','banana'],['おれんじ','オレンジ','orange'],['はちみつ','蜂蜜','honey'],['わいん','ワイン','wine'],['ぱすた','パスタ','pasta'],['ぱん','パン','bread'],['あさり','浅蜊','clam','clams'],['かき','牡蠣','oyster','oysters']
+ ['ずっきーに','ズッキーニ','zucchini','courgette'],['あぼかど','アボカド','avocado'],['ばなな','バナナ','banana'],['おれんじ','オレンジ','orange'],['はちみつ','蜂蜜','honey'],['わいん','ワイン','wine'],['ぱすた','パスタ','pasta'],['ぱん','パン','bread'],['とんじる','豚汁','とん汁','ぶた汁','tonjiru','pork miso soup'],['くっきー','クッキー','cookie','cookies','biscuit','biscuits'],['けーき','ケーキ','cake','cakes'],['ぷりん','プリン','pudding','custard pudding'],['すーぷ','スープ','soup'],['かれー','カレー','curry'],['ぐらたん','グラタン','gratin'],['さらだ','サラダ','salad'],['みそしる','味噌汁','miso soup'],['あさり','浅蜊','clam','clams'],['かき','牡蠣','oyster','oysters']
 ];
 const kana=s=>s.normalize('NFKC').replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0x60)).toLowerCase();
 const DMAP={};DOUGI.forEach(g=>{const k=g.map(kana);k.forEach(x=>DMAP[x]=k);});
@@ -308,19 +307,29 @@ Promise.all([fetch('data/recipes.json').then(r=>r.json()),fetch('data/hiroba.jso
 const MULTI=Object.keys(DMAP).filter(x=>x.includes(' ')).sort((a,b)=>b.length-a.length);
 function words(){let v=$('zairyo').value.normalize('NFKC').toLowerCase();MULTI.forEach(m=>{v=v.split(m).join(m.replace(/ /g,'_'));});
   return v.split(/[\s、,，・/]+/).map(s=>s.trim().replace(/_/g,' ')).filter(Boolean);}
-function match(r,ws,mode,mei){
-  if(!ws.length)return [];
-  const hits=[];
-  for(const w of ws){const alts=iikae(w);const ok=alts.some(a=>r._i.includes(a)||(mei&&r._n.includes(a)));if(ok)hits.push(w);else if(mode==='and')return null;}
-  return hits.length?hits:null;
+// 料理の種類を表す言葉（「お菓子」と入れればスイーツ全体が出る）
+const CATW={};[
+ ['sweets','お菓子','おかし','菓子','スイーツ','デザート','おやつ','甘いもの','sweets','sweet','dessert','desserts','snack','snacks'],
+ ['japanese','和食','日本料理','japanese','washoku'],['chinese','中華','中華料理','中国料理','chinese'],
+ ['italian','イタリアン','イタリア料理','italian'],['french','フレンチ','フランス料理','洋食','french'],
+ ['sozai','素材','下ごしらえ','下処理','作り置き','保存食','basics','prep','preserves']
+].forEach(([c,...w])=>w.forEach(x=>CATW[kana(x)]=c));
+// 一つの言葉が、料理の名前・材料と作り方・種類のどれかに当てはまれば拾う。名前に当たったものを上に並べる
+function match(r,ws,mode){
+  if(!ws.length)return {h:[],s:0};
+  const hits=[];let sc=0;
+  for(const w of ws){const alts=iikae(w);
+    const inName=alts.some(a=>r._n.includes(a)),inIng=alts.some(a=>r._i.includes(a)),inCat=CATW[kana(w)]===r.cat;
+    if(inName||inIng||inCat){hits.push(w);sc+=(inName?3:0)+(inIng?1:0)+(inCat?1:0);}else if(mode==='and')return null;}
+  return hits.length?{h:hits,s:sc}:null;
 }
 function render(){
-  const ws=words(),mode=document.querySelector('input[name=mode]:checked').value,mei=$('mei').checked,talk=$('talk').checked;
+  const ws=words(),mode=document.querySelector('input[name=mode]:checked').value,talk=$('talk').checked;
   const srcs=[...document.querySelectorAll('.src:checked')].map(e=>e.value);
   const base=DATA.filter(r=>srcs.includes(r.src)&&(talk||r.sub!=='talk'));
   const scored=[];
-  for(const r of base){if(ws.length){const h=match(r,ws,mode,mei);if(!h)continue;scored.push([r,h]);}else scored.push([r,[]]);}
-  if(ws.length)scored.sort((a,b)=>b[1].length-a[1].length);
+  for(const r of base){if(ws.length){const m=match(r,ws,mode);if(!m)continue;scored.push([r,m.h,m.s]);}else scored.push([r,[],0]);}
+  if(ws.length)scored.sort((a,b)=>b[2]-a[2]);
   const cnt={all:scored.length};scored.forEach(([r])=>cnt[r.cat]=(cnt[r.cat]||0)+1);
   $('tabs').innerHTML=CATS.map(k=>`<button data-k="${k}" class="${k===cat?'on':''}">${t(k)}<span class="n">${cnt[k]||0}</span></button>`).join('');
   lastList=scored.filter(([r])=>cat==='all'||r.cat===cat);
@@ -460,7 +469,7 @@ $('mFile').addEventListener('change',e=>{
 $('mAdd').addEventListener('click',()=>{if(!HOZON){msg(t('nosave_add'));return;}edit_(null);});
 
 let tm;$('zairyo').addEventListener('input',()=>{clearTimeout(tm);tm=setTimeout(()=>{shown=60;render();},200);});
-document.querySelectorAll('input[name=mode],#mei,#talk,.src').forEach(e=>e.addEventListener('change',()=>{shown=60;render();}));
+document.querySelectorAll('input[name=mode],#talk,.src').forEach(e=>e.addEventListener('change',()=>{shown=60;render();}));
 $('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.k;shown=60;render();});
 applyLang();
 document.querySelector('.rei').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;const v=$('zairyo').value.trim();$('zairyo').value=(v?v+' ':'')+e.target.textContent;shown=60;render();});
