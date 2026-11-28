@@ -33,6 +33,8 @@
   .fuda:target{border-left-color:var(--shu);box-shadow:0 0 0 2px #f6e6a8;}
   .fuda h2{font-size:20px;color:var(--kon);margin:0;line-height:1.5;}
   .fuda .fr{font-size:15px;font-style:italic;color:var(--kogecha);margin-left:10px;font-weight:normal;}
+  .fuda .kd{display:inline-block;font-size:11px;padding:0 6px;border-radius:3px;background:var(--kon);color:#fff;margin-left:8px;vertical-align:middle;}
+  .fuda .kd.wa{background:var(--shu);}
   .fuda .cat{display:inline-block;font-size:11px;padding:0 6px;border-radius:3px;background:var(--usu);color:var(--kogecha);margin-left:8px;vertical-align:middle;}
   .mijika{background:#fbefe6;border-left:4px solid var(--shu);padding:6px 12px;margin:8px 0 10px;font-size:15px;}
   .mijika b{color:var(--shu);margin-right:6px;font-size:13px;}
@@ -53,22 +55,23 @@
 <div class="wrap">
   <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">レシピ帖</a> ／ <span>料理用語集</span></div>
   <h1>料理用語集</h1>
-  <p class="lead">フランス料理の言葉を、身近な料理から説明します。</p>
+  <p class="lead">フランス料理と和食の調理の言葉を、身近な料理から説明します。フランス語の言葉には、和食で近い言葉を並べてあります。</p>
   <hr class="rule">
 
   <div class="kensaku">
     <label for="q">言葉を入れてください</label>
-    <input type="text" id="q" placeholder="例：ベシャメル　béchamel　ホワイトソース" autocomplete="off">
+    <input type="text" id="q" placeholder="例：アロゼ　émincer　湯むき" autocomplete="off">
     <p class="hint">日本語でもフランス語でも探せます。ひらがな・カタカナ、アクセント記号のあるなしは区別しません。</p>
   </div>
 
+  <div class="tabs" id="kinds"></div>
   <div class="tabs" id="tabs"></div>
   <div class="kekka" id="kekka">読み込んでいます…</div>
   <div id="list"></div>
 
   <div class="foot">
     参考：日本エスコフィエ協会編『エスコフィエの技 現代の術』（料理文化社、2003年）、A. Escoffier『Le Guide Culinaire』（1903年）。<br>
-    説明文はすべてこの用語集の制作者が書いたもので、書籍の文章を写したものではありません。「本」の欄は、上記『エスコフィエの技 現代の術』の参照ページです。<br>
+    説明文はすべてこの用語集の制作者が書いたもので、書籍の文章を写したものではありません。「本」の欄は、上記『エスコフィエの技 現代の術』の参照ページです。和食の言葉は一般的な調理用語として独自にまとめたものです。<br>
     <a href="../">レシピ帖へ戻る</a>　／　<a href="../../">おてんとうさまの下で</a>
     <div class="shomei">生かされて今を存在する</div>
   </div>
@@ -83,22 +86,24 @@ function norm(s){
   return s.replace(/[\s・･\-ー＝=（）()「」、。,.]/g,'');
 }
 function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-let DATA={categories:[],items:[]}, cur='すべて';
+let DATA={categories:[],items:[]}, cur='すべて', kind='すべて';
+const KINDS=[['すべて','すべて'],['仏','フランス料理の言葉'],['和','和食の言葉']];
 const byId={};
 const RAN=[['imi','意味'],['dodai','土台'],['tokucho','特徴'],['hasei','派生の例'],['yurai','名の由来'],['hon','本']];
 function fuda(it){
-  let h=`<div class="fuda" id="${esc(it.id)}"><h2>${esc(it.ja)}<span class="fr">${esc(it.fr)}</span><span class="cat">${esc(it.cat)}</span></h2>`;
+  let h=`<div class="fuda" id="${esc(it.id)}"><h2>${esc(it.ja)}<span class="fr">${esc(it.fr)}</span><span class="kd ${it.kind==='和'?'wa':''}">${it.kind==='和'?'和食':'フランス料理'}</span><span class="cat">${esc(it.cat)}</span></h2>`;
   if(it.mijika)h+=`<div class="mijika"><b>身近な料理で言えば</b>${esc(it.mijika)}</div>`;
   h+='<dl>';
   for(const [k,n] of RAN){if(it[k])h+=`<dt>${n}</dt><dd>${esc(it[k])}</dd>`;}
   h+='</dl>';
   const kr=(it.kanren||[]).filter(id=>byId[id]);
-  if(kr.length)h+='<div class="kanren">関連する言葉：'+kr.map(id=>`<a href="#${esc(id)}" data-go="${esc(id)}">${esc(byId[id].ja)}</a>`).join('')+'</div>';
+  if(kr.length)h+='<div class="kanren">近い言葉・関連する言葉：'+kr.map(id=>`<a href="#${esc(id)}" data-go="${esc(id)}">${esc(byId[id].ja)}</a>`).join('')+'</div>';
   return h+'</div>';
 }
 function draw(){
   const q=norm(document.getElementById('q').value);
   const hits=DATA.items.filter(it=>{
+    if(kind!=='すべて'&&it.kind!==kind)return false;
     if(cur!=='すべて'&&it.cat!==cur)return false;
     if(!q)return true;
     const hay=norm([it.ja,it.fr,it.yomi,(it.betsumei||[]).join(' ')].join(' '));
@@ -109,18 +114,23 @@ function draw(){
   document.getElementById('list').innerHTML=hits.length?hits.map(fuda).join(''):'<div class="nashi">見つかりませんでした。別の言い方でも試してください。</div>';
 }
 function tabs(){
+  document.getElementById('kinds').innerHTML=KINDS.map(([k,n])=>{
+    const c=k==='すべて'?DATA.items.length:DATA.items.filter(i=>i.kind===k).length;
+    return `<button data-k="${k}" class="${k===kind?'on':''}">${n}<span class="n">${c}</span></button>`;}).join('');
+  const pool=kind==='すべて'?DATA.items:DATA.items.filter(i=>i.kind===kind);
   const cats=['すべて',...DATA.categories];
   document.getElementById('tabs').innerHTML=cats.map(c=>{
-    const n=c==='すべて'?DATA.items.length:DATA.items.filter(i=>i.cat===c).length;
+    const n=c==='すべて'?pool.length:pool.filter(i=>i.cat===c).length;
     return `<button data-c="${esc(c)}" class="${c===cur?'on':''}" ${n?'':'disabled title="準備中"'}>${esc(c)}<span class="n">${n||'準備中'}</span></button>`;
   }).join('');
 }
 document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;cur=b.dataset.c;tabs();draw();});
+document.getElementById('kinds').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;kind=b.dataset.k;cur='すべて';tabs();draw();});
 document.getElementById('q').addEventListener('input',draw);
 document.getElementById('list').addEventListener('click',e=>{
   const a=e.target.closest('a[data-go]');if(!a)return;
   // 関連語が絞り込みで隠れていたら、絞り込みを解いてから飛ぶ
-  if(!document.getElementById(a.dataset.go)){e.preventDefault();cur='すべて';document.getElementById('q').value='';tabs();draw();location.hash=a.dataset.go;document.getElementById(a.dataset.go).scrollIntoView();}
+  if(!document.getElementById(a.dataset.go)){e.preventDefault();cur='すべて';kind='すべて';document.getElementById('q').value='';tabs();draw();location.hash=a.dataset.go;document.getElementById(a.dataset.go).scrollIntoView();}
 });
 fetch('../data/yougo.json').then(r=>r.json()).then(j=>{
   DATA=j;DATA.items.forEach(i=>byId[i.id]=i);tabs();draw();
