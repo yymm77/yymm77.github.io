@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>料理用語集 ｜ レシピ帖 ｜ おてんとうさまの下で</title>
+<meta name="description" content="フランス料理の基本用語を、身近な料理から説明する用語集。ソース・フォン・下処理・切り方・調理法・器具。">
+<style>
+  :root{--washi:#f5f1e8;--sumi:#1a1208;--kon:#1a3a5c;--kin:#b8960c;--shu:#8b2e2e;--kogecha:#3e2a1b;--usu:#ebe4d3;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--washi);color:var(--sumi);
+    font-family:"Noto Serif JP","游明朝",YuMincho,"Hiragino Mincho ProN",serif;line-height:1.8;font-size:16px;}
+  a{color:var(--kon);}
+  .wrap{max-width:980px;margin:0 auto;padding:22px 18px 60px;}
+  .pan{font-size:14px;color:var(--kogecha);margin-bottom:14px;}
+  .pan a{text-decoration:none;border-bottom:1px solid var(--kin);}
+  h1{font-size:28px;color:var(--kon);margin:0;letter-spacing:.08em;}
+  .lead{margin:4px 0 16px;color:var(--kogecha);font-size:15px;}
+  .rule{border:0;border-top:2px solid var(--kin);margin:0 0 18px;}
+  .kensaku{background:#fff;border:1px solid var(--kin);padding:16px 16px 12px;border-radius:4px;}
+  .kensaku label{display:block;font-weight:bold;color:var(--kon);margin-bottom:6px;}
+  .kensaku input{width:100%;font:inherit;font-size:17px;padding:10px 12px;border:1px solid #c9bfa6;border-radius:4px;background:var(--washi);}
+  .kensaku input:focus{outline:2px solid var(--kin);background:#fff;}
+  .hint{font-size:13px;color:var(--kogecha);margin:6px 0 0;}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 6px;}
+  .tabs button{font:inherit;font-size:15px;background:#fff;color:var(--kon);border:1px solid var(--kon);border-radius:20px;padding:5px 15px;cursor:pointer;}
+  .tabs button .n{font-size:12px;color:var(--kogecha);margin-left:4px;}
+  .tabs button.on{background:var(--kon);color:#fff;}
+  .tabs button.on .n{color:#e8dcb8;}
+  .tabs button:disabled{opacity:.45;cursor:default;}
+  .kekka{font-size:14px;color:var(--kogecha);margin:10px 0 10px;}
+  .fuda{background:#fff;border:1px solid #d8cfb8;border-left:4px solid var(--kin);padding:12px 16px 14px;border-radius:3px;margin-bottom:12px;}
+  .fuda:target{border-left-color:var(--shu);box-shadow:0 0 0 2px #f6e6a8;}
+  .fuda h2{font-size:20px;color:var(--kon);margin:0;line-height:1.5;}
+  .fuda .fr{font-size:15px;font-style:italic;color:var(--kogecha);margin-left:10px;font-weight:normal;}
+  .fuda .cat{display:inline-block;font-size:11px;padding:0 6px;border-radius:3px;background:var(--usu);color:var(--kogecha);margin-left:8px;vertical-align:middle;}
+  .mijika{background:#fbefe6;border-left:4px solid var(--shu);padding:6px 12px;margin:8px 0 10px;font-size:15px;}
+  .mijika b{color:var(--shu);margin-right:6px;font-size:13px;}
+  dl{margin:0;display:grid;grid-template-columns:7em 1fr;gap:4px 12px;font-size:15px;}
+  dt{color:var(--kon);font-weight:bold;font-size:14px;}
+  dd{margin:0;}
+  .kanren{margin-top:8px;font-size:14px;}
+  .kanren a{margin-right:10px;}
+  .nashi{background:#fff;border:1px dashed #c9bfa6;padding:18px;text-align:center;color:var(--kogecha);}
+  .foot{margin-top:40px;border-top:1px solid var(--kin);padding-top:14px;font-size:13.5px;color:var(--kogecha);}
+  .shomei{margin-top:8px;}
+  @media (max-width:520px){h1{font-size:23px;} .wrap{padding:16px 12px 48px;} dl{grid-template-columns:1fr;} dt{margin-top:6px;}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-V0EMF3WHLM"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V0EMF3WHLM');</script>
+</head>
+<body>
+<div class="wrap">
+  <div class="pan"><a href="../../">おてんとうさまの下で</a> ／ <a href="../">レシピ帖</a> ／ <span>料理用語集</span></div>
+  <h1>料理用語集</h1>
+  <p class="lead">フランス料理の言葉を、身近な料理から説明します。</p>
+  <hr class="rule">
+
+  <div class="kensaku">
+    <label for="q">言葉を入れてください</label>
+    <input type="text" id="q" placeholder="例：ベシャメル　béchamel　ホワイトソース" autocomplete="off">
+    <p class="hint">日本語でもフランス語でも探せます。ひらがな・カタカナ、アクセント記号のあるなしは区別しません。</p>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="kekka" id="kekka">読み込んでいます…</div>
+  <div id="list"></div>
+
+  <div class="foot">
+    参考：日本エスコフィエ協会編『エスコフィエの技 現代の術』（料理文化社、2003年）、A. Escoffier『Le Guide Culinaire』（1903年）。<br>
+    説明文はすべてこの用語集の制作者が書いたもので、書籍の文章を写したものではありません。「本」の欄は、上記『エスコフィエの技 現代の術』の参照ページです。<br>
+    <a href="../">レシピ帖へ戻る</a>　／　<a href="../../">おてんとうさまの下で</a>
+    <div class="shomei">生かされて今を存在する</div>
+  </div>
+</div>
+<script>
+// 検索用に文字をそろえる（ひらがな→カタカナ、アクセント記号・記号・空白を除く、小文字化）
+function norm(s){
+  s=(s||'').normalize('NFKC').toLowerCase();
+  s=s.normalize('NFD').replace(/[̀-ͯ]/g,'');
+  s=s.replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+0x60));
+  s=s.replace(/ヴ/g,'ブ');
+  return s.replace(/[\s・･\-ー＝=（）()「」、。,.]/g,'');
+}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+let DATA={categories:[],items:[]}, cur='すべて';
+const byId={};
+const RAN=[['imi','意味'],['dodai','土台'],['tokucho','特徴'],['hasei','派生の例'],['yurai','名の由来'],['hon','本']];
+function fuda(it){
+  let h=`<div class="fuda" id="${esc(it.id)}"><h2>${esc(it.ja)}<span class="fr">${esc(it.fr)}</span><span class="cat">${esc(it.cat)}</span></h2>`;
+  if(it.mijika)h+=`<div class="mijika"><b>身近な料理で言えば</b>${esc(it.mijika)}</div>`;
+  h+='<dl>';
+  for(const [k,n] of RAN){if(it[k])h+=`<dt>${n}</dt><dd>${esc(it[k])}</dd>`;}
+  h+='</dl>';
+  const kr=(it.kanren||[]).filter(id=>byId[id]);
+  if(kr.length)h+='<div class="kanren">関連する言葉：'+kr.map(id=>`<a href="#${esc(id)}" data-go="${esc(id)}">${esc(byId[id].ja)}</a>`).join('')+'</div>';
+  return h+'</div>';
+}
+function draw(){
+  const q=norm(document.getElementById('q').value);
+  const hits=DATA.items.filter(it=>{
+    if(cur!=='すべて'&&it.cat!==cur)return false;
+    if(!q)return true;
+    const hay=norm([it.ja,it.fr,it.yomi,(it.betsumei||[]).join(' ')].join(' '));
+    const body=norm([it.mijika,it.imi,it.dodai,it.tokucho,it.hasei].join(' '));
+    return hay.includes(q)||body.includes(q);
+  });
+  document.getElementById('kekka').textContent=`${hits.length}語`;
+  document.getElementById('list').innerHTML=hits.length?hits.map(fuda).join(''):'<div class="nashi">見つかりませんでした。別の言い方でも試してください。</div>';
+}
+function tabs(){
+  const cats=['すべて',...DATA.categories];
+  document.getElementById('tabs').innerHTML=cats.map(c=>{
+    const n=c==='すべて'?DATA.items.length:DATA.items.filter(i=>i.cat===c).length;
+    return `<button data-c="${esc(c)}" class="${c===cur?'on':''}" ${n?'':'disabled title="準備中"'}>${esc(c)}<span class="n">${n||'準備中'}</span></button>`;
+  }).join('');
+}
+document.getElementById('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;cur=b.dataset.c;tabs();draw();});
+document.getElementById('q').addEventListener('input',draw);
+document.getElementById('list').addEventListener('click',e=>{
+  const a=e.target.closest('a[data-go]');if(!a)return;
+  // 関連語が絞り込みで隠れていたら、絞り込みを解いてから飛ぶ
+  if(!document.getElementById(a.dataset.go)){e.preventDefault();cur='すべて';document.getElementById('q').value='';tabs();draw();location.hash=a.dataset.go;document.getElementById(a.dataset.go).scrollIntoView();}
+});
+fetch('../data/yougo.json').then(r=>r.json()).then(j=>{
+  DATA=j;DATA.items.forEach(i=>byId[i.id]=i);tabs();draw();
+  if(location.hash){const t=document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView();}
+}).catch(()=>{document.getElementById('kekka').textContent='用語集を読み込めませんでした。';});
+</script>
+</body>
+</html>
